@@ -1,0 +1,18 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: HuluCat's Blog
+email: majinshou@gmail.com
+description: 收藏工作生活中的点点滴滴
+url: "https//majinshou.github.io" # the base hostname & protocol for your site
+twitter_username: hulu0319
+github_username:  majinshou
+encoding: UTF-8
+
+# Build settings
+markdown: kramdown
