@@ -1,10 +1,9 @@
 ---
 layout: post
-title:  "What is MVC,MVP and MVVM
+title:  "What is MVC,MVP and MVVM"
 date:   2016-07-18 10:28:31 +0800
-categories: jekyll update
+categories: Design Pattern
 ---
+Check the [MVC，MVP 和 MVVM 的图示][Outter-Link] to view detail info.
 
-Check out the [Outter Link] to view detail info.
-
-[Outter Link]: http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html
+[Outter-Link]: http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html
