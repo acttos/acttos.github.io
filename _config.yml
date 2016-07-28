@@ -6,9 +6,11 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Welcome to HuluCat's home.
+name: 三晋的Blog
+title: 三晋的Blog
 email: majinshou@gmail.com
 url: "https//majinshou.github.io" # the base hostname & protocol for your site
+description: 曾经有一个绝好的赚钱机会摆在我面前，我没有珍惜，如果上天能够再给我一次机会的话……<br/>我依然这么尿性，不服，你咬我啊！^0^
 github_username:  majinshou
 encoding: UTF-8
 
