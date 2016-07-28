@@ -9,6 +9,7 @@ categories: Markdown
 
 ---
 
+```
 # Mou
 
 ![Mou icon](http://25.io/mou/Mou_128.png)
@@ -138,11 +139,11 @@ Wrap with 2 tilde characters:
 
 Start with a line containing 3 or more backticks, and ends with the first line with the same number of backticks:
 
-```
+Begin with ```
 Fenced code blocks are like Stardard Markdown’s regular code
 blocks, except that they’re not indented and instead rely on
 a start and end fence lines to delimit the code block.
-```
+End with ```
 
 #### Tables
 
@@ -245,3 +246,4 @@ Don't forget to check Preferences, lots of useful options are there.
 Follow [@Mou](https://twitter.com/mou) on Twitter for the latest news.
 
 For feedback, use the menu `Help` - `Send Feedback`
+```
