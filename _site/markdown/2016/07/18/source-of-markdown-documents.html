@@ -66,306 +66,243 @@
 
 <hr />
 
-<h1 id="mou">Mou</h1>
+<div class="highlighter-rouge"><pre class="highlight"><code># Mou
 
-<p><img src="http://25.io/mou/Mou_128.png" alt="Mou icon" /></p>
+![Mou icon](http://25.io/mou/Mou_128.png)
 
-<h2 id="overview">Overview</h2>
+## Overview
 
-<p><strong>Mou</strong>, the missing Markdown editor for <em>web developers</em>.</p>
+**Mou**, the missing Markdown editor for *web developers*.
 
-<h3 id="syntax">Syntax</h3>
+### Syntax
 
-<h4 id="strong-and-emphasize">Strong and Emphasize</h4>
+#### Strong and Emphasize 
 
-<p><strong>strong</strong> or <strong>strong</strong> ( Cmd + B )</p>
+**strong** or __strong__ ( Cmd + B )
 
-<p><em>emphasize</em> or <em>emphasize</em> ( Cmd + I )</p>
+*emphasize* or _emphasize_ ( Cmd + I )
 
-<p><strong>Sometimes I want a lot of text to be bold.
-Like, seriously, a <em>LOT</em> of text</strong></p>
+**Sometimes I want a lot of text to be bold.
+Like, seriously, a _LOT_ of text**
 
-<h4 id="blockquotes">Blockquotes</h4>
+#### Blockquotes
 
-<blockquote>
-  <p>Right angle brackets &gt; are used for block quotes.</p>
-</blockquote>
+&gt; Right angle brackets &amp;gt; are used for block quotes.
 
-<h4 id="links-and-email">Links and Email</h4>
+#### Links and Email
 
-<p>An email <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#101;&#120;&#097;&#109;&#112;&#108;&#101;&#064;&#101;&#120;&#097;&#109;&#112;&#108;&#101;&#046;&#099;&#111;&#109;">&#101;&#120;&#097;&#109;&#112;&#108;&#101;&#064;&#101;&#120;&#097;&#109;&#112;&#108;&#101;&#046;&#099;&#111;&#109;</a> link.</p>
+An email &lt;example@example.com&gt; link.
 
-<p>Simple inline link <a href="http://chenluois.com">http://chenluois.com</a>, another inline link <a href="http://25.io/smaller/">Smaller</a>, one more inline link with title <a href="http://resizesafari.com" title="a Safari extension">Resize</a>.</p>
+Simple inline link &lt;http://chenluois.com&gt;, another inline link [Smaller](http://25.io/smaller/), one more inline link with title [Resize](http://resizesafari.com "a Safari extension").
 
-<p>A <a href="http://25.io/mou/" title="Markdown editor on Mac OS X">reference style</a> link. Input id, then anywhere in the doc, define the link with corresponding id:</p>
+A [reference style][id] link. Input id, then anywhere in the doc, define the link with corresponding id:
 
-<p>Titles ( or called tool tips ) in the links are optional.</p>
+[id]: http://25.io/mou/ "Markdown editor on Mac OS X"
 
-<h4 id="images">Images</h4>
+Titles ( or called tool tips ) in the links are optional.
 
-<p>An inline image <img src="http://25.io/smaller/favicon.ico" alt="Smaller icon" title="Title here" />, title is optional.</p>
+#### Images
 
-<p>A <img src="http://resizesafari.com/favicon.ico" alt="Resize icon" title="Title" /> reference style image.</p>
+An inline image ![Smaller icon](http://25.io/smaller/favicon.ico "Title here"), title is optional.
 
-<h4 id="inline-code-and-block-code">Inline code and Block code</h4>
+A ![Resize icon][2] reference style image.
 
-<p>Inline code are surround by <code class="highlighter-rouge">backtick</code> key. To create a block code:</p>
+[2]: http://resizesafari.com/favicon.ico "Title"
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Indent each line by at least 1 tab, or 4 spaces.
-var Mou = exactlyTheAppIwant; 
-</code></pre>
-</div>
+#### Inline code and Block code
 
-<h4 id="ordered-lists">Ordered Lists</h4>
+Inline code are surround by `backtick` key. To create a block code:
 
-<p>Ordered lists are created using “1.” + Space:</p>
+	Indent each line by at least 1 tab, or 4 spaces.
+    var Mou = exactlyTheAppIwant; 
 
-<ol>
-  <li>Ordered list item</li>
-  <li>Ordered list item</li>
-  <li>Ordered list item</li>
-</ol>
+####  Ordered Lists
 
-<h4 id="unordered-lists">Unordered Lists</h4>
+Ordered lists are created using "1." + Space:
 
-<p>Unordered list are created using “*” + Space:</p>
+1. Ordered list item
+2. Ordered list item
+3. Ordered list item
 
-<ul>
-  <li>Unordered list item</li>
-  <li>Unordered list item</li>
-  <li>Unordered list item</li>
-</ul>
+#### Unordered Lists
 
-<p>Or using “-“ + Space:</p>
+Unordered list are created using "*" + Space:
 
-<ul>
-  <li>Unordered list item</li>
-  <li>Unordered list item</li>
-  <li>Unordered list item</li>
-</ul>
+* Unordered list item
+* Unordered list item
+* Unordered list item 
 
-<h4 id="hard-linebreak">Hard Linebreak</h4>
+Or using "-" + Space:
 
-<p>End a line with two or more spaces will create a hard linebreak, called <code class="highlighter-rouge">&lt;br /&gt;</code> in HTML. ( Control + Return )<br />
-Above line ended with 2 spaces.</p>
+- Unordered list item
+- Unordered list item
+- Unordered list item
 
-<h4 id="horizontal-rules">Horizontal Rules</h4>
+#### Hard Linebreak
 
-<p>Three or more asterisks or dashes:</p>
+End a line with two or more spaces will create a hard linebreak, called `&lt;br /&gt;` in HTML. ( Control + Return )  
+Above line ended with 2 spaces.
 
-<hr />
+#### Horizontal Rules
 
-<hr />
+Three or more asterisks or dashes:
 
-<hr />
+***
 
-<h4 id="headers">Headers</h4>
+---
 
-<p>Setext-style:</p>
+- - - -
 
-<h1 id="this-is-h1">This is H1</h1>
+#### Headers
 
-<h2 id="this-is-h2">This is H2</h2>
+Setext-style:
 
-<p>atx-style:</p>
+This is H1
+==========
 
-<h1 id="this-is-h1-1">This is H1</h1>
-<p>## This is H2
+This is H2
+----------
+
+atx-style:
+
+# This is H1
+## This is H2
 ### This is H3
 #### This is H4
 ##### This is H5
-###### This is H6</p>
+###### This is H6
 
-<h3 id="extra-syntax">Extra Syntax</h3>
 
-<h4 id="footnotes">Footnotes</h4>
+### Extra Syntax
 
-<p>Footnotes work mostly like reference-style links. A footnote is made of two things: a marker in the text that will become a superscript number; a footnote definition that will be placed in a list of footnotes at the end of the document. A footnote looks like this:</p>
+#### Footnotes
 
-<p>That’s some text with a footnote.<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
+Footnotes work mostly like reference-style links. A footnote is made of two things: a marker in the text that will become a superscript number; a footnote definition that will be placed in a list of footnotes at the end of the document. A footnote looks like this:
 
-<h4 id="strikethrough">Strikethrough</h4>
+That's some text with a footnote.[^1]
 
-<p>Wrap with 2 tilde characters:</p>
+[^1]: And that's the footnote.
 
-<p><del>Strikethrough</del></p>
 
-<h4 id="fenced-code-blocks">Fenced Code Blocks</h4>
+#### Strikethrough
 
-<p>Start with a line containing 3 or more backticks, and ends with the first line with the same number of backticks:</p>
+Wrap with 2 tilde characters:
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Fenced code blocks are like Stardard Markdown’s regular code
+~~Strikethrough~~
+
+
+#### Fenced Code Blocks
+
+Start with a line containing 3 or more backticks, and ends with the first line with the same number of backticks:
+
+Begin with ```
+Fenced code blocks are like Stardard Markdown’s regular code
 blocks, except that they’re not indented and instead rely on
 a start and end fence lines to delimit the code block.
+End with ```
+
+#### Tables
+
+A simple table looks like this:
+
+First Header | Second Header | Third Header
+------------ | ------------- | ------------
+Content Cell | Content Cell  | Content Cell
+Content Cell | Content Cell  | Content Cell
+
+If you wish, you can add a leading and tailing pipe to each line of the table:
+
+| First Header | Second Header | Third Header |
+| ------------ | ------------- | ------------ |
+| Content Cell | Content Cell  | Content Cell |
+| Content Cell | Content Cell  | Content Cell |
+
+Specify alignment for each column by adding colons to separator lines:
+
+First Header | Second Header | Third Header
+:----------- | :-----------: | -----------:
+Left         | Center        | Right
+Left         | Center        | Right
+
+
+### Shortcuts
+
+#### View
+
+* Toggle live preview: Shift + Cmd + I
+* Toggle Words Counter: Shift + Cmd + W
+* Toggle Transparent: Shift + Cmd + T
+* Toggle Floating: Shift + Cmd + F
+* Left/Right = 1/1: Cmd + 0
+* Left/Right = 3/1: Cmd + +
+* Left/Right = 1/3: Cmd + -
+* Toggle Writing orientation: Cmd + L
+* Toggle fullscreen: Control + Cmd + F
+
+#### Actions
+
+* Copy HTML: Option + Cmd + C
+* Strong: Select text, Cmd + B
+* Emphasize: Select text, Cmd + I
+* Inline Code: Select text, Cmd + K
+* Strikethrough: Select text, Cmd + U
+* Link: Select text, Control + Shift + L
+* Image: Select text, Control + Shift + I
+* Select Word: Control + Option + W
+* Select Line: Shift + Cmd + L
+* Select All: Cmd + A
+* Deselect All: Cmd + D
+* Convert to Uppercase: Select text, Control + U
+* Convert to Lowercase: Select text, Control + Shift + U
+* Convert to Titlecase: Select text, Control + Option + U
+* Convert to List: Select lines, Control + L
+* Convert to Blockquote: Select lines, Control + Q
+* Convert to H1: Cmd + 1
+* Convert to H2: Cmd + 2
+* Convert to H3: Cmd + 3
+* Convert to H4: Cmd + 4
+* Convert to H5: Cmd + 5
+* Convert to H6: Cmd + 6
+* Convert Spaces to Tabs: Control + [
+* Convert Tabs to Spaces: Control + ]
+* Insert Current Date: Control + Shift + 1
+* Insert Current Time: Control + Shift + 2
+* Insert entity &lt;: Control + Shift + ,
+* Insert entity &gt;: Control + Shift + .
+* Insert entity &amp;: Control + Shift + 7
+* Insert entity Space: Control + Shift + Space
+* Insert Scriptogr.am Header: Control + Shift + G
+* Shift Line Left: Select lines, Cmd + [
+* Shift Line Right: Select lines, Cmd + ]
+* New Line: Cmd + Return
+* Comment: Cmd + /
+* Hard Linebreak: Control + Return
+
+#### Edit
+
+* Auto complete current word: Esc
+* Find: Cmd + F
+* Close find bar: Esc
+
+#### Post
+
+* Post on Scriptogr.am: Control + Shift + S
+* Post on Tumblr: Control + Shift + T
+
+#### Export
+
+* Export HTML: Option + Cmd + E
+* Export PDF:  Option + Cmd + P
+
+
+### And more?
+
+Don't forget to check Preferences, lots of useful options are there.
+
+Follow [@Mou](https://twitter.com/mou) on Twitter for the latest news.
+
+For feedback, use the menu `Help` - `Send Feedback`
 </code></pre>
-</div>
-
-<h4 id="tables">Tables</h4>
-
-<p>A simple table looks like this:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>First Header</th>
-      <th>Second Header</th>
-      <th>Third Header</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Content Cell</td>
-      <td>Content Cell</td>
-      <td>Content Cell</td>
-    </tr>
-    <tr>
-      <td>Content Cell</td>
-      <td>Content Cell</td>
-      <td>Content Cell</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>If you wish, you can add a leading and tailing pipe to each line of the table:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>First Header</th>
-      <th>Second Header</th>
-      <th>Third Header</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Content Cell</td>
-      <td>Content Cell</td>
-      <td>Content Cell</td>
-    </tr>
-    <tr>
-      <td>Content Cell</td>
-      <td>Content Cell</td>
-      <td>Content Cell</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Specify alignment for each column by adding colons to separator lines:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">First Header</th>
-      <th style="text-align: center">Second Header</th>
-      <th style="text-align: right">Third Header</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">Left</td>
-      <td style="text-align: center">Center</td>
-      <td style="text-align: right">Right</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Left</td>
-      <td style="text-align: center">Center</td>
-      <td style="text-align: right">Right</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="shortcuts">Shortcuts</h3>
-
-<h4 id="view">View</h4>
-
-<ul>
-  <li>Toggle live preview: Shift + Cmd + I</li>
-  <li>Toggle Words Counter: Shift + Cmd + W</li>
-  <li>Toggle Transparent: Shift + Cmd + T</li>
-  <li>Toggle Floating: Shift + Cmd + F</li>
-  <li>Left/Right = 1/1: Cmd + 0</li>
-  <li>Left/Right = 3/1: Cmd + +</li>
-  <li>Left/Right = 1/3: Cmd + -</li>
-  <li>Toggle Writing orientation: Cmd + L</li>
-  <li>Toggle fullscreen: Control + Cmd + F</li>
-</ul>
-
-<h4 id="actions">Actions</h4>
-
-<ul>
-  <li>Copy HTML: Option + Cmd + C</li>
-  <li>Strong: Select text, Cmd + B</li>
-  <li>Emphasize: Select text, Cmd + I</li>
-  <li>Inline Code: Select text, Cmd + K</li>
-  <li>Strikethrough: Select text, Cmd + U</li>
-  <li>Link: Select text, Control + Shift + L</li>
-  <li>Image: Select text, Control + Shift + I</li>
-  <li>Select Word: Control + Option + W</li>
-  <li>Select Line: Shift + Cmd + L</li>
-  <li>Select All: Cmd + A</li>
-  <li>Deselect All: Cmd + D</li>
-  <li>Convert to Uppercase: Select text, Control + U</li>
-  <li>Convert to Lowercase: Select text, Control + Shift + U</li>
-  <li>Convert to Titlecase: Select text, Control + Option + U</li>
-  <li>Convert to List: Select lines, Control + L</li>
-  <li>Convert to Blockquote: Select lines, Control + Q</li>
-  <li>Convert to H1: Cmd + 1</li>
-  <li>Convert to H2: Cmd + 2</li>
-  <li>Convert to H3: Cmd + 3</li>
-  <li>Convert to H4: Cmd + 4</li>
-  <li>Convert to H5: Cmd + 5</li>
-  <li>Convert to H6: Cmd + 6</li>
-  <li>Convert Spaces to Tabs: Control + [</li>
-  <li>Convert Tabs to Spaces: Control + ]</li>
-  <li>Insert Current Date: Control + Shift + 1</li>
-  <li>Insert Current Time: Control + Shift + 2</li>
-  <li>Insert entity &lt;: Control + Shift + ,</li>
-  <li>Insert entity &gt;: Control + Shift + .</li>
-  <li>Insert entity &amp;: Control + Shift + 7</li>
-  <li>Insert entity Space: Control + Shift + Space</li>
-  <li>Insert Scriptogr.am Header: Control + Shift + G</li>
-  <li>Shift Line Left: Select lines, Cmd + [</li>
-  <li>Shift Line Right: Select lines, Cmd + ]</li>
-  <li>New Line: Cmd + Return</li>
-  <li>Comment: Cmd + /</li>
-  <li>Hard Linebreak: Control + Return</li>
-</ul>
-
-<h4 id="edit">Edit</h4>
-
-<ul>
-  <li>Auto complete current word: Esc</li>
-  <li>Find: Cmd + F</li>
-  <li>Close find bar: Esc</li>
-</ul>
-
-<h4 id="post">Post</h4>
-
-<ul>
-  <li>Post on Scriptogr.am: Control + Shift + S</li>
-  <li>Post on Tumblr: Control + Shift + T</li>
-</ul>
-
-<h4 id="export">Export</h4>
-
-<ul>
-  <li>Export HTML: Option + Cmd + E</li>
-  <li>Export PDF:  Option + Cmd + P</li>
-</ul>
-
-<h3 id="and-more">And more?</h3>
-
-<p>Don’t forget to check Preferences, lots of useful options are there.</p>
-
-<p>Follow <a href="https://twitter.com/mou">@Mou</a> on Twitter for the latest news.</p>
-
-<p>For feedback, use the menu <code class="highlighter-rouge">Help</code> - <code class="highlighter-rouge">Send Feedback</code></p>
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p>And that’s the footnote. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
 </div>
 
   </div>
@@ -402,8 +339,8 @@ a start and end fence lines to delimit the code block.
         </ul>
       </div>
 
-      <div class="footer-col footer-col-1">
-        <p>曾经有一个绝好的赚钱机会摆在我面前，我没有珍惜，如果上天能够再给我一次机会的话……<br/>我依然这么尿性，不服，你咬我啊！^0^</p>
+      <div class="footer-col">
+        <p>不积跬步，无以至千里；不积小流，无以成江海。</p>
       </div>
     </div>
   </div>

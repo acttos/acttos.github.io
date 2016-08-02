@@ -2,12 +2,215 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>三晋的Blog</title>
-    <description>曾经有一个绝好的赚钱机会摆在我面前，我没有珍惜，如果上天能够再给我一次机会的话……&lt;br/&gt;我依然这么尿性，不服，你咬我啊！^0^</description>
+    <description>不积跬步，无以至千里；不积小流，无以成江海。</description>
     <link>https//majinshou.github.io/</link>
     <atom:link href="https//majinshou.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 28 Jul 2016 19:43:57 +0800</pubDate>
-    <lastBuildDate>Thu, 28 Jul 2016 19:43:57 +0800</lastBuildDate>
+    <pubDate>Tue, 02 Aug 2016 19:39:41 +0800</pubDate>
+    <lastBuildDate>Tue, 02 Aug 2016 19:39:41 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>The Colorful UILabel in iOS</title>
+        <description>&lt;h1 id=&quot;the-colorful-uilabel-in-ios-development&quot;&gt;The Colorful UILabel in iOS development&lt;/h1&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;Once up on a time,I had a request which needed to display a colorful UILabel in the screen.&lt;/p&gt;
+
+&lt;p&gt;The productor said the colorful texts can catch the eyes of audiences.&lt;/p&gt;
+
+&lt;p&gt;OK,I sure chose to believe them.&lt;/p&gt;
+
+&lt;p&gt;Now,here is the question:&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-set-different-colors-to-each-word-in-the-uilabel&quot;&gt;1. How to set different colors to each word in the UILabel?&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I started my work with my own ideas:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;An UILabel can display the texts;&lt;/li&gt;
+  &lt;li&gt;The color of the texts can be set by ‘UILabel.textColor’;&lt;/li&gt;
+  &lt;li&gt;I add two UILabels with different colors will do;&lt;/li&gt;
+  &lt;li&gt;Excellent! (I said to myself).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I opened the Xcode.app to edit my codes like this:&lt;/p&gt;
+
+&lt;h3 id=&quot;the-way-i-did-in-the-past-time&quot;&gt;1.1 The way I did in the past time&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ Initializes a colorful label container view
+ 
+ - returns: A colorful label container view instance
+ */
+func initColorfulLabel() -&amp;gt; UIView {
+    let containerViewFrame:CGRect = CGRect(x: -7, y: 100, width: self.view.bounds.width, height: 20);
+    let containerView:UIView = UIView(frame: containerViewFrame);
+    
+    let redLabelFrame = CGRect(x: 0, y: 0, width: containerView.bounds.width / 2, height: 20);
+    let redLabel:UILabel = UILabel(frame: redLabelFrame);
+    redLabel.text = &quot;RED&quot;;
+    redLabel.textColor = UIColor.redColor();
+    redLabel.textAlignment = NSTextAlignment.Right;
+    
+    containerView.addSubview(redLabel);
+    
+    let blueLabelFrame = CGRect(x: containerView.bounds.width / 2, y: 0, width: containerView.bounds.width / 2, height: 20);
+    let blueLabel:UILabel = UILabel(frame: blueLabelFrame);
+    blueLabel.text = &quot; BLUE&quot;;
+    blueLabel.textColor = UIColor.blueColor();
+    blueLabel.textAlignment = NSTextAlignment.Left;
+    
+    containerView.addSubview(blueLabel);
+    
+    
+    return containerView;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Oh,My God,It worked! ^0^:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/colorful-uilabel/colorfulLabelsInContainerView.png&quot; alt=&quot;colorfulLabelsInContainerView.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;the-suggested-way-of-a-mentor-told-me-recently&quot;&gt;1.2 The suggested way of a mentor told me recently&lt;/h3&gt;
+
+&lt;p&gt;My mentor told me that UILabel supports different texts with different colors by setting UILabel’s attributedText.&lt;/p&gt;
+
+&lt;p&gt;Here is the newer one:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ Initializes a real colorful UILabel instance instead of a container view,this method is guided by a mentor
+ 
+ - returns: A real colorful UILabel instance
+ */
+func initColorfulLabelOfMentor() -&amp;gt; UILabel {
+    let str:NSMutableAttributedString = NSMutableAttributedString(string: &quot;RED BLUE&quot;);
+    str.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(), range: NSMakeRange(0, 3));
+    str.addAttribute(NSForegroundColorAttributeName, value: UIColor.blueColor(), range: NSMakeRange(4, 4));
+    
+    let labelFrame = CGRect(x: 0, y: 140, width: self.view.bounds.width, height: 20);
+    let label:UILabel = UILabel(frame: labelFrame);
+    label.attributedText = str;
+    label.textAlignment = NSTextAlignment.Center;
+    
+    
+    return label;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;It works too:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/colorful-uilabel/colorfulLabel.png&quot; alt=&quot;colorfulLabel.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After I made the colorful texts in the screen,the productor said we still need to add a shadow to the text, and again, to catch the eyes of audiences.&lt;/p&gt;
+
+&lt;p&gt;OK,I’ll do it. Because I always to choose to believe them.&lt;/p&gt;
+
+&lt;p&gt;So,I have a new question here:&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-add-a-shadow-to-the-words-in-uilabel&quot;&gt;2. How to add a shadow to the words in UILabel?&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I started my thinking again,of course I chose to add two different UILabels to make the shadow:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Add an UILabel to display the given texts with certain color(color of the shadow);&lt;/li&gt;
+  &lt;li&gt;Add another UILabel to display the texts with shadow color;&lt;/li&gt;
+  &lt;li&gt;Put the two UILabels together into a container UIView to make a shadow;&lt;/li&gt;
+  &lt;li&gt;Return the UIView instance called ‘containerView’.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So,I put my ideas into codes:&lt;/p&gt;
+
+&lt;h3 id=&quot;the-way-i-did-in-the-past-time-1&quot;&gt;2.1 The way I did in the past time&lt;/h3&gt;
+
+&lt;p&gt;Here is the implementation of my idea:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ Initializes a shadow label container view
+ 
+ - returns: A UIView instance which contains two UILabels to display a shadow
+ */
+func initShadowLabel() -&amp;gt; UIView {
+    
+    let containerViewFrame:CGRect = CGRect(x: 0, y: 180, width: self.view.bounds.width, height: 20);
+    let containerView:UIView = UIView(frame: containerViewFrame);
+    
+    let lowerLabelFrame = CGRect(x: 1, y: 1, width: self.view.bounds.width, height: 20);
+    let lowerLabel:UILabel = UILabel(frame: lowerLabelFrame);
+    lowerLabel.text = &quot;LABEL WITH SHADOW&quot;;
+    lowerLabel.textColor = UIColor.blueColor();
+    lowerLabel.textAlignment = NSTextAlignment.Center;
+    
+    containerView.addSubview(lowerLabel);
+    
+    
+    let upperLabelFrame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 20);
+    let upperLabel:UILabel = UILabel(frame: upperLabelFrame);
+    upperLabel.text = &quot;LABEL WITH SHADOW&quot;;
+    upperLabel.textColor = UIColor.redColor();
+    upperLabel.textAlignment = NSTextAlignment.Center;
+    
+    containerView.addSubview(upperLabel);
+    
+    
+    return containerView;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Oh,My God,It worked again:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/colorful-uilabel/shadowLabelsInContainerView.png&quot; alt=&quot;shadowLabelsInContainerView.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;the-suggested-way-of-a-mentor&quot;&gt;2.2 The suggested way of a mentor&lt;/h3&gt;
+
+&lt;p&gt;Once again,a mentor occurs,And he gives me another way to implement the shadow in UILabel:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ Initializes a real shadow UILabel instance instead of a container view,this method is guided by a mentor
+ 
+ - returns: A UILabel which has a shadow
+ */
+func initShadowLabelOfMentor() -&amp;gt; UILabel {
+    
+    let labelFrame = CGRect(x: 0, y: 220, width: self.view.bounds.width, height: 20);
+    let label:UILabel = UILabel(frame: labelFrame);
+    label.text = &quot;LABEL WITH SHADOW&quot;;
+    label.textColor = UIColor.redColor();
+    label.shadowColor = UIColor.blueColor();
+    label.shadowOffset = CGSize(width: 1, height: 1);
+    label.textAlignment = NSTextAlignment.Center;
+    
+    
+    return label;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;See? It is more simple and clearer.&lt;/p&gt;
+
+&lt;p&gt;Here is the result in picture:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/colorful-uilabel/shadowLabel.png&quot; alt=&quot;shadowLabel.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;source-code&quot;&gt;3. Source Code:&lt;/h2&gt;
+
+&lt;p&gt;You can find all the codes &lt;a href=&quot;https://github.com/majinshou/ColorfulUILabel&quot;&gt;Here&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 02 Aug 2016 19:36:51 +0800</pubDate>
+        <link>https//majinshou.github.io/ios/2016/08/02/the-colorful-uilabel.html</link>
+        <guid isPermaLink="true">https//majinshou.github.io/ios/2016/08/02/the-colorful-uilabel.html</guid>
+        
+        
+        <category>iOS</category>
+        
+      </item>
     
       <item>
         <title>The source code preview of last post of &#39;What are Markdown Documents?&#39;</title>
@@ -15,306 +218,243 @@
 
 &lt;hr /&gt;
 
-&lt;h1 id=&quot;mou&quot;&gt;Mou&lt;/h1&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Mou
 
-&lt;p&gt;&lt;img src=&quot;http://25.io/mou/Mou_128.png&quot; alt=&quot;Mou icon&quot; /&gt;&lt;/p&gt;
+![Mou icon](http://25.io/mou/Mou_128.png)
 
-&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+## Overview
 
-&lt;p&gt;&lt;strong&gt;Mou&lt;/strong&gt;, the missing Markdown editor for &lt;em&gt;web developers&lt;/em&gt;.&lt;/p&gt;
+**Mou**, the missing Markdown editor for *web developers*.
 
-&lt;h3 id=&quot;syntax&quot;&gt;Syntax&lt;/h3&gt;
+### Syntax
 
-&lt;h4 id=&quot;strong-and-emphasize&quot;&gt;Strong and Emphasize&lt;/h4&gt;
+#### Strong and Emphasize 
 
-&lt;p&gt;&lt;strong&gt;strong&lt;/strong&gt; or &lt;strong&gt;strong&lt;/strong&gt; ( Cmd + B )&lt;/p&gt;
+**strong** or __strong__ ( Cmd + B )
 
-&lt;p&gt;&lt;em&gt;emphasize&lt;/em&gt; or &lt;em&gt;emphasize&lt;/em&gt; ( Cmd + I )&lt;/p&gt;
+*emphasize* or _emphasize_ ( Cmd + I )
 
-&lt;p&gt;&lt;strong&gt;Sometimes I want a lot of text to be bold.
-Like, seriously, a &lt;em&gt;LOT&lt;/em&gt; of text&lt;/strong&gt;&lt;/p&gt;
+**Sometimes I want a lot of text to be bold.
+Like, seriously, a _LOT_ of text**
 
-&lt;h4 id=&quot;blockquotes&quot;&gt;Blockquotes&lt;/h4&gt;
+#### Blockquotes
 
-&lt;blockquote&gt;
-  &lt;p&gt;Right angle brackets &amp;gt; are used for block quotes.&lt;/p&gt;
-&lt;/blockquote&gt;
+&amp;gt; Right angle brackets &amp;amp;gt; are used for block quotes.
 
-&lt;h4 id=&quot;links-and-email&quot;&gt;Links and Email&lt;/h4&gt;
+#### Links and Email
 
-&lt;p&gt;An email &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#101;&amp;#120;&amp;#097;&amp;#109;&amp;#112;&amp;#108;&amp;#101;&amp;#064;&amp;#101;&amp;#120;&amp;#097;&amp;#109;&amp;#112;&amp;#108;&amp;#101;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&quot;&gt;&amp;#101;&amp;#120;&amp;#097;&amp;#109;&amp;#112;&amp;#108;&amp;#101;&amp;#064;&amp;#101;&amp;#120;&amp;#097;&amp;#109;&amp;#112;&amp;#108;&amp;#101;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&lt;/a&gt; link.&lt;/p&gt;
+An email &amp;lt;example@example.com&amp;gt; link.
 
-&lt;p&gt;Simple inline link &lt;a href=&quot;http://chenluois.com&quot;&gt;http://chenluois.com&lt;/a&gt;, another inline link &lt;a href=&quot;http://25.io/smaller/&quot;&gt;Smaller&lt;/a&gt;, one more inline link with title &lt;a href=&quot;http://resizesafari.com&quot; title=&quot;a Safari extension&quot;&gt;Resize&lt;/a&gt;.&lt;/p&gt;
+Simple inline link &amp;lt;http://chenluois.com&amp;gt;, another inline link [Smaller](http://25.io/smaller/), one more inline link with title [Resize](http://resizesafari.com &quot;a Safari extension&quot;).
 
-&lt;p&gt;A &lt;a href=&quot;http://25.io/mou/&quot; title=&quot;Markdown editor on Mac OS X&quot;&gt;reference style&lt;/a&gt; link. Input id, then anywhere in the doc, define the link with corresponding id:&lt;/p&gt;
+A [reference style][id] link. Input id, then anywhere in the doc, define the link with corresponding id:
 
-&lt;p&gt;Titles ( or called tool tips ) in the links are optional.&lt;/p&gt;
+[id]: http://25.io/mou/ &quot;Markdown editor on Mac OS X&quot;
 
-&lt;h4 id=&quot;images&quot;&gt;Images&lt;/h4&gt;
+Titles ( or called tool tips ) in the links are optional.
 
-&lt;p&gt;An inline image &lt;img src=&quot;http://25.io/smaller/favicon.ico&quot; alt=&quot;Smaller icon&quot; title=&quot;Title here&quot; /&gt;, title is optional.&lt;/p&gt;
+#### Images
 
-&lt;p&gt;A &lt;img src=&quot;http://resizesafari.com/favicon.ico&quot; alt=&quot;Resize icon&quot; title=&quot;Title&quot; /&gt; reference style image.&lt;/p&gt;
+An inline image ![Smaller icon](http://25.io/smaller/favicon.ico &quot;Title here&quot;), title is optional.
 
-&lt;h4 id=&quot;inline-code-and-block-code&quot;&gt;Inline code and Block code&lt;/h4&gt;
+A ![Resize icon][2] reference style image.
 
-&lt;p&gt;Inline code are surround by &lt;code class=&quot;highlighter-rouge&quot;&gt;backtick&lt;/code&gt; key. To create a block code:&lt;/p&gt;
+[2]: http://resizesafari.com/favicon.ico &quot;Title&quot;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Indent each line by at least 1 tab, or 4 spaces.
-var Mou = exactlyTheAppIwant; 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+#### Inline code and Block code
 
-&lt;h4 id=&quot;ordered-lists&quot;&gt;Ordered Lists&lt;/h4&gt;
+Inline code are surround by `backtick` key. To create a block code:
 
-&lt;p&gt;Ordered lists are created using “1.” + Space:&lt;/p&gt;
+	Indent each line by at least 1 tab, or 4 spaces.
+    var Mou = exactlyTheAppIwant; 
 
-&lt;ol&gt;
-  &lt;li&gt;Ordered list item&lt;/li&gt;
-  &lt;li&gt;Ordered list item&lt;/li&gt;
-  &lt;li&gt;Ordered list item&lt;/li&gt;
-&lt;/ol&gt;
+####  Ordered Lists
 
-&lt;h4 id=&quot;unordered-lists&quot;&gt;Unordered Lists&lt;/h4&gt;
+Ordered lists are created using &quot;1.&quot; + Space:
 
-&lt;p&gt;Unordered list are created using “*” + Space:&lt;/p&gt;
+1. Ordered list item
+2. Ordered list item
+3. Ordered list item
 
-&lt;ul&gt;
-  &lt;li&gt;Unordered list item&lt;/li&gt;
-  &lt;li&gt;Unordered list item&lt;/li&gt;
-  &lt;li&gt;Unordered list item&lt;/li&gt;
-&lt;/ul&gt;
+#### Unordered Lists
 
-&lt;p&gt;Or using “-“ + Space:&lt;/p&gt;
+Unordered list are created using &quot;*&quot; + Space:
 
-&lt;ul&gt;
-  &lt;li&gt;Unordered list item&lt;/li&gt;
-  &lt;li&gt;Unordered list item&lt;/li&gt;
-  &lt;li&gt;Unordered list item&lt;/li&gt;
-&lt;/ul&gt;
+* Unordered list item
+* Unordered list item
+* Unordered list item 
 
-&lt;h4 id=&quot;hard-linebreak&quot;&gt;Hard Linebreak&lt;/h4&gt;
+Or using &quot;-&quot; + Space:
 
-&lt;p&gt;End a line with two or more spaces will create a hard linebreak, called &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;br /&amp;gt;&lt;/code&gt; in HTML. ( Control + Return )&lt;br /&gt;
-Above line ended with 2 spaces.&lt;/p&gt;
+- Unordered list item
+- Unordered list item
+- Unordered list item
 
-&lt;h4 id=&quot;horizontal-rules&quot;&gt;Horizontal Rules&lt;/h4&gt;
+#### Hard Linebreak
 
-&lt;p&gt;Three or more asterisks or dashes:&lt;/p&gt;
+End a line with two or more spaces will create a hard linebreak, called `&amp;lt;br /&amp;gt;` in HTML. ( Control + Return )  
+Above line ended with 2 spaces.
 
-&lt;hr /&gt;
+#### Horizontal Rules
 
-&lt;hr /&gt;
+Three or more asterisks or dashes:
 
-&lt;hr /&gt;
+***
 
-&lt;h4 id=&quot;headers&quot;&gt;Headers&lt;/h4&gt;
+---
 
-&lt;p&gt;Setext-style:&lt;/p&gt;
+- - - -
 
-&lt;h1 id=&quot;this-is-h1&quot;&gt;This is H1&lt;/h1&gt;
+#### Headers
 
-&lt;h2 id=&quot;this-is-h2&quot;&gt;This is H2&lt;/h2&gt;
+Setext-style:
 
-&lt;p&gt;atx-style:&lt;/p&gt;
+This is H1
+==========
 
-&lt;h1 id=&quot;this-is-h1-1&quot;&gt;This is H1&lt;/h1&gt;
-&lt;p&gt;## This is H2
+This is H2
+----------
+
+atx-style:
+
+# This is H1
+## This is H2
 ### This is H3
 #### This is H4
 ##### This is H5
-###### This is H6&lt;/p&gt;
+###### This is H6
 
-&lt;h3 id=&quot;extra-syntax&quot;&gt;Extra Syntax&lt;/h3&gt;
 
-&lt;h4 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h4&gt;
+### Extra Syntax
 
-&lt;p&gt;Footnotes work mostly like reference-style links. A footnote is made of two things: a marker in the text that will become a superscript number; a footnote definition that will be placed in a list of footnotes at the end of the document. A footnote looks like this:&lt;/p&gt;
+#### Footnotes
 
-&lt;p&gt;That’s some text with a footnote.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+Footnotes work mostly like reference-style links. A footnote is made of two things: a marker in the text that will become a superscript number; a footnote definition that will be placed in a list of footnotes at the end of the document. A footnote looks like this:
 
-&lt;h4 id=&quot;strikethrough&quot;&gt;Strikethrough&lt;/h4&gt;
+That&#39;s some text with a footnote.[^1]
 
-&lt;p&gt;Wrap with 2 tilde characters:&lt;/p&gt;
+[^1]: And that&#39;s the footnote.
 
-&lt;p&gt;&lt;del&gt;Strikethrough&lt;/del&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;fenced-code-blocks&quot;&gt;Fenced Code Blocks&lt;/h4&gt;
+#### Strikethrough
 
-&lt;p&gt;Start with a line containing 3 or more backticks, and ends with the first line with the same number of backticks:&lt;/p&gt;
+Wrap with 2 tilde characters:
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Fenced code blocks are like Stardard Markdown’s regular code
+~~Strikethrough~~
+
+
+#### Fenced Code Blocks
+
+Start with a line containing 3 or more backticks, and ends with the first line with the same number of backticks:
+
+Begin with ```
+Fenced code blocks are like Stardard Markdown’s regular code
 blocks, except that they’re not indented and instead rely on
 a start and end fence lines to delimit the code block.
+End with ```
+
+#### Tables
+
+A simple table looks like this:
+
+First Header | Second Header | Third Header
+------------ | ------------- | ------------
+Content Cell | Content Cell  | Content Cell
+Content Cell | Content Cell  | Content Cell
+
+If you wish, you can add a leading and tailing pipe to each line of the table:
+
+| First Header | Second Header | Third Header |
+| ------------ | ------------- | ------------ |
+| Content Cell | Content Cell  | Content Cell |
+| Content Cell | Content Cell  | Content Cell |
+
+Specify alignment for each column by adding colons to separator lines:
+
+First Header | Second Header | Third Header
+:----------- | :-----------: | -----------:
+Left         | Center        | Right
+Left         | Center        | Right
+
+
+### Shortcuts
+
+#### View
+
+* Toggle live preview: Shift + Cmd + I
+* Toggle Words Counter: Shift + Cmd + W
+* Toggle Transparent: Shift + Cmd + T
+* Toggle Floating: Shift + Cmd + F
+* Left/Right = 1/1: Cmd + 0
+* Left/Right = 3/1: Cmd + +
+* Left/Right = 1/3: Cmd + -
+* Toggle Writing orientation: Cmd + L
+* Toggle fullscreen: Control + Cmd + F
+
+#### Actions
+
+* Copy HTML: Option + Cmd + C
+* Strong: Select text, Cmd + B
+* Emphasize: Select text, Cmd + I
+* Inline Code: Select text, Cmd + K
+* Strikethrough: Select text, Cmd + U
+* Link: Select text, Control + Shift + L
+* Image: Select text, Control + Shift + I
+* Select Word: Control + Option + W
+* Select Line: Shift + Cmd + L
+* Select All: Cmd + A
+* Deselect All: Cmd + D
+* Convert to Uppercase: Select text, Control + U
+* Convert to Lowercase: Select text, Control + Shift + U
+* Convert to Titlecase: Select text, Control + Option + U
+* Convert to List: Select lines, Control + L
+* Convert to Blockquote: Select lines, Control + Q
+* Convert to H1: Cmd + 1
+* Convert to H2: Cmd + 2
+* Convert to H3: Cmd + 3
+* Convert to H4: Cmd + 4
+* Convert to H5: Cmd + 5
+* Convert to H6: Cmd + 6
+* Convert Spaces to Tabs: Control + [
+* Convert Tabs to Spaces: Control + ]
+* Insert Current Date: Control + Shift + 1
+* Insert Current Time: Control + Shift + 2
+* Insert entity &amp;lt;: Control + Shift + ,
+* Insert entity &amp;gt;: Control + Shift + .
+* Insert entity &amp;amp;: Control + Shift + 7
+* Insert entity Space: Control + Shift + Space
+* Insert Scriptogr.am Header: Control + Shift + G
+* Shift Line Left: Select lines, Cmd + [
+* Shift Line Right: Select lines, Cmd + ]
+* New Line: Cmd + Return
+* Comment: Cmd + /
+* Hard Linebreak: Control + Return
+
+#### Edit
+
+* Auto complete current word: Esc
+* Find: Cmd + F
+* Close find bar: Esc
+
+#### Post
+
+* Post on Scriptogr.am: Control + Shift + S
+* Post on Tumblr: Control + Shift + T
+
+#### Export
+
+* Export HTML: Option + Cmd + E
+* Export PDF:  Option + Cmd + P
+
+
+### And more?
+
+Don&#39;t forget to check Preferences, lots of useful options are there.
+
+Follow [@Mou](https://twitter.com/mou) on Twitter for the latest news.
+
+For feedback, use the menu `Help` - `Send Feedback`
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;tables&quot;&gt;Tables&lt;/h4&gt;
-
-&lt;p&gt;A simple table looks like this:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;First Header&lt;/th&gt;
-      &lt;th&gt;Second Header&lt;/th&gt;
-      &lt;th&gt;Third Header&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;If you wish, you can add a leading and tailing pipe to each line of the table:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;First Header&lt;/th&gt;
-      &lt;th&gt;Second Header&lt;/th&gt;
-      &lt;th&gt;Third Header&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Specify alignment for each column by adding colons to separator lines:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;First Header&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Second Header&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Third Header&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Left&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Center&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;Right&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Left&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Center&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;Right&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;shortcuts&quot;&gt;Shortcuts&lt;/h3&gt;
-
-&lt;h4 id=&quot;view&quot;&gt;View&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Toggle live preview: Shift + Cmd + I&lt;/li&gt;
-  &lt;li&gt;Toggle Words Counter: Shift + Cmd + W&lt;/li&gt;
-  &lt;li&gt;Toggle Transparent: Shift + Cmd + T&lt;/li&gt;
-  &lt;li&gt;Toggle Floating: Shift + Cmd + F&lt;/li&gt;
-  &lt;li&gt;Left/Right = 1/1: Cmd + 0&lt;/li&gt;
-  &lt;li&gt;Left/Right = 3/1: Cmd + +&lt;/li&gt;
-  &lt;li&gt;Left/Right = 1/3: Cmd + -&lt;/li&gt;
-  &lt;li&gt;Toggle Writing orientation: Cmd + L&lt;/li&gt;
-  &lt;li&gt;Toggle fullscreen: Control + Cmd + F&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;actions&quot;&gt;Actions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Copy HTML: Option + Cmd + C&lt;/li&gt;
-  &lt;li&gt;Strong: Select text, Cmd + B&lt;/li&gt;
-  &lt;li&gt;Emphasize: Select text, Cmd + I&lt;/li&gt;
-  &lt;li&gt;Inline Code: Select text, Cmd + K&lt;/li&gt;
-  &lt;li&gt;Strikethrough: Select text, Cmd + U&lt;/li&gt;
-  &lt;li&gt;Link: Select text, Control + Shift + L&lt;/li&gt;
-  &lt;li&gt;Image: Select text, Control + Shift + I&lt;/li&gt;
-  &lt;li&gt;Select Word: Control + Option + W&lt;/li&gt;
-  &lt;li&gt;Select Line: Shift + Cmd + L&lt;/li&gt;
-  &lt;li&gt;Select All: Cmd + A&lt;/li&gt;
-  &lt;li&gt;Deselect All: Cmd + D&lt;/li&gt;
-  &lt;li&gt;Convert to Uppercase: Select text, Control + U&lt;/li&gt;
-  &lt;li&gt;Convert to Lowercase: Select text, Control + Shift + U&lt;/li&gt;
-  &lt;li&gt;Convert to Titlecase: Select text, Control + Option + U&lt;/li&gt;
-  &lt;li&gt;Convert to List: Select lines, Control + L&lt;/li&gt;
-  &lt;li&gt;Convert to Blockquote: Select lines, Control + Q&lt;/li&gt;
-  &lt;li&gt;Convert to H1: Cmd + 1&lt;/li&gt;
-  &lt;li&gt;Convert to H2: Cmd + 2&lt;/li&gt;
-  &lt;li&gt;Convert to H3: Cmd + 3&lt;/li&gt;
-  &lt;li&gt;Convert to H4: Cmd + 4&lt;/li&gt;
-  &lt;li&gt;Convert to H5: Cmd + 5&lt;/li&gt;
-  &lt;li&gt;Convert to H6: Cmd + 6&lt;/li&gt;
-  &lt;li&gt;Convert Spaces to Tabs: Control + [&lt;/li&gt;
-  &lt;li&gt;Convert Tabs to Spaces: Control + ]&lt;/li&gt;
-  &lt;li&gt;Insert Current Date: Control + Shift + 1&lt;/li&gt;
-  &lt;li&gt;Insert Current Time: Control + Shift + 2&lt;/li&gt;
-  &lt;li&gt;Insert entity &amp;lt;: Control + Shift + ,&lt;/li&gt;
-  &lt;li&gt;Insert entity &amp;gt;: Control + Shift + .&lt;/li&gt;
-  &lt;li&gt;Insert entity &amp;amp;: Control + Shift + 7&lt;/li&gt;
-  &lt;li&gt;Insert entity Space: Control + Shift + Space&lt;/li&gt;
-  &lt;li&gt;Insert Scriptogr.am Header: Control + Shift + G&lt;/li&gt;
-  &lt;li&gt;Shift Line Left: Select lines, Cmd + [&lt;/li&gt;
-  &lt;li&gt;Shift Line Right: Select lines, Cmd + ]&lt;/li&gt;
-  &lt;li&gt;New Line: Cmd + Return&lt;/li&gt;
-  &lt;li&gt;Comment: Cmd + /&lt;/li&gt;
-  &lt;li&gt;Hard Linebreak: Control + Return&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;edit&quot;&gt;Edit&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Auto complete current word: Esc&lt;/li&gt;
-  &lt;li&gt;Find: Cmd + F&lt;/li&gt;
-  &lt;li&gt;Close find bar: Esc&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;post&quot;&gt;Post&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Post on Scriptogr.am: Control + Shift + S&lt;/li&gt;
-  &lt;li&gt;Post on Tumblr: Control + Shift + T&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;export&quot;&gt;Export&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Export HTML: Option + Cmd + E&lt;/li&gt;
-  &lt;li&gt;Export PDF:  Option + Cmd + P&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;and-more&quot;&gt;And more?&lt;/h3&gt;
-
-&lt;p&gt;Don’t forget to check Preferences, lots of useful options are there.&lt;/p&gt;
-
-&lt;p&gt;Follow &lt;a href=&quot;https://twitter.com/mou&quot;&gt;@Mou&lt;/a&gt; on Twitter for the latest news.&lt;/p&gt;
-
-&lt;p&gt;For feedback, use the menu &lt;code class=&quot;highlighter-rouge&quot;&gt;Help&lt;/code&gt; - &lt;code class=&quot;highlighter-rouge&quot;&gt;Send Feedback&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;And that’s the footnote. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
 &lt;/div&gt;
 </description>
         <pubDate>Mon, 18 Jul 2016 18:30:31 +0800</pubDate>
