@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>三晋的Blog</title>
-    <description>不积跬步，无以至千里；不积小流，无以成江海。</description>
+    <title>Welcome to HuluCat&#39;s Blog</title>
+    <description>Goals determine what you’re going to be.</description>
     <link>https//majinshou.github.io/</link>
     <atom:link href="https//majinshou.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 02 Aug 2016 20:15:00 +0800</pubDate>
-    <lastBuildDate>Tue, 02 Aug 2016 20:15:00 +0800</lastBuildDate>
+    <pubDate>Wed, 03 Aug 2016 17:33:57 +0800</pubDate>
+    <lastBuildDate>Wed, 03 Aug 2016 17:33:57 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -16,11 +16,11 @@
 
 &lt;p&gt;Once up on a time,I had a request which needed to display a colorful UILabel in the screen.&lt;/p&gt;
 
-&lt;p&gt;The productor said the colorful texts can catch the eyes of audiences.&lt;/p&gt;
+&lt;p&gt;The product manager said the colorful texts can catch the eyes of audiences.&lt;/p&gt;
 
 &lt;p&gt;OK,I sure chose to believe them.&lt;/p&gt;
 
-&lt;p&gt;Now,here is the question:&lt;/p&gt;
+&lt;p&gt;Then,I had a question:&lt;/p&gt;
 
 &lt;h2 id=&quot;how-to-set-different-colors-to-each-word-in-the-uilabel&quot;&gt;1. How to set different colors to each word in the UILabel?&lt;/h2&gt;
 
@@ -31,7 +31,7 @@
 &lt;ul&gt;
   &lt;li&gt;An UILabel can display the texts;&lt;/li&gt;
   &lt;li&gt;The color of the texts can be set by ‘UILabel.textColor’;&lt;/li&gt;
-  &lt;li&gt;I add two UILabels with different colors will do;&lt;/li&gt;
+  &lt;li&gt;Adding two UILabels with different colors will do;&lt;/li&gt;
   &lt;li&gt;Excellent! (I said to myself).&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -74,7 +74,7 @@ func initColorfulLabel() -&amp;gt; UIView {
 
 &lt;p&gt;&lt;img src=&quot;/images/colorful-uilabel/colorfulLabelsInContainerView.png&quot; alt=&quot;colorfulLabelsInContainerView.png&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;the-suggested-way-of-a-mentor-told-me-recently&quot;&gt;1.2 The suggested way of a mentor told me recently&lt;/h3&gt;
+&lt;h3 id=&quot;the-suggested-way-a-mentor-told-me-recently&quot;&gt;1.2 The suggested way a mentor told me recently&lt;/h3&gt;
 
 &lt;p&gt;My mentor told me that UILabel supports different texts with different colors by setting UILabel’s attributedText.&lt;/p&gt;
 
@@ -105,11 +105,11 @@ func initColorfulLabelOfMentor() -&amp;gt; UILabel {
 
 &lt;p&gt;&lt;img src=&quot;/images/colorful-uilabel/colorfulLabel.png&quot; alt=&quot;colorfulLabel.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;After I made the colorful texts in the screen,the productor said we still need to add a shadow to the text, and again, to catch the eyes of audiences.&lt;/p&gt;
+&lt;p&gt;After I made the colorful texts in the screen,the product manager said we still need to add a shadow to the text, and again, for catching the eyes of audiences.&lt;/p&gt;
 
-&lt;p&gt;OK,I’ll do it. Because I always to choose to believe them.&lt;/p&gt;
+&lt;p&gt;OK,I would do it. Because I always chose to believe them.&lt;/p&gt;
 
-&lt;p&gt;So,I have a new question here:&lt;/p&gt;
+&lt;p&gt;So,I had a new question here:&lt;/p&gt;
 
 &lt;h2 id=&quot;how-to-add-a-shadow-to-the-words-in-uilabel&quot;&gt;2. How to add a shadow to the words in UILabel?&lt;/h2&gt;
 
@@ -169,7 +169,7 @@ func initShadowLabel() -&amp;gt; UIView {
 
 &lt;h3 id=&quot;the-suggested-way-of-a-mentor&quot;&gt;2.2 The suggested way of a mentor&lt;/h3&gt;
 
-&lt;p&gt;Once again,a mentor occurs,And he gives me another way to implement the shadow in UILabel:&lt;/p&gt;
+&lt;p&gt;Once again,a mentor occured,And he gave me another way to implement the shadow in UILabel:&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
  Initializes a real shadow UILabel instance instead of a container view,this method is guided by a mentor

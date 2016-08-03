@@ -2,8 +2,6 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">{{ site.title }}</h2>
-
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
@@ -12,19 +10,14 @@
             GitHub:{% include icon-github.html username=site.github_username %}
           </li>
           {% endif %}
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li>
-	    E-mail:<a href="mailto:{{ site.email }}">{{ site.email }}</a>
-	  </li>
+	  <li>
+            E-mail:<a href="mailto:{{ site.email }}">{{ site.email }}</a>
+          </li>
         </ul>
       </div>
 
       <div class="footer-col">
-        <p>{{ site.description }}</p>
+        <p>Which I believe deeply:<br/>{{ site.description }}</p>
       </div>
     </div>
   </div>

@@ -3,10 +3,15 @@ layout: page
 title: About
 permalink: /about/
 ---
-Email:[majinshou@gmail.com][mailto]
 
-QQ:871040486
+### Title:
 
-WeChat:stormd
+	A bloody programmer working at NQ Mobile Inc. Beijing, China.
 
-[mailto]: mailto:majinshou@gmail.com
+### Interests: 
+
+	iOS, Node.js, Java, Swift, Foods, Movie and Military News.
+
+#### At last:
+
+Welcome to visit [[NQ Mobile Inc.]](http://www.nq.com){:target="_blank"} and [[GitHub]](https://github.com/majinshou){:target="_blank"}
