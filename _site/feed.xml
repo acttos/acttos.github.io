@@ -5,8 +5,8 @@
     <description>不积跬步，无以至千里；不积小流，无以成江海。</description>
     <link>https//majinshou.github.io/</link>
     <atom:link href="https//majinshou.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 02 Aug 2016 19:55:36 +0800</pubDate>
-    <lastBuildDate>Tue, 02 Aug 2016 19:55:36 +0800</lastBuildDate>
+    <pubDate>Tue, 02 Aug 2016 20:15:00 +0800</pubDate>
+    <lastBuildDate>Tue, 02 Aug 2016 20:15:00 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -200,7 +200,7 @@ func initShadowLabelOfMentor() -&amp;gt; UILabel {
 
 &lt;h2 id=&quot;source-code&quot;&gt;3. Source Code:&lt;/h2&gt;
 
-&lt;p&gt;You can find all the codes &lt;a href=&quot;https://github.com/majinshou/ColorfulLabel&quot; target=&quot;_blank&quot;&gt;Here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You can find all the codes &lt;a href=&quot;https://github.com/majinshou/ColorfulLabel&quot; target=&quot;_blank&quot;&gt;Here&lt;/a&gt;.&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 02 Aug 2016 19:36:51 +0800</pubDate>

@@ -10,11 +10,11 @@ categories: iOS
 
 Once up on a time,I had a request which needed to display a colorful UILabel in the screen.
 
-The productor said the colorful texts can catch the eyes of audiences.
+The product manager said the colorful texts can catch the eyes of audiences.
 
 OK,I sure chose to believe them.
 
-Now,here is the question:
+Then,I had a question:
 
 ## 1. How to set different colors to each word in the UILabel?
 
@@ -24,7 +24,7 @@ I started my work with my own ideas:
 
 - An UILabel can display the texts;
 - The color of the texts can be set by 'UILabel.textColor';
-- I add two UILabels with different colors will do;
+- Adding two UILabels with different colors will do;
 - Excellent! (I said to myself). 
 
 I opened the Xcode.app to edit my codes like this:
@@ -67,7 +67,7 @@ Oh,My God,It worked! ^0^:
 ![colorfulLabelsInContainerView.png](/images/colorful-uilabel/colorfulLabelsInContainerView.png)
 
 
-### 1.2 The suggested way of a mentor told me recently
+### 1.2 The suggested way a mentor told me recently
 
 My mentor told me that UILabel supports different texts with different colors by setting UILabel's attributedText.
 
@@ -98,11 +98,11 @@ It works too:
 
 ![colorfulLabel.png](/images/colorful-uilabel/colorfulLabel.png)
 
-After I made the colorful texts in the screen,the productor said we still need to add a shadow to the text, and again, to catch the eyes of audiences.
+After I made the colorful texts in the screen,the product manager said we still need to add a shadow to the text, and again, for catching the eyes of audiences.
 
-OK,I'll do it. Because I always to choose to believe them.
+OK,I would do it. Because I always chose to believe them.
 
-So,I have a new question here:
+So,I had a new question here:
 
 ## 2. How to add a shadow to the words in UILabel?
 
@@ -161,7 +161,7 @@ Oh,My God,It worked again:
 
 ### 2.2 The suggested way of a mentor
 
-Once again,a mentor occurs,And he gives me another way to implement the shadow in UILabel:
+Once again,a mentor occured,And he gave me another way to implement the shadow in UILabel:
 
 ```
 /**
@@ -192,5 +192,5 @@ Here is the result in picture:
 
 ## 3. Source Code:
 
-You can find all the codes [Here](https://github.com/majinshou/ColorfulLabel){:target="_blank"}
+You can find all the codes [Here](https://github.com/majinshou/ColorfulLabel){:target="_blank"}.
 
