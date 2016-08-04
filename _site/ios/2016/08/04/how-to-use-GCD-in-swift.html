@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>How to use GCD in Swift ?</title>
-  <meta name="description" content="How to use GCD in Swift ?">
+  <meta name="description" content="#1. Condition">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="https//majinshou.github.io/ios/2016/08/04/how-to-use-GCD-in-swift.html">
@@ -58,15 +58,13 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">How to use GCD in Swift ?</h1>
-    <p class="post-meta"><time datetime="2016-08-04T10:06:18+08:00" itemprop="datePublished">Aug 4, 2016</time></p>
+    <p class="post-meta"><time datetime="2016-08-04T19:51:18+08:00" itemprop="datePublished">Aug 4, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h1 id="how-to-use-gcd-in-swift-">How to use GCD in Swift ?</h1>
+    <h2 id="condition">#1. Condition</h2>
 <hr />
 
-<h2 id="issue">#1. Issue</h2>
-<hr />
 <p>The first time GCD came to my sight,I was impressed by the beauty and efficient of it.
 For a while, I used GCD in all my Network modules. I put the Network operation which always costs a little time in the background thread queue,and when the data is ready,I switch to the main thread to refresh UI. I believe most of us,the iOS developer,would act like this.</p>
 
@@ -85,11 +83,72 @@ For a while, I used GCD in all my Network modules. I put the Network operation w
 });
 </code></pre>
 </div>
+<p>Familiar? That is right, this is the common solution when we need to load a data from Network or read|write files on disk and then refresh the UI on the screen.</p>
 
-<p>//TODO:
-## #3. Source Code:</p>
+<p>Now,I have an idea,what if I change the codes above in to Swift ? What would it look like ?</p>
 
-<p>You can find all the codes <a href="https://github.com/majinshou/ColorfulLabel" target="_blank">Here</a>.</p>
+<p>So I start my work to exchange:</p>
+
+<h2 id="the-code-exchanged-in-swift">#2.The Code exchanged in Swift</h2>
+<hr />
+
+<p>Here is my implementation:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    //Put the codes which will cost a little more time here.
+    self.filterList = NetworkDispatchManager.getFilterListWithURL(self.serverURL);
+    //When the data is ready,we switch to main thread to refresh UI.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //Refresh UI.
+        self.tableView.reloadData();
+    });
+});
+</code></pre>
+</div>
+<p>We can see that GCD in both Objective-C and Swift are almost the same.</p>
+
+<h2 id="something-about-closure-in-swift">#3. Something about Closure in Swift</h2>
+<hr />
+
+<p>The closure in Swift is defined like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w"> </span><span class="err">(arguments)</span><span class="w"> </span><span class="err">-&gt;</span><span class="w"> </span><span class="err">Return</span><span class="w"> </span><span class="err">Typs</span><span class="w"> </span><span class="err">in</span><span class="w">
+  </span><span class="err">statements</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<p>We can set the closure as a value of a variable like this:</p>
+
+<p><code class="highlighter-rouge">let aClosure = aClosureDefinition</code></p>
+
+<p>Here is an implementation:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>// Define a closure and set it to variable `aClosure`:
+let aClosure = {(location: NSURL?, response: NSURLResponse?, error: NSError?) in
+    // For a demonstration here just print a message.
+    print("The statement of a closure");
+};
+
+/**
+ * The function who uses the closure defined before.
+ */
+func useClosure() -&gt; Void {
+    if let url: NSURL = NSURL(string: "http://domain.com/files/a-big-file.zip") {
+        let request: NSURLRequest = NSURLRequest(URL: url, cachePolicy: NSURLRequestCachePolicy.ReturnCacheDataElseLoad, timeoutInterval: 10);
+        let session:NSURLSession = NSURLSession.sharedSession();
+        //We use variable `aClosure` as the argument `completionHandler`
+        let task:NSURLSessionDownloadTask = session.downloadTaskWithRequest(request, completionHandler: aClosure);
+
+        task.resume();
+    } else {
+        print("The URL is illegal.");
+    }
+}
+</code></pre>
+</div>
+<p><br /></p>
+
+<h3 id="thanks-for-your-visiting">Thanks for your visiting.</h3>
 
   </div>
 

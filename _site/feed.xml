@@ -5,9 +5,108 @@
     <description>Goals determine what you’re going to be.</description>
     <link>https//majinshou.github.io/</link>
     <atom:link href="https//majinshou.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 04 Aug 2016 17:42:38 +0800</pubDate>
-    <lastBuildDate>Thu, 04 Aug 2016 17:42:38 +0800</lastBuildDate>
+    <pubDate>Thu, 04 Aug 2016 19:57:55 +0800</pubDate>
+    <lastBuildDate>Thu, 04 Aug 2016 19:57:55 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>How to use GCD in Swift ?</title>
+        <description>&lt;h2 id=&quot;condition&quot;&gt;#1. Condition&lt;/h2&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;The first time GCD came to my sight,I was impressed by the beauty and efficient of it.
+For a while, I used GCD in all my Network modules. I put the Network operation which always costs a little time in the background thread queue,and when the data is ready,I switch to the main thread to refresh UI. I believe most of us,the iOS developer,would act like this.&lt;/p&gt;
+
+&lt;p&gt;Here is an example of GCD in Objective-C:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+    //Put the codes which will cost a little more time here.
+    self.filterList = [NetworkDispatchManager getFilterListWithURL:self.serverURL];
+
+    //When the data is ready,we switch to main thread to refresh UI.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //Refresh UI.
+        [self.tableView reloadData];
+    });
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Familiar? That is right, this is the common solution when we need to load a data from Network or read|write files on disk and then refresh the UI on the screen.&lt;/p&gt;
+
+&lt;p&gt;Now,I have an idea,what if I change the codes above in to Swift ? What would it look like ?&lt;/p&gt;
+
+&lt;p&gt;So I start my work to exchange:&lt;/p&gt;
+
+&lt;h2 id=&quot;the-code-exchanged-in-swift&quot;&gt;#2.The Code exchanged in Swift&lt;/h2&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;Here is my implementation:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    //Put the codes which will cost a little more time here.
+    self.filterList = NetworkDispatchManager.getFilterListWithURL(self.serverURL);
+    //When the data is ready,we switch to main thread to refresh UI.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //Refresh UI.
+        self.tableView.reloadData();
+    });
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;We can see that GCD in both Objective-C and Swift are almost the same.&lt;/p&gt;
+
+&lt;h2 id=&quot;something-about-closure-in-swift&quot;&gt;#3. Something about Closure in Swift&lt;/h2&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;The closure in Swift is defined like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(arguments)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Typs&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;statements&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;We can set the closure as a value of a variable like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;let aClosure = aClosureDefinition&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is an implementation:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Define a closure and set it to variable `aClosure`:
+let aClosure = {(location: NSURL?, response: NSURLResponse?, error: NSError?) in
+    // For a demonstration here just print a message.
+    print(&quot;The statement of a closure&quot;);
+};
+
+/**
+ * The function who uses the closure defined before.
+ */
+func useClosure() -&amp;gt; Void {
+    if let url: NSURL = NSURL(string: &quot;http://domain.com/files/a-big-file.zip&quot;) {
+        let request: NSURLRequest = NSURLRequest(URL: url, cachePolicy: NSURLRequestCachePolicy.ReturnCacheDataElseLoad, timeoutInterval: 10);
+        let session:NSURLSession = NSURLSession.sharedSession();
+        //We use variable `aClosure` as the argument `completionHandler`
+        let task:NSURLSessionDownloadTask = session.downloadTaskWithRequest(request, completionHandler: aClosure);
+
+        task.resume();
+    } else {
+        print(&quot;The URL is illegal.&quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;thanks-for-your-visiting&quot;&gt;Thanks for your visiting.&lt;/h3&gt;
+</description>
+        <pubDate>Thu, 04 Aug 2016 19:51:18 +0800</pubDate>
+        <link>https//majinshou.github.io/ios/2016/08/04/how-to-use-GCD-in-swift.html</link>
+        <guid isPermaLink="true">https//majinshou.github.io/ios/2016/08/04/how-to-use-GCD-in-swift.html</guid>
+        
+        
+        <category>iOS</category>
+        
+      </item>
     
       <item>
         <title>The Colorful UILabel in iOS</title>
