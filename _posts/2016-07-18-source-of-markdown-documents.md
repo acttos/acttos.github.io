@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The source code preview of last post of 'What are Markdown Documents?'"
+title:  "The source code preview of last post of 'What are Markdown Documents ?'"
 date:   2016-07-18 18:30:31 +0800
 categories: Markdown
 ---
@@ -20,7 +20,7 @@ categories: Markdown
 
 ### Syntax
 
-#### Strong and Emphasize 
+#### Strong and Emphasize
 
 **strong** or __strong__ ( Cmd + B )
 
@@ -58,7 +58,7 @@ A ![Resize icon][2] reference style image.
 Inline code are surround by `backtick` key. To create a block code:
 
 	Indent each line by at least 1 tab, or 4 spaces.
-    var Mou = exactlyTheAppIwant; 
+    var Mou = exactlyTheAppIwant;
 
 ####  Ordered Lists
 
@@ -74,7 +74,7 @@ Unordered list are created using "*" + Space:
 
 * Unordered list item
 * Unordered list item
-* Unordered list item 
+* Unordered list item
 
 Or using "-" + Space:
 

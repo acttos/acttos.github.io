@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>What are Markdown Documents ?</title>
-  <meta name="description" content="We will use official document of Mou to explain ‘Markdown’:">
+  <title>How to use GCD in Swift ?</title>
+  <meta name="description" content="How to use GCD in Swift ?">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="https//majinshou.github.io/markdown/2016/07/18/what-are-markdown-documents.html">
+  <link rel="canonical" href="https//majinshou.github.io/ios/2016/08/04/how-to-use-GCD-in-swift.html">
   <link rel="alternate" type="application/rss+xml" title="Welcome to Actto's Blog" href="https//majinshou.github.io/feed.xml">
 </head>
 
@@ -57,19 +57,39 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">What are Markdown Documents ?</h1>
-    <p class="post-meta"><time datetime="2016-07-18T18:17:31+08:00" itemprop="datePublished">Jul 18, 2016</time></p>
+    <h1 class="post-title" itemprop="name headline">How to use GCD in Swift ?</h1>
+    <p class="post-meta"><time datetime="2016-08-04T10:06:18+08:00" itemprop="datePublished">Aug 4, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h1 id="we-will-use-official-document-of-mouhttp25io-to-explain-markdown">We will use official document of <a href="http://25.io">Mou</a> to explain ‘Markdown’:</h1>
-
+    <h1 id="how-to-use-gcd-in-swift-">How to use GCD in Swift ?</h1>
 <hr />
-<p><img src="/images/markdown-intro-01.png" alt="Intro One" />
-<img src="/images/markdown-intro-02.png" alt="Intro Two" />
-<img src="/images/markdown-intro-03.png" alt="Intro Three" />
-<img src="/images/markdown-intro-04.png" alt="Intro Four" />
-<img src="/images/markdown-intro-05.png" alt="Intro Five" /></p>
+
+<h2 id="issue">#1. Issue</h2>
+<hr />
+<p>The first time GCD came to my sight,I was impressed by the beauty and efficient of it.
+For a while, I used GCD in all my Network modules. I put the Network operation which always costs a little time in the background thread queue,and when the data is ready,I switch to the main thread to refresh UI. I believe most of us,the iOS developer,would act like this.</p>
+
+<p>Here is an example of GCD in Objective-C:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+    //Put the codes which will cost a little more time here.
+    self.filterList = [NetworkDispatchManager getFilterListWithURL:self.serverURL];
+
+    //When the data is ready,we switch to main thread to refresh UI.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //Refresh UI.
+        [self.tableView reloadData];
+    });
+});
+</code></pre>
+</div>
+
+<p>//TODO:
+## #3. Source Code:</p>
+
+<p>You can find all the codes <a href="https://github.com/majinshou/ColorfulLabel" target="_blank">Here</a>.</p>
 
   </div>
 

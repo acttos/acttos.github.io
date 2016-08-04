@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "What are Markdown Documents?"
+title:  "What are Markdown Documents ?"
 date:   2016-07-18 18:17:31 +0800
 categories: Markdown
 ---
@@ -13,4 +13,3 @@ categories: Markdown
 ![Intro Three](/images/markdown-intro-03.png)
 ![Intro Four](/images/markdown-intro-04.png)
 ![Intro Five](/images/markdown-intro-05.png)
-

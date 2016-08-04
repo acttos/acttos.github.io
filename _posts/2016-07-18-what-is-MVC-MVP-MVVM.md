@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "What is MVC,MVP and MVVM"
+title:  "What is MVC,MVP and MVVM ?"
 date:   2016-07-18 10:28:31 +0800
 categories: Design-Pattern
 ---
