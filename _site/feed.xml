@@ -5,9 +5,199 @@
     <description>Goals determine what you’re going to be.</description>
     <link>https//majinshou.github.io/</link>
     <atom:link href="https//majinshou.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 04 Aug 2016 20:32:45 +0800</pubDate>
-    <lastBuildDate>Thu, 04 Aug 2016 20:32:45 +0800</lastBuildDate>
+    <pubDate>Fri, 05 Aug 2016 15:52:47 +0800</pubDate>
+    <lastBuildDate>Fri, 05 Aug 2016 15:52:47 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Introduction of CommonUtilities</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;介绍&lt;/h2&gt;
+
+&lt;p&gt;CommonUtilities是一个日常iOS开发通用工具类的Framework，采用Objective-C开发。
+所有代码来源并总结于平时工作中，会不定期更新，欢迎提出意见和建议。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;使用方法&lt;/h2&gt;
+&lt;p&gt;引入CommonUtilities.h即可使用各个工具所包含的方法&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#import &quot;CommonUtilities.h&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;功能介绍&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;存储功能相关&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;CUStorage.h&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ *  将自定义service的数据写入系统Keychain中，避免用户卸载软件后，data发生变化，用于IMEI或者UserId
+ *
+ *  @param key  用来存储数据的Key
+ *  @param data 需要存储的数据
+ */
+- (void)storeInKeychainWithKey:(NSString *)key data:(id)data;
+/**
+ *  根据service名称获取写入系统Keychain的数据
+ *
+ *  @param key 获取数据对应的Key
+ *
+ *  @return 存储在keychain中的数据
+ */
+- (id)loadFromKeychainWithKey:(NSString *)key;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;颜色设置相关&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;CUColor.h&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ *  根据传递的16进制数据生成UIColor实例
+ *
+ *  @param hexValue 16进制的颜色表示方式。如：0xFF00FF
+ *
+ *  @return 对应色值的UIColor实例
+ */
++ (UIColor *)colorWithHex:(NSInteger)hexValue;
+/**
+ *  根据传递的16进制数据生成UIColor实例，该UIColor包含指定的透明度
+ *
+ *  @param hexValue 16进制的颜色表示方式。如：0xFF00FF
+ *  @param alpha    颜色的透明度
+ *
+ *  @return 对应色值的UIColor实例
+ */
++ (UIColor *)colorWithHex:(NSInteger)hexValue alpha:(CGFloat)alpha;
+/**
+ *  根据传递的色值字符串生成UIColor实例
+ *
+ *  @param hexString 以##开头的16进制色值字符串。如：##FF00FF
+ *
+ *  @return 对应色值的UIColor实例
+ */
++ (UIColor *)colorWithHexString:(NSString *)hexString;
+/**
+ *  根据传递的色值字符串生成UIColor实例，该UIColor包含指定的透明度
+ *
+ *  @param hexString 以##开头的16进制色值字符串。如：##FF00FF
+ *  @param alpha     颜色的透明度
+ *
+ *  @return 对应色值的UIColor实例
+ */
++ (UIColor *)colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;文件目录相关&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;CUFile.h&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ *  返回当前App的Documents路径
+ *
+ *  @return Documents的URL
+ */
++(NSURL *)getDocumentsDirectory;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;json&quot;&gt;JSON解析相关&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;CUJSON.h&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ *  根据给定的NSArray实例生成JSON字符串
+ *
+ *  @param array NSArray实例
+ *
+ *  @return NSArray对应的JSON字符串
+ */
++(NSString *)JSONStringFromArray:(NSArray *)array;
+/**
+ *  根据给定的NSDictionary实例生成JSON字符串
+ *
+ *  @param dictionary NSDictionary实例
+ *
+ *  @return NSDictionary对应的JSON字符串
+ */
++(NSString *)JSONStringFromDictionary:(NSDictionary *)dictionary;
+/**
+ *  将任意对象转换成JSON字符串，当给定object为nil或者不可解析为JSON时，返回错误
+ *
+ *  @param object 任意NSObject对象
+ *
+ *  @return 解析的JSON或错误内容
+ */
++(NSString *)parseJSONStringFromObject:(NSObject *)object;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;日期操作相关&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;CUDate.h&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ *  根据当前时间创建时间戳
+ *
+ *  @return 当前时间的时间戳，精确到毫秒
+ */
++(long long)generateMillisecondTime;
+/**
+ *  根据给定日期创建时间戳
+ *
+ *  @param date 需要转换为时间戳的NSDate对象
+ *
+ *  @return 转换后的时间戳，精确到毫秒
+ */
++(long long)generateMillisecondTimeWithDate:(NSDate *)date;
+/**
+ *  将毫秒的时间转化为NSDate实例
+ *
+ *  @param milliseconds 某个时间对应的毫秒值
+ *
+ *  @return 给定时间戳对应的NSDate对象
+ */
++(NSDate *)generateDateWithMilliseconds:(long long)milliseconds;
+/**
+ *  将NSDate对象进行格式化，采用当前时区
+ *
+ *  @param date   NSDate对象
+ *  @param format 格式化字符串，如果为空或者nil，采用“yyyy-MM-dd HH:mm:ss”
+ *
+ *  @return 格式化后的字符串
+ */
++(NSString *)stringOfDate:(NSDate *)date withFormat:(NSString *)format;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;开源协议&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/majinshou/CommonUtilities&quot;&gt;[CommonUtilities]&lt;/a&gt; 基于 &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;[GPL(General Public License)]&lt;/a&gt; 协议开源。
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;感谢来访！&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Fri, 05 Aug 2016 07:59:18 +0800</pubDate>
+        <link>https//majinshou.github.io/ios/2016/08/05/Introduction-of-CommonUtilities.html</link>
+        <guid isPermaLink="true">https//majinshou.github.io/ios/2016/08/05/Introduction-of-CommonUtilities.html</guid>
+        
+        
+        <category>iOS</category>
+        
+      </item>
     
       <item>
         <title>How to use GCD in Swift ?</title>
