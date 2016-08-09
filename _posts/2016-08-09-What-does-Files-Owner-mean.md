@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "What does 'File's Owner' mean?"
+title:  "What does \"File's Owner\" mean?"
 date:   2016-08-09 21:21:07 +0800
 categories: iOS
 ---
@@ -28,7 +28,7 @@ The method `loadNibNamed:owner:options` will unarchive the contents of a nib fil
 <br/>
 Now, Let's pay more attention to the param `owner`, the owner here means *The object to assign as the nib's `File's Owner` object*. What is that? I can not understand the meaning of *nib's `File's Owner` object*. Can the object be the Class bound with the nib file? Just the same as the class of the current view? I don't know ...
 
-So,I begin to dig deeper to find what really is `File's Owner` and what can it do.
+So,I begin to dig deeper to find what `File's Owner` really is and what exactly it can do.
 
 ### 2. File's Owner in Apple's document
 
