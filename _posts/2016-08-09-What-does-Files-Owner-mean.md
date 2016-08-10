@@ -7,7 +7,7 @@ categories: iOS
 
 ### 1. What is "File's Owner" ?
 
-`File's Owner`, the owner of a file, that is what the direct meaning of the words. Every xib file in Xcode has a `File's Owner`. Most of the time,we just ignore the settings, and it works well. That is why we did not pay enough attention to it. When there is an error occured, we do not know what is happening and why.
+`File's Owner`, the owner of a file, that is the direct meaning of the words. Every xib file in Xcode has a `File's Owner`. Most of the time,we just ignore the settings, and it works well. That is why we did not pay enough attention to it. When there is an error occured, we do not know what is happening and why.
 
 ##### An error possibly caused by `File's Owner`:
 
