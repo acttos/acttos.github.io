@@ -14,7 +14,7 @@ permalink: /about/
 
 #### At last:
 
-Welcome to visit [[NQ Mobile Inc.]](http://www.nq.com){:target="_blank"} and [[GitHub]](https://github.com/majinshou){:target="_blank"}
+Welcome to visit [[NQ Mobile Inc.]](http://www.nq.com){:target="_blank"} and [[GitHub]](https://github.com/acttos){:target="_blank"}
 
 Scan to add me as your QQ contact:
 <br/>

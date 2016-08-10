@@ -192,4 +192,4 @@ Here is the result in picture:
 
 ## 3. Source Code:
 
-You can find all the codes [Here](https://github.com/majinshou/ColorfulLabel){:target="_blank"}.
+You can find all the codes [Here](https://github.com/acttos/ColorfulLabel){:target="_blank"}.
