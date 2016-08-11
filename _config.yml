@@ -1,11 +1,52 @@
-# Site settings
-name: Welcome to Actto's Blog
-title: Welcome to Actto's Blog
-email: majinshou@gmail.com
-url: "http//www.majinshou.cn" # the base hostname & protocol for your site
+# Basic
+title: Acttos
+subtitle: A bloody programmer working at NQ Mobile Inc. Beijing, China.
+welcome_message: iOS, Node.js, Java, Swift, Foods, Movie and Military News. #<a href="https://github.com/onevcat/vno-jekyll" target="_blank">Download the theme</a>
 description: Goals determine what you’re going to be.
-github_username: acttos
-encoding: UTF-8
+creator: <a href="http://www.majinshou.cn">@acttos</a>
 
-# Build settings
-markdown: kramdown
+url: "http://www.majinshou.cn"
+
+permalink: /:year/:month/:title/
+
+# Format
+highlighter: plain
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", tables]
+
+# supported colors: blue, green, purple, red, orange or slate. If you need clear, leave it empty.
+cover_color: red
+
+# The blog button should not be removed.
+blog_button:
+    title: Blog
+    description: Visit blog
+
+# Navigation buttons in the front page.
+nav:
+    - {title: GitHub, description: My GitHub, url: 'https://github.com/acttos/'}
+    # - {title: Another Button, description: A button, url: 'http://example.com'}
+
+# Pagination
+gems: [jekyll-paginate]
+paginate: 10
+paginate_path: "page/:num/"
+
+# Comment
+comment:
+    disqus: vno-jekyll
+    # duoshuo: 
+    
+# Social
+social:
+    weibo: 871040486
+    github: acttos
+    twitter: hulucat0319
+    gplus: 109907226563437005883
+    mail: majinshou@gmail.com
+
+# Google Analytics
+ga:
+    # id: your_ga_id
+    # host: your_host

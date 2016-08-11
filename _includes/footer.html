@@ -1,25 +1,7 @@
-<footer class="site-footer">
-
-  <div class="wrapper">
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          {% if site.github_username %}
-          <li>
-            GitHub:{% include icon-github.html username=site.github_username %}
-          </li>
-          {% endif %}
-	  <li>
-            E-mail:<a href="mailto:{{ site.email }}">{{ site.email }}</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <p>What I believe firmly:<br/>{{ site.description }}</p>
-      </div>
-    </div>
-  </div>
-
-</footer>
+<section class="footer">
+    <footer>
+    	<span class="footer__copyright"> Thanks for visiting !</span>
+        <span class="footer__copyright"> This site is based on <a href="https://jekyllrb.com">Jekyll</a>, using <a href="https://github.com/onevcat/vno-jekyll">Vno-Jekyll</a></span>
+        <span class="footer__copyright">Contents are created {% if site.creator %}by {{site.creator}}, {% endif %} with source code <a href="https://github.com/acttos/acttos.github.io">Here</a> - &copy; {{site.time | date: "%Y"}}</span>
+    </footer>
+</section>
