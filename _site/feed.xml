@@ -5,56 +5,56 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.majinshou.cn/</link>
     <atom:link href="http://www.majinshou.cn/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 11 Aug 2016 20:46:27 +0800</pubDate>
-    <lastBuildDate>Thu, 11 Aug 2016 20:46:27 +0800</lastBuildDate>
+    <pubDate>Thu, 11 Aug 2016 20:50:28 +0800</pubDate>
+    <lastBuildDate>Thu, 11 Aug 2016 20:50:28 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
         <title>What does &quot;File's Owner&quot; mean?</title>
         <description>&lt;h3 id=&quot;what-is-files-owner-&quot;&gt;1. What is “File’s Owner” ?&lt;/h3&gt;
 
-&lt;p&gt;&lt;code&gt;File's Owner&lt;/code&gt;, the owner of a file, that is the direct meaning of the words. Every xib file in Xcode has a &lt;code&gt;File's Owner&lt;/code&gt;. Most of the time,we just ignore the settings, and it works well. That is why we did not pay enough attention to it. When there is an error occured, we do not know what is happening and why.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt;, the owner of a file, that is the direct meaning of the words. Every xib file in Xcode has a &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt;. Most of the time,we just ignore the settings, and it works well. That is why we did not pay enough attention to it. When there is an error occured, we do not know what is happening and why.&lt;/p&gt;
 
-&lt;h5 id=&quot;an-error-possibly-caused-by-files-owner&quot;&gt;An error possibly caused by &lt;code&gt;File's Owner&lt;/code&gt;:&lt;/h5&gt;
+&lt;h5 id=&quot;an-error-possibly-caused-by-files-owner&quot;&gt;An error possibly caused by &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt;:&lt;/h5&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/files-owner/files-owner-issue.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;We searched the possible reasons associated with this error, and found most of the results are about &lt;code&gt;File's Owner&lt;/code&gt;, so we checked the codes and the settings in xib file and found:&lt;/p&gt;
+&lt;p&gt;We searched the possible reasons associated with this error, and found most of the results are about &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt;, so we checked the codes and the settings in xib file and found:&lt;/p&gt;
 
 &lt;h5 id=&quot;the-codes-in-xcode&quot;&gt;The codes in Xcode:&lt;/h5&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/files-owner/files-owner-issue-create-from-nib.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;the-settings-of-files-owner-in-xib-file&quot;&gt;The settings of &lt;code&gt;File's Owner&lt;/code&gt; in xib file:&lt;/h5&gt;
+&lt;h5 id=&quot;the-settings-of-files-owner-in-xib-file&quot;&gt;The settings of &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; in xib file:&lt;/h5&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/files-owner/files-owner-issue-nib-setting.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
-The method &lt;code&gt;loadNibNamed:owner:options&lt;/code&gt; will unarchive the contents of a nib file in the bundle and return an array containing the top-level objects in the nib file. All the objects in the array are instantiated when the nib file is unarchived. But the objects do NOT contain references to &lt;code&gt;File's Owner&lt;/code&gt; object or any proxy objects.
+The method &lt;code class=&quot;highlighter-rouge&quot;&gt;loadNibNamed:owner:options&lt;/code&gt; will unarchive the contents of a nib file in the bundle and return an array containing the top-level objects in the nib file. All the objects in the array are instantiated when the nib file is unarchived. But the objects do NOT contain references to &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; object or any proxy objects.
 &lt;br /&gt;
-Now, Let’s pay more attention to the param &lt;code&gt;owner&lt;/code&gt;, the owner here means &lt;em&gt;The object to assign as the nib’s &lt;code&gt;File's Owner&lt;/code&gt; object&lt;/em&gt;. What is that? I can not understand the meaning of &lt;em&gt;nib’s &lt;code&gt;File's Owner&lt;/code&gt; object&lt;/em&gt;. Can the object be the Class bound with the nib file? Just the same as the class of the current view? I don’t know …&lt;/p&gt;
+Now, Let’s pay more attention to the param &lt;code class=&quot;highlighter-rouge&quot;&gt;owner&lt;/code&gt;, the owner here means &lt;em&gt;The object to assign as the nib’s &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; object&lt;/em&gt;. What is that? I can not understand the meaning of &lt;em&gt;nib’s &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; object&lt;/em&gt;. Can the object be the Class bound with the nib file? Just the same as the class of the current view? I don’t know …&lt;/p&gt;
 
-&lt;p&gt;So,I begin to dig deeper to find what &lt;code&gt;File's Owner&lt;/code&gt; really is and what exactly it can do.&lt;/p&gt;
+&lt;p&gt;So,I begin to dig deeper to find what &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; really is and what exactly it can do.&lt;/p&gt;
 
 &lt;h3 id=&quot;files-owner-in-apples-document&quot;&gt;2. File’s Owner in Apple’s document&lt;/h3&gt;
 
-&lt;p&gt;I checked the documents of &lt;code&gt;File's Owner&lt;/code&gt; in Apple official document, and here is the screenshot:&lt;/p&gt;
+&lt;p&gt;I checked the documents of &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; in Apple official document, and here is the screenshot:&lt;/p&gt;
 
 &lt;h5 id=&quot;files-owner-in-apple-official-documents&quot;&gt;File’s Owner in Apple official documents:&lt;/h5&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/files-owner/apples-files-owner.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;We can see that &lt;code&gt;File's Owner&lt;/code&gt; object is one of the most important objects in a nib file, and &lt;code&gt;File's Owner&lt;/code&gt; is a placeholder object, and is NOT created when the nib file is loaded. &lt;code&gt;File's Owner&lt;/code&gt; object must be created by yourself and you need to pass it to the nib-loading code to recreate the link of the code and the contents of a nib file. We can tell the &lt;code&gt;File's Owner&lt;/code&gt; object can be &lt;code&gt;NSObject&lt;/code&gt; in the Xcode and when you link your UI elements with your code (most of the time it is the ViewController class), the &lt;code&gt;File's Owner&lt;/code&gt; object is specified (and it is your ViewController instance).&lt;/p&gt;
+&lt;p&gt;We can see that &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; object is one of the most important objects in a nib file, and &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; is a placeholder object, and is NOT created when the nib file is loaded. &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; object must be created by yourself and you need to pass it to the nib-loading code to recreate the link of the code and the contents of a nib file. We can tell the &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; object can be &lt;code class=&quot;highlighter-rouge&quot;&gt;NSObject&lt;/code&gt; in the Xcode and when you link your UI elements with your code (most of the time it is the ViewController class), the &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; object is specified (and it is your ViewController instance).&lt;/p&gt;
 
 &lt;h3 id=&quot;what-does-files-owner-do-in-xib&quot;&gt;3. What does “File’s Owner” do in XIB?&lt;/h3&gt;
 
-&lt;p&gt;From Apple’s official documents we know &lt;code&gt;File's Owner&lt;/code&gt; object plays a role of ‘port’ between your UI elements in xib file and the codes which you designed to control the UI elements. When the xib file is loaded by methods like &lt;code&gt;loadNibNamed:owner:options&lt;/code&gt;, we should pass the &lt;code&gt;File's Owner&lt;/code&gt; object to these methods, and these methods will recreate the connections you designed in &lt;em&gt;Interface Builder&lt;/em&gt;. After the connections are established, your objects in the codes can reference the UI elements object in the xib file and you can control the UI elements through your codes.&lt;/p&gt;
+&lt;p&gt;From Apple’s official documents we know &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; object plays a role of ‘port’ between your UI elements in xib file and the codes which you designed to control the UI elements. When the xib file is loaded by methods like &lt;code class=&quot;highlighter-rouge&quot;&gt;loadNibNamed:owner:options&lt;/code&gt;, we should pass the &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; object to these methods, and these methods will recreate the connections you designed in &lt;em&gt;Interface Builder&lt;/em&gt;. After the connections are established, your objects in the codes can reference the UI elements object in the xib file and you can control the UI elements through your codes.&lt;/p&gt;
 
 &lt;h3 id=&quot;what-should-we-do-using-files-owner-&quot;&gt;4. What should we do using “File’s Owner” ?&lt;/h3&gt;
 
-&lt;p&gt;So far as we know, We just leave the value of &lt;code&gt;File's Owner&lt;/code&gt; to be &lt;code&gt;NSObject&lt;/code&gt; in the settings of &lt;code&gt;Identity Inspector&lt;/code&gt; in Xcode, when the &lt;code&gt;Referencing Outlets&lt;/code&gt; connections are established the &lt;code&gt;File's Owner&lt;/code&gt; is automatically specified.&lt;/p&gt;
+&lt;p&gt;So far as we know, We just leave the value of &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; to be &lt;code class=&quot;highlighter-rouge&quot;&gt;NSObject&lt;/code&gt; in the settings of &lt;code class=&quot;highlighter-rouge&quot;&gt;Identity Inspector&lt;/code&gt; in Xcode, when the &lt;code class=&quot;highlighter-rouge&quot;&gt;Referencing Outlets&lt;/code&gt; connections are established the &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; is automatically specified.&lt;/p&gt;
 
-&lt;h5 id=&quot;the-default-value-of-files-owner-in-xcode&quot;&gt;The default value of &lt;code&gt;File's Owner&lt;/code&gt; in Xcode:&lt;/h5&gt;
+&lt;h5 id=&quot;the-default-value-of-files-owner-in-xcode&quot;&gt;The default value of &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; in Xcode:&lt;/h5&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/files-owner/files-owner-issue-nib-setting.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -89,28 +89,28 @@ Now, Let’s pay more attention to the param &lt;code&gt;owner&lt;/code&gt;, the
         <description>&lt;h3 id=&quot;what-is-url-types-and-how-to-use-it-&quot;&gt;What is URL Types and how to use it ?&lt;/h3&gt;
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;code&gt;URL Types&lt;/code&gt; is a collection of &lt;code&gt;URL Definition&lt;/code&gt;, these URL Definitions can be used by any apps if needed. &lt;code&gt;URL Types&lt;/code&gt; make it possible to exchange data amoung different apps.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;URL Types&lt;/code&gt; is a collection of &lt;code class=&quot;highlighter-rouge&quot;&gt;URL Definition&lt;/code&gt;, these URL Definitions can be used by any apps if needed. &lt;code class=&quot;highlighter-rouge&quot;&gt;URL Types&lt;/code&gt; make it possible to exchange data amoung different apps.&lt;/p&gt;
 
-&lt;p&gt;When we need to develop with third apps to exchange some data, such as using WeChat to open it’s OpenAPI to identify an user, we need to define URL Types in our app’s Info.plist file by adding URL Types through &lt;code&gt;Targets -&amp;gt; App -&amp;gt; Info -&amp;gt; URL Types&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;When we need to develop with third apps to exchange some data, such as using WeChat to open it’s OpenAPI to identify an user, we need to define URL Types in our app’s Info.plist file by adding URL Types through &lt;code class=&quot;highlighter-rouge&quot;&gt;Targets -&amp;gt; App -&amp;gt; Info -&amp;gt; URL Types&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h6 id=&quot;here-is-an-example&quot;&gt;Here is an example:&lt;/h6&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/url-types/url-types.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;We can also see the values in our &lt;code&gt;Info.plist&lt;/code&gt; file:&lt;/p&gt;
+&lt;p&gt;We can also see the values in our &lt;code class=&quot;highlighter-rouge&quot;&gt;Info.plist&lt;/code&gt; file:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/url-types/url-types-in-plist.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;If we dig deeper, we can see the source code of &lt;code&gt;Info.plist&lt;/code&gt; which we have added:&lt;/p&gt;
+&lt;p&gt;If we dig deeper, we can see the source code of &lt;code class=&quot;highlighter-rouge&quot;&gt;Info.plist&lt;/code&gt; which we have added:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/url-types/url-types-in-plist-code.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;The key &lt;code&gt;FBundleURLTypes&lt;/code&gt; stands for URLs our app can handle, it is an array, which give us ablitity to handle more than one URL. The key &lt;code&gt;CFBundleURLName&lt;/code&gt; stands for a category of URL Types in our app, it can be any words you want, just give it a name which can suitably describle the URLs. For example: we use &lt;code&gt;Wechat&lt;/code&gt; or &lt;code&gt;weixin&lt;/code&gt; for URLs which is called by Wechat(微信), we use &lt;code&gt;Weibo&lt;/code&gt; for URLs which is called by Weibo(微博). But remember: &lt;code&gt;It can be anything you want to input&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The key &lt;code class=&quot;highlighter-rouge&quot;&gt;FBundleURLTypes&lt;/code&gt; stands for URLs our app can handle, it is an array, which give us ablitity to handle more than one URL. The key &lt;code class=&quot;highlighter-rouge&quot;&gt;CFBundleURLName&lt;/code&gt; stands for a category of URL Types in our app, it can be any words you want, just give it a name which can suitably describle the URLs. For example: we use &lt;code class=&quot;highlighter-rouge&quot;&gt;Wechat&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;weixin&lt;/code&gt; for URLs which is called by Wechat(微信), we use &lt;code class=&quot;highlighter-rouge&quot;&gt;Weibo&lt;/code&gt; for URLs which is called by Weibo(微博). But remember: &lt;code class=&quot;highlighter-rouge&quot;&gt;It can be anything you want to input&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;The key &lt;code&gt;CFBundleURLSchemes&lt;/code&gt; defines an array which our app can handle. For example: we add a value &lt;code&gt;OpenDemo&lt;/code&gt; to receive requests from other apps who called &lt;code&gt;OpenDemo://some-parameters&lt;/code&gt; or &lt;code&gt;OpenDemo://*****&lt;/code&gt;. &lt;code&gt;OpenDemo&lt;/code&gt; is a key word such as &lt;code&gt;http,https,ftp&lt;/code&gt; and so on.&lt;/p&gt;
+&lt;p&gt;The key &lt;code class=&quot;highlighter-rouge&quot;&gt;CFBundleURLSchemes&lt;/code&gt; defines an array which our app can handle. For example: we add a value &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo&lt;/code&gt; to receive requests from other apps who called &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo://some-parameters&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo://*****&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo&lt;/code&gt; is a key word such as &lt;code class=&quot;highlighter-rouge&quot;&gt;http,https,ftp&lt;/code&gt; and so on.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Remember&lt;/strong&gt;:
-The key word &lt;code&gt;OpenDemo&lt;/code&gt; is suggested to be unique from other apps. iOS will ignore the later registeration of URL Types if there is already a same key word &lt;code&gt;OpenDemo&lt;/code&gt; registered.&lt;/p&gt;
+The key word &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo&lt;/code&gt; is suggested to be unique from other apps. iOS will ignore the later registeration of URL Types if there is already a same key word &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo&lt;/code&gt; registered.&lt;/p&gt;
 
 &lt;h3 id=&quot;thanks-for-visiting&quot;&gt;Thanks for visiting.&lt;/h3&gt;
 
@@ -134,8 +134,9 @@ The key word &lt;code&gt;OpenDemo&lt;/code&gt; is suggested to be unique from ot
 &lt;h2 id=&quot;section-1&quot;&gt;使用方法&lt;/h2&gt;
 &lt;p&gt;引入CommonUtilities.h即可使用各个工具所包含的方法&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;#import &quot;CommonUtilities.h&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#import &quot;CommonUtilities.h&quot;
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h2 id=&quot;section-2&quot;&gt;功能介绍&lt;/h2&gt;
 
@@ -145,7 +146,7 @@ The key word &lt;code&gt;OpenDemo&lt;/code&gt; is suggested to be unique from ot
   &lt;p&gt;CUStorage.h&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;pre&gt;&lt;code&gt;/**
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
  *  将自定义service的数据写入系统Keychain中，避免用户卸载软件后，data发生变化，用于IMEI或者UserId
  *
  *  @param key  用来存储数据的Key
@@ -162,13 +163,14 @@ The key word &lt;code&gt;OpenDemo&lt;/code&gt; is suggested to be unique from ot
 - (id)loadFromKeychainWithKey:(NSString *)key;
 
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h3 id=&quot;section-4&quot;&gt;颜色设置相关&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;p&gt;CUColor.h&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;pre&gt;&lt;code&gt;/**
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
  *  根据传递的16进制数据生成UIColor实例
  *
  *  @param hexValue 16进制的颜色表示方式。如：0xFF00FF
@@ -204,26 +206,28 @@ The key word &lt;code&gt;OpenDemo&lt;/code&gt; is suggested to be unique from ot
 + (UIColor *)colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
 
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h3 id=&quot;section-5&quot;&gt;文件目录相关&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;p&gt;CUFile.h&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;pre&gt;&lt;code&gt;/**
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
  *  返回当前App的Documents路径
  *
  *  @return Documents的URL
  */
 +(NSURL *)getDocumentsDirectory;
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h3 id=&quot;json&quot;&gt;JSON解析相关&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;p&gt;CUJSON.h&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;pre&gt;&lt;code&gt;/**
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
  *  根据给定的NSArray实例生成JSON字符串
  *
  *  @param array NSArray实例
@@ -249,13 +253,14 @@ The key word &lt;code&gt;OpenDemo&lt;/code&gt; is suggested to be unique from ot
 +(NSString *)parseJSONStringFromObject:(NSObject *)object;
 
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h3 id=&quot;section-6&quot;&gt;日期操作相关&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;p&gt;CUDate.h&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;pre&gt;&lt;code&gt;/**
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
  *  根据当前时间创建时间戳
  *
  *  @return 当前时间的时间戳，精确到毫秒
@@ -288,6 +293,7 @@ The key word &lt;code&gt;OpenDemo&lt;/code&gt; is suggested to be unique from ot
 +(NSString *)stringOfDate:(NSDate *)date withFormat:(NSString *)format;
 
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h2 id=&quot;section-7&quot;&gt;开源协议&lt;/h2&gt;
 
@@ -318,7 +324,7 @@ For a while, I used GCD in all my Network modules. I put the Network operation w
 
 &lt;p&gt;Here is an example of GCD in Objective-C:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
     //Put the codes which will cost a little more time here.
     self.filterList = [NetworkDispatchManager getFilterListWithURL:self.serverURL];
@@ -330,6 +336,7 @@ For a while, I used GCD in all my Network modules. I put the Network operation w
     });
 });
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;Familiar? That is right, this is the common solution when we need to load a data from Network or read|write files on disk and then refresh the UI on the screen.&lt;/p&gt;
 
 &lt;p&gt;Now,I have an idea,what if I change the codes above in to Swift ? What would it look like ?&lt;/p&gt;
@@ -341,7 +348,7 @@ For a while, I used GCD in all my Network modules. I put the Network operation w
 
 &lt;p&gt;Here is my implementation:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     //Put the codes which will cost a little more time here.
     self.filterList = NetworkDispatchManager.getFilterListWithURL(self.serverURL);
     //When the data is ready,we switch to main thread to refresh UI.
@@ -351,6 +358,7 @@ For a while, I used GCD in all my Network modules. I put the Network operation w
     });
 });
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;We can see that GCD in both Objective-C and Swift are almost the same.&lt;/p&gt;
 
 &lt;h2 id=&quot;something-about-closure-in-swift&quot;&gt;#3. Something about Closure in Swift&lt;/h2&gt;
@@ -358,17 +366,18 @@ For a while, I used GCD in all my Network modules. I put the Network operation w
 
 &lt;p&gt;The closure in Swift is defined like this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;{ (arguments) -&amp;gt; Return Typs in
-  statements
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(arguments)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Typs&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;statements&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;We can set the closure as a value of a variable like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;let aClosure = aClosureDefinition&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;let aClosure = aClosureDefinition&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Here is an implementation:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;// Define a closure and set it to variable `aClosure`:
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Define a closure and set it to variable `aClosure`:
 let aClosure = {(location: NSURL?, response: NSURLResponse?, error: NSError?) in
     // For a demonstration here just print a message.
     print(&quot;The statement of a closure&quot;);
@@ -390,6 +399,7 @@ func useClosure() -&amp;gt; Void {
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;thanks-for-your-visiting&quot;&gt;Thanks for your visiting.&lt;/h3&gt;
@@ -433,7 +443,7 @@ func useClosure() -&amp;gt; Void {
 
 &lt;h3 id=&quot;the-way-i-did-in-the-past-time&quot;&gt;1.1 The way I did in the past time&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;/**
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
  Initializes a colorful label container view
 
  - returns: A colorful label container view instance
@@ -462,6 +472,7 @@ func initColorfulLabel() -&amp;gt; UIView {
     return containerView;
 }
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;Oh,My God,It worked! ^0^:&lt;/p&gt;
 
@@ -473,7 +484,7 @@ func initColorfulLabel() -&amp;gt; UIView {
 
 &lt;p&gt;Here is the newer one:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;/**
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
  Initializes a real colorful UILabel instance instead of a container view,this method is guided by a mentor
 
  - returns: A real colorful UILabel instance
@@ -492,6 +503,7 @@ func initColorfulLabelOfMentor() -&amp;gt; UILabel {
     return label;
 }
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;It works too:&lt;/p&gt;
 
@@ -522,7 +534,7 @@ func initColorfulLabelOfMentor() -&amp;gt; UILabel {
 
 &lt;p&gt;Here is the implementation of my idea:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;/**
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
  Initializes a shadow label container view
 
  - returns: A UIView instance which contains two UILabels to display a shadow
@@ -553,6 +565,7 @@ func initShadowLabel() -&amp;gt; UIView {
     return containerView;
 }
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;Oh,My God,It worked again:&lt;/p&gt;
 
@@ -562,7 +575,7 @@ func initShadowLabel() -&amp;gt; UIView {
 
 &lt;p&gt;Once again,a mentor occured,And he gave me another way to implement the shadow in UILabel:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;/**
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
  Initializes a real shadow UILabel instance instead of a container view,this method is guided by a mentor
 
  - returns: A UILabel which has a shadow
@@ -581,6 +594,7 @@ func initShadowLabelOfMentor() -&amp;gt; UILabel {
     return label;
 }
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;See? It is more simple and clearer.&lt;/p&gt;
 
@@ -607,7 +621,7 @@ func initShadowLabelOfMentor() -&amp;gt; UILabel {
 
 &lt;hr /&gt;
 
-&lt;pre&gt;&lt;code&gt;# Mou
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Mou
 
 ![Mou icon](http://25.io/mou/Mou_128.png)
 
@@ -844,6 +858,7 @@ Follow [@Mou](https://twitter.com/mou) on Twitter for the latest news.
 
 For feedback, use the menu `Help` - `Send Feedback`
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 </description>
         <pubDate>Mon, 18 Jul 2016 18:30:31 +0800</pubDate>
         <link>http://www.majinshou.cn/2016/07/source-of-markdown-documents/</link>

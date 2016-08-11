@@ -10,7 +10,8 @@ url: "http://www.majinshou.cn"
 permalink: /:year/:month/:title/
 
 # Format
-highlighter: plain
+#highlighter: plain
+highlighter: rouge
 #markdown: redcarpet
 markdown: kramdown
 #redcarpet:
