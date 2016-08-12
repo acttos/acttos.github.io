@@ -1,0 +1,12 @@
+http://www.bjjs.gov.cn/tabid/3164/Default.aspx?ModelKey=FDCJY_HouseInfo&categoryId=1&salePermitId=5565003&houseId=11493868&houseNo=2%E5%8D%95%E5%85%83-1505&systemId=2
+http://www.bjjs.gov.cn/tabid/3164/Default.aspx?ModelKey=FDCJY_HouseInfo&categoryId=1&salePermitId=5565003&houseId=11493806&houseNo=2%E5%8D%95%E5%85%83-1101&systemId=2
+http://www.bjjs.gov.cn/tabid/3164/Default.aspx?ModelKey=FDCJY_HouseInfo&categoryId=1&salePermitId=5565003&houseId=11493781&houseNo=3%E5%8D%95%E5%85%83-902&systemId=2
+
+==> ./configure --prefix=/usr/local/Cellar/ruby/2.3.1 --enable-shared --disable-silent-rules --with-sitedir=/usr/local/lib/ruby/site_ruby --with-vendordir=/us
+==> make
+==> make install
+
+lrwxr-xr-x    1 majinshou  wheel        28 Jul 18 19:05 erb -> ../Cellar/ruby/2.2.1/bin/erb
+lrwxr-xr-x    1 majinshou  wheel        28 Jul 18 19:05 gem -> ../Cellar/ruby/2.2.1/bin/gem
+lrwxr-xr-x    1 majinshou  wheel        28 Jul 18 19:05 irb -> ../Cellar/ruby/2.2.1/bin/irb
+lrwxr-xr-x    1 majinshou  wheel        29 Jul 18 19:05 ruby -> ../Cellar/ruby/2.2.1/bin/ruby

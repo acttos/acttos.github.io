@@ -5,9 +5,96 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.majinshou.cn/</link>
     <atom:link href="http://www.majinshou.cn/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 11 Aug 2016 20:50:28 +0800</pubDate>
-    <lastBuildDate>Thu, 11 Aug 2016 20:50:28 +0800</lastBuildDate>
+    <pubDate>Fri, 12 Aug 2016 11:37:00 +0800</pubDate>
+    <lastBuildDate>Fri, 12 Aug 2016 11:37:00 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>Open a settings page in iOS</title>
+        <description>&lt;h3 id=&quot;general-opening-method&quot;&gt;1. General opening method&lt;/h3&gt;
+
+&lt;p&gt;Sometime, we need to access data may contains privacy(such as:camera,microphone,photo and so on) in user’s mobile device, for that, iOS requires us to acquire an authorization from the device user. We can show up an AlertView for the request, and what we can do more is &lt;code class=&quot;highlighter-rouge&quot;&gt;Open a certain settings page&lt;/code&gt; for user. Let’s figure it out.&lt;/p&gt;
+
+&lt;h5 id=&quot;common-opening-url-in-ios&quot;&gt;Common opening URL in iOS:&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-oc&quot;&gt;if ([[UIApplication sharedApplication] canOpenURL:url]) {
+    [[UIApplication sharedApplication] openURL:url];
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Basically, we can open any legal URLs in iOS. For settings, we use a pattern &lt;code class=&quot;highlighter-rouge&quot;&gt;prefs:root=RootName&amp;amp;path=PathName&lt;/code&gt;, the RootName and PathName can be found in paragraph 2 below.&lt;/p&gt;
+
+&lt;h3 id=&quot;urls-of-settings-in-ios&quot;&gt;2. URLs of settings in iOS&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-oc&quot;&gt;Camera - prefs:root=Privacy&amp;amp;path=CAMERA;
+Microphone - prefs:root=Privacy&amp;amp;path=MICROPHONE;
+About — prefs:root=General&amp;amp;path=About;
+Accessibility — prefs:root=General&amp;amp;path=ACCESSIBILITY;
+Airplane Mode On — prefs:root=AIRPLANE_MODE;
+Auto-Lock — prefs:root=General&amp;amp;path=AUTOLOCK;
+Brightness — prefs:root=Brightness;
+Bluetooth — prefs:root=General&amp;amp;path=Bluetooth;
+Date &amp;amp; Time — prefs:root=General&amp;amp;path=DATE_AND_TIME;
+FaceTime — prefs:root=FACETIME;
+General — prefs:root=General;
+Keyboard — prefs:root=General&amp;amp;path=Keyboard;
+iCloud — prefs:root=CASTLE;
+iCloud Storage &amp;amp; Backup — prefs:root=CASTLE&amp;amp;path=STORAGE_AND_BACKUP;
+International — prefs:root=General&amp;amp;path=INTERNATIONAL;
+Location Services — prefs:root=LOCATION_SERVICES;
+Music — prefs:root=MUSIC;
+Music Equalizer — prefs:root=MUSIC&amp;amp;path=EQ;
+Music Volume Limit — prefs:root=MUSIC&amp;amp;path=VolumeLimit;
+Network — prefs:root=General&amp;amp;path=Network;
+Nike + iPod — prefs:root=NIKE_PLUS_IPOD;
+Notes — prefs:root=NOTES;
+Notification — prefs:root=NOTIFICATIONS_ID;
+Phone — prefs:root=Phone;
+Photos — prefs:root=Photos;
+Profile — prefs:root=General&amp;amp;path=ManagedConfigurationList;
+Reset — prefs:root=General&amp;amp;path=Reset;
+Safari — prefs:root=Safari;
+Siri — prefs:root=General&amp;amp;path=Assistant;
+Sounds — prefs:root=Sounds;
+Software Update — prefs:root=General&amp;amp;path=SOFTWARE_UPDATE_LINK;
+Store — prefs:root=STORE;
+Twitter — prefs:root=TWITTER;
+Usage — prefs:root=General&amp;amp;path=USAGE;
+VPN — prefs:root=General&amp;amp;path=Network/VPN;
+Wallpaper — prefs:root=Wallpaper;
+Wi-Fi — prefs:root=WIFI;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;alertview-in-ios&quot;&gt;3. AlertView in iOS&lt;/h3&gt;
+
+&lt;p&gt;According to the document of Apple, we find that the &lt;code class=&quot;highlighter-rouge&quot;&gt;UIAlertView&lt;/code&gt; is deprecated in &lt;code class=&quot;highlighter-rouge&quot;&gt;iOS 9.0 and later&lt;/code&gt;, for safety we show the AlertView with different ways due to certain systemVersions:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-oc&quot;&gt;if ([[[UIDevice currentDevice] systemVersion] floatValue] &amp;gt;= 8.0) {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@&quot;Authorization Request&quot;
+                                                                  message:requestMsg
+                                                           preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@&quot;OK&quot;
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                                [self _openURL:_settingsItemURL];
+                                                          }];
+
+    [alert addAction:defaultAction];
+    [[self _getPresentedViewController] presentViewController:alert animated:YES completion:nil];
+} else {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@&quot;Authorization Request&quot; message:tips delegate:self cancelButtonTitle:nil otherButtonTitles:@&quot;OK&quot;, nil];
+    [alertView show];
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;UIAlertController&lt;/code&gt; is only available since iOS 8.0, so we set the condition of &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; statement is &lt;code class=&quot;highlighter-rouge&quot;&gt;systemVersion &amp;gt; 8.0&lt;/code&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 12 Aug 2016 11:12:07 +0800</pubDate>
+        <link>http://www.majinshou.cn/2016/08/Open-A-Settings-Page-in-iOS/</link>
+        <guid isPermaLink="true">http://www.majinshou.cn/2016/08/Open-A-Settings-Page-in-iOS/</guid>
+        
+        
+        <category>iOS</category>
+        
+      </item>
     
       <item>
         <title>What does &quot;File's Owner&quot; mean?</title>
