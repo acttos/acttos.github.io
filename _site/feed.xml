@@ -5,8 +5,8 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.majinshou.cn/</link>
     <atom:link href="http://www.majinshou.cn/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 19 Aug 2016 18:42:54 +0800</pubDate>
-    <lastBuildDate>Fri, 19 Aug 2016 18:42:54 +0800</lastBuildDate>
+    <pubDate>Fri, 19 Aug 2016 20:06:58 +0800</pubDate>
+    <lastBuildDate>Fri, 19 Aug 2016 20:06:58 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -273,14 +273,14 @@ var timer: dispatch_source_t? = nil;//To be initialized later;
   &lt;p&gt;Creates a new dispatch queue to which blocks can be submitted.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;After we define the queue, we also need to create the queue by invoking &lt;code class=&quot;highlighter-rouge&quot;&gt;dispatch_queue_create&lt;/code&gt; with a name and type, we can pick &lt;code class=&quot;highlighter-rouge&quot;&gt;Serial&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;Concurrent&lt;/code&gt; as the queue’s type..&lt;/p&gt;
+&lt;p&gt;After we define the queue, we also need to create the queue by invoking &lt;code class=&quot;highlighter-rouge&quot;&gt;dispatch_queue_create&lt;/code&gt; with a name and type, we can pick &lt;code class=&quot;highlighter-rouge&quot;&gt;Serial&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;Concurrent&lt;/code&gt; as the queue’s type…&lt;/p&gt;
 
 &lt;h5 id=&quot;dispatchsourcet&quot;&gt;dispatch_source_t&lt;/h5&gt;
 &lt;blockquote&gt;
   &lt;p&gt;typealias dispatch_source_t = OS_dispatch_source;    Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;In GCD, we are recommanded to create &lt;code class=&quot;highlighter-rouge&quot;&gt;dispatch_source_t&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;dispatch_queue_t&lt;/code&gt;, so we use &lt;code class=&quot;highlighter-rouge&quot;&gt;dispatch_source_t&lt;/code&gt; to define a source for timer.&lt;/p&gt;
+&lt;p&gt;In GCD, we are recommanded to create &lt;code class=&quot;highlighter-rouge&quot;&gt;dispatch_source_t&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;dispatch_queue_t&lt;/code&gt;, so we use &lt;code class=&quot;highlighter-rouge&quot;&gt;dispatch_source_t&lt;/code&gt; to define a source for the timer.&lt;/p&gt;
 
 &lt;h5 id=&quot;dispatchsourcesettimer&quot;&gt;dispatch_source_set_timer&lt;/h5&gt;
 &lt;blockquote&gt;
