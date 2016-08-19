@@ -5,8 +5,8 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.majinshou.cn/</link>
     <atom:link href="http://www.majinshou.cn/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 19 Aug 2016 20:32:24 +0800</pubDate>
-    <lastBuildDate>Fri, 19 Aug 2016 20:32:24 +0800</lastBuildDate>
+    <pubDate>Fri, 19 Aug 2016 21:05:52 +0800</pubDate>
+    <lastBuildDate>Fri, 19 Aug 2016 21:05:52 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -360,7 +360,7 @@ var timer: dispatch_source_t? = nil;//To be initialized later;
 
 &lt;p&gt;Thanks!&lt;/p&gt;
 </description>
-        <pubDate>Fri, 19 Aug 2016 16:09:27 +0800</pubDate>
+        <pubDate>Fri, 19 Aug 2016 19:09:27 +0800</pubDate>
         <link>http://www.majinshou.cn/2016/08/NSTimer-and-GCD-Timer-in-iOS/</link>
         <guid isPermaLink="true">http://www.majinshou.cn/2016/08/NSTimer-and-GCD-Timer-in-iOS/</guid>
         
@@ -447,7 +447,7 @@ Wi-Fi — prefs:root=WIFI;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;UIAlertController&lt;/code&gt; is only available since iOS 8.0, so we set the condition of &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; statement is &lt;code class=&quot;highlighter-rouge&quot;&gt;systemVersion &amp;gt; 8.0&lt;/code&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Fri, 12 Aug 2016 11:12:07 +0800</pubDate>
+        <pubDate>Fri, 12 Aug 2016 20:12:23 +0800</pubDate>
         <link>http://www.majinshou.cn/2016/08/Open-A-Settings-Page-in-iOS/</link>
         <guid isPermaLink="true">http://www.majinshou.cn/2016/08/Open-A-Settings-Page-in-iOS/</guid>
         
@@ -520,7 +520,6 @@ Now, Let’s pay more attention to the param &lt;code class=&quot;highlighter-ro
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;thanks-for-visiting&quot;&gt;Thanks for visiting.&lt;/h3&gt;
-
 </description>
         <pubDate>Tue, 09 Aug 2016 21:21:07 +0800</pubDate>
         <link>http://www.majinshou.cn/2016/08/What-does-Files-Owner-mean/</link>
@@ -560,9 +559,8 @@ Now, Let’s pay more attention to the param &lt;code class=&quot;highlighter-ro
 The key word &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo&lt;/code&gt; is suggested to be unique from other apps. iOS will ignore the later registeration of URL Types if there is already a same key word &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo&lt;/code&gt; registered.&lt;/p&gt;
 
 &lt;h3 id=&quot;thanks-for-visiting&quot;&gt;Thanks for visiting.&lt;/h3&gt;
-
 </description>
-        <pubDate>Mon, 08 Aug 2016 19:51:18 +0800</pubDate>
+        <pubDate>Mon, 08 Aug 2016 19:51:29 +0800</pubDate>
         <link>http://www.majinshou.cn/2016/08/Tips-of-URL-Types-in-iOS/</link>
         <guid isPermaLink="true">http://www.majinshou.cn/2016/08/Tips-of-URL-Types-in-iOS/</guid>
         
@@ -752,7 +750,7 @@ The key word &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo&lt;/code&g
   &lt;p&gt;感谢来访！&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
-        <pubDate>Sat, 06 Aug 2016 20:21:18 +0800</pubDate>
+        <pubDate>Sat, 06 Aug 2016 20:21:58 +0800</pubDate>
         <link>http://www.majinshou.cn/2016/08/Introduction-of-CommonUtilities/</link>
         <guid isPermaLink="true">http://www.majinshou.cn/2016/08/Introduction-of-CommonUtilities/</guid>
         
@@ -851,7 +849,7 @@ func useClosure() -&amp;gt; Void {
 
 &lt;h3 id=&quot;thanks-for-your-visiting&quot;&gt;Thanks for your visiting.&lt;/h3&gt;
 </description>
-        <pubDate>Thu, 04 Aug 2016 19:51:18 +0800</pubDate>
+        <pubDate>Thu, 04 Aug 2016 20:31:18 +0800</pubDate>
         <link>http://www.majinshou.cn/2016/08/how-to-use-GCD-in-swift/</link>
         <guid isPermaLink="true">http://www.majinshou.cn/2016/08/how-to-use-GCD-in-swift/</guid>
         
@@ -1053,12 +1051,25 @@ func initShadowLabelOfMentor() -&amp;gt; UILabel {
 
 &lt;p&gt;You can find all the codes &lt;a href=&quot;https://github.com/acttos/ColorfulLabel&quot; target=&quot;_blank&quot;&gt;Here&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 02 Aug 2016 19:36:51 +0800</pubDate>
+        <pubDate>Tue, 02 Aug 2016 20:56:01 +0800</pubDate>
         <link>http://www.majinshou.cn/2016/08/the-colorful-uilabel/</link>
         <guid isPermaLink="true">http://www.majinshou.cn/2016/08/the-colorful-uilabel/</guid>
         
         
         <category>iOS</category>
+        
+      </item>
+    
+      <item>
+        <title>What is MVC,MVP and MVVM ?</title>
+        <description>&lt;p&gt;Check the &lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html&quot;&gt;MVC，MVP 和 MVVM 的图示&lt;/a&gt; to view detail info.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 18 Jul 2016 21:28:39 +0800</pubDate>
+        <link>http://www.majinshou.cn/2016/07/what-is-MVC-MVP-MVVM/</link>
+        <guid isPermaLink="true">http://www.majinshou.cn/2016/07/what-is-MVC-MVP-MVVM/</guid>
+        
+        
+        <category>Design-Pattern</category>
         
       </item>
     
@@ -1307,7 +1318,7 @@ For feedback, use the menu `Help` - `Send Feedback`
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
-        <pubDate>Mon, 18 Jul 2016 18:30:31 +0800</pubDate>
+        <pubDate>Mon, 18 Jul 2016 20:30:31 +0800</pubDate>
         <link>http://www.majinshou.cn/2016/07/source-of-markdown-documents/</link>
         <guid isPermaLink="true">http://www.majinshou.cn/2016/07/source-of-markdown-documents/</guid>
         
@@ -1327,25 +1338,12 @@ For feedback, use the menu `Help` - `Send Feedback`
 &lt;img src=&quot;/images/markdown-intro-04.png&quot; alt=&quot;Intro Four&quot; /&gt;
 &lt;img src=&quot;/images/markdown-intro-05.png&quot; alt=&quot;Intro Five&quot; /&gt;&lt;/p&gt;
 </description>
-        <pubDate>Mon, 18 Jul 2016 18:17:31 +0800</pubDate>
+        <pubDate>Mon, 18 Jul 2016 20:17:23 +0800</pubDate>
         <link>http://www.majinshou.cn/2016/07/what-are-markdown-documents/</link>
         <guid isPermaLink="true">http://www.majinshou.cn/2016/07/what-are-markdown-documents/</guid>
         
         
         <category>Markdown</category>
-        
-      </item>
-    
-      <item>
-        <title>What is MVC,MVP and MVVM ?</title>
-        <description>&lt;p&gt;Check the &lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html&quot;&gt;MVC，MVP 和 MVVM 的图示&lt;/a&gt; to view detail info.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 18 Jul 2016 10:28:31 +0800</pubDate>
-        <link>http://www.majinshou.cn/2016/07/what-is-MVC-MVP-MVVM/</link>
-        <guid isPermaLink="true">http://www.majinshou.cn/2016/07/what-is-MVC-MVP-MVVM/</guid>
-        
-        
-        <category>Design-Pattern</category>
         
       </item>
     

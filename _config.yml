@@ -22,12 +22,13 @@ cover_color: red
 
 # The blog button should not be removed.
 blog_button:
-    title: Blog
-    description: Visit blog
+    title: Blogs
+    description: My blog list
 
 # Navigation buttons in the front page.
 nav:
     - {title: GitHub, description: My GitHub, url: 'https://github.com/acttos/'}
+    # - {title: NQ Mobile Inc., description: My Company, url: 'http://www.nq.com/'}
     # - {title: Another Button, description: A button, url: 'http://example.com'}
 
 # Pagination
