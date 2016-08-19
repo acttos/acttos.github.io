@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "NSTimer and GCD Timer in iOS"
-date:   2016-08-19 16:09:27 +0800
+date:   2016-08-19 19:09:27 +0800
 categories: iOS
 ---
 

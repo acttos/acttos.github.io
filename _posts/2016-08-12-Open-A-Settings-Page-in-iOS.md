@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Open a settings page in iOS"
-date:   2016-08-12 11:12:07 +0800
+date:   2016-08-12 20:12:23 +0800
 categories: iOS
 ---
 

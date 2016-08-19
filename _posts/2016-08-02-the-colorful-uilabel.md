@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "The Colorful UILabel in iOS"
-date:   2016-08-02 19:36:51 +0800
+date:   2016-08-02 20:56:01 +0800
 categories: iOS
 ---
 

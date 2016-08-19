@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to use GCD in Swift ?"
-date:   2016-08-04 19:51:18 +0800
+date:   2016-08-04 20:31:18 +0800
 categories: iOS
 ---
 
