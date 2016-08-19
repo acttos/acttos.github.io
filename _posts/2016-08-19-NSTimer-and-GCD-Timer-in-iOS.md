@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "NSTimer and GCD Timer in iOS"
-date:   2016-08-18 11:07:27 +0800
+date:   2016-08-19 16:09:27 +0800
 categories: iOS
 ---
 
@@ -179,13 +179,168 @@ Although we get the right result, I still feel it is a little complicated and th
 
 And let me show you GCD Timer.
 
-#### 2.2. What is GCD Timer ?
+#### 2.2. What is GCD Timer and How to use it ?
 
 `GCD Timer` should be called `Timer in GCD`, because `GCD Timer` is not existed, it only is a feature of GCD. Let's look into a demo:
 
+First, let's define two parameters in class:
+
 ```oc
-// To be continued. @2016-08-18 20:28
+let queue: dispatch_queue_t? = dispatch_queue_create("GCDTimerQueue", DISPATCH_QUEUE_CONCURRENT);//Define and initialize a dispatch_queue;
+var timer: dispatch_source_t? = nil;//To be initialized later;
 ```
 
-#### 2.3. How to use GCD Timer ?
-// To be continued. @2016-08-18 20:28
+Then, let's set up the function of `_timerInGCD(repeated:)`:
+
+```oc
+    func _timerInGCD(repeated repeated:Bool) -> Void {
+        NSLog("_timerInGCD invoked.");
+        if (self.timer != nil) {
+            dispatch_source_cancel(self.timer!);
+        }
+        timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+        dispatch_source_set_timer(timer!, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0);
+
+        dispatch_source_set_event_handler(timer!, { () -> Void in
+            NSLog("In GCD Timer, block is invoked ...");
+
+            if(!repeated) {
+                dispatch_source_cancel(self.timer!);
+                NSLog("The timer is canceled.");
+            }
+        });
+
+        NSLog("timer will be resumed.");
+        dispatch_resume(timer!);
+    }
+```
+
+In the console, we get these outputs:
+
+##### GCD Timer output
+
+```
+2016-08-19 14:49:16.251 Timer[97556:2180745] _timerInGCD invoked.
+2016-08-19 14:49:16.253 Timer[97556:2180745] timer will be resumed.
+2016-08-19 14:49:16.255 Timer[97556:2181222] In GCD Timer, block is invoked ...
+2016-08-19 14:49:16.256 Timer[97556:2181222] The timer is canceled.
+```
+We can see that, the Timer is fired only once, because we canceled the `dispatch_source`.
+
+##### Repeated GCD Timer output:
+
+```
+2016-08-19 14:49:36.031 Timer[97556:2180745] _timerInGCD invoked.
+2016-08-19 14:49:36.031 Timer[97556:2180745] timer will be resumed.
+2016-08-19 14:49:36.032 Timer[97556:2181938] In GCD Timer, block is invoked ...
+2016-08-19 14:49:37.032 Timer[97556:2181938] In GCD Timer, block is invoked ...
+2016-08-19 14:49:38.033 Timer[97556:2181938] In GCD Timer, block is invoked ...
+2016-08-19 14:49:39.033 Timer[97556:2181938] In GCD Timer, block is invoked ...
+2016-08-19 14:49:40.033 Timer[97556:2181938] In GCD Timer, block is invoked ...
+```
+The Timer fires every second and it will continue firing event until we cancel the dispatch_source.
+
+_Warning:_ The parameter `queue` and `timer` must defined in class scope, because the life scope of a function is so short, if we define the `queue` or `timer` in a function, the `GCD Timer` will not be able to find the `timer` and the `queue` when the event fired because the `queue` or `timer` is released at the end of the function scope.
+
+For function control, I add some buttons and actions in the storyboard and code.
+
+##### The storyboard looks like this:
+
+![](/images/nstimer-and-gcd-timer-in-ios/timer-storyboard.png)
+
+##### The button actions in code:
+
+![](/images/nstimer-and-gcd-timer-in-ios/button-actions-in-code.png)
+
+
+#### 2.3. Something need to know about GCD Timer
+
+According to the document of Apple about GCD, we can find the part of GCD Timer.
+
+##### dispatch_queue_t
+> A dispatch queue is a lightweight object to which your application submits blocks for subsequent execution.
+
+We usually use `dispatch_queue_t` to define a queue for later use.
+
+##### dispatch_queue_create
+> Creates a new dispatch queue to which blocks can be submitted.
+
+After we define the queue, we also need to create the queue by invoking `dispatch_queue_create` with a name and type, we can pick `Serial` or `Concurrent` as the queue's type..
+
+##### dispatch_source_t
+> typealias dispatch_source_t = OS_dispatch_source;    Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+
+In GCD, we are recommanded to create `dispatch_source_t` in `dispatch_queue_t`, so we use `dispatch_source_t` to define a source for timer.
+
+##### dispatch_source_set_timer
+> Sets a start time, interval, and leeway value for a timer source.
+
+We need to set the timer in the queue by `dispatch_source_set_timer`.
+
+##### dispatch_source_set_event_handler
+> Sets the event handler block for the given dispatch source.
+
+This can set the handler when the timer fires event.
+
+##### dispatch_resume
+> Resume the invocation of block objects on a dispatch object.
+
+All the `dispatch_source_t` are just put in the queue with handler, they will not be executed unless we resume the dispatch object which contains the queue.
+
+##### dispatch_source_cancel
+> Asynchronously cancels the dispatch source, preventing any further invocation of its event handler block.
+
+If we want to cancel the timer, we can just cancel the dispatch object which contains the timer queue.
+
+### 3. Compare NSTimer and GCD Timer
+
+When we test the `NSTimer` in the codes, we know `NSTimer` needs to be run in a `NSRunLoop` which is automatically initialized and maintained in main thread but not in other background threads. When we need to setup a `NSTimer` in background threads, we need to handle the stuff of `NSRunLoop` by ourself, that is not a friendly action.
+
+We also know, every `NSTimer` will retain a strong reference of `target`, this may cause memory leak when the `target` can not be released.
+
+`GCD Timer` is based on `GCD (Grand Central Dispatch)`, we just leave all the rest to `GCD`, we will never need to worry about the memory issues.
+
+But `GCD Time` is not so easy to use because of the API of it, we can modify or create a new function to work like `NSTimer`. In other words, we need to implement these functions:
+
+```oc
+func scheduledTimerWithTimeInterval(ti: NSTimeInterval, block:GCDTimerBlock, repeats yesOrNo: Bool) -> Void;
+```
+
+Yes, we need to define a closure called `GCDTimerBlock`, it can look like this:
+
+```oc
+typealias GCDTimerBlock = @convention(block) (userInfo:AnyObject?) -> Void;
+```
+
+All together:
+
+```oc
+    typealias GCDTimerBlock = @convention(block) (userInfo:AnyObject?) -> Void
+
+    func scheduledTimerWithTimeInterval(ti: UInt64, block:GCDTimerBlock, repeats yesOrNo: Bool) -> Void {
+        if (self.timer != nil) {
+            dispatch_source_cancel(self.timer!);
+        }
+        timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+        dispatch_source_set_timer(timer!, DISPATCH_TIME_NOW, ti * NSEC_PER_SEC, 0);
+
+        dispatch_source_set_event_handler(timer!, { () -> Void in
+            NSLog("In GCD Timer, block is invoked ...");
+
+            if(!yesOrNo) {
+                dispatch_source_cancel(self.timer!);
+                NSLog("The timer is canceled.");
+            }
+        });
+
+        NSLog("timer will be resumed.");
+        dispatch_resume(timer!);
+    }
+```
+
+### 4. Source code
+
+##### You can find the source code [[ _Here_ ]](https://github.com/acttos/Swift-Acttos) and you are welcomed to give suggestions.
+_The codes may be updated from time to time._
+
+Thanks!
