@@ -303,7 +303,6 @@ hr {
   display: none !important; }
 
 .post-comments {
-  border-top: 1px solid #DDDDDD;
   padding: 60px 0; }
 
 .post-meta {
@@ -734,11 +733,11 @@ input[type="tel"] {
     color: #CCCCCC; }
 
 .read-more {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  padding-top: 1.2em;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+  padding-top: 1em;
   padding-bottom: 1em;
-  border-top: 1px solid #DDDDDD; }
+  border-bottom: 4px solid #DDDDDD; }
 
 .read-more-item {
   display: inline-block;
