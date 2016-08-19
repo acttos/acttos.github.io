@@ -37,9 +37,8 @@ paginate_path: "page/:num/"
 
 # Comment
 comment:
-    disqus: Acttos-Blog
+    disqus: acttos-blog
     # duoshuo: 
-    
 # Social
 social:
     weibo: 871040486
