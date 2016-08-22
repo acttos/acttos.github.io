@@ -341,7 +341,7 @@ All together:
 
 ### 4. Source code
 
-##### You can find the source code [[ _Here_ ]](https://github.com/acttos/Swift-Acttos) and you are welcomed to give suggestions.
+##### You can find the source code [[ _Here_ ]](https://github.com/acttos/Swift-Acttos){:target="_blank"} and you are welcomed to give suggestions.
 _The codes may be updated from time to time._
 
 Thanks!

@@ -5,7 +5,7 @@ date:   2016-07-18 20:17:23 +0800
 categories: Markdown
 ---
 
-# We will use official document of [Mou](http://25.io) to explain 'Markdown':
+# We will use official document of [Mou](http://25.io){:target="_blank"} to explain 'Markdown':
 
 ---
 ![Intro One](/images/markdown-intro-01.png)

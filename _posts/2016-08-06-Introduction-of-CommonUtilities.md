@@ -166,7 +166,7 @@ CommonUtilities是一个日常iOS开发通用工具类的Framework，采用Objec
 
 ## 开源协议
 
-[[CommonUtilities]](https://github.com/acttos/CommonUtilities) 基于 [[GPL(General Public License)]](http://www.gnu.org/licenses/gpl.html) 协议开源。
+[[CommonUtilities]](https://github.com/acttos/CommonUtilities){:target="_blank"} 基于 [[GPL(General Public License)]](http://www.gnu.org/licenses/gpl.html){:target="_blank"} 协议开源。
 <br/>
 <br/>
 
