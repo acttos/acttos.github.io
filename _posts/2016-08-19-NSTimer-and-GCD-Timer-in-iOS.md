@@ -268,7 +268,8 @@ We usually use `dispatch_queue_t` to define a queue for later use.
 After we define the queue, we also need to create the queue by invoking `dispatch_queue_create` with a name and type, we can pick `Serial` or `Concurrent` as the queue's type...
 
 ##### dispatch_source_t
-> typealias dispatch_source_t = OS_dispatch_source;    Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+> typealias dispatch_source_t = OS_dispatch_source;  
+> Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
 
 In GCD, we are recommanded to create `dispatch_source_t` in `dispatch_queue_t`, so we use `dispatch_source_t` to define a source for the timer.
 
