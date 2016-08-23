@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 }
 ```
 
-This class method can return a NSTimer instance and schedule the event too. We set the timer with time interval 3, which means this timer will `fire in 3 seconds`, and the `target` of the timer is `self`, the action is `_timerAction(_:)`, pay attention, this `:` here is required, method with pattern `selectorName(param:)` is called when the timer fires the event, the parameter `userInfo` here you can put some key-value pairs for the later use, the parameter `repeats` with value `true` means the timer we scheduled is repeatable, the event of the timer will triggered repeatedly.
+This class method can return a NSTimer instance and schedule the event too. We set the timer with time interval 3, which means this timer will `fire every 3 seconds`, and the `target` of the timer is `self`, the action is `_timerAction(_:)`, pay attention, this `:` here is required, method with pattern `selectorName(param:)` is called when the timer fires the event, the parameter `userInfo` here you can put some key-value pairs for the later use, the parameter `repeats` with value `true` means the timer we scheduled is repeatable, the event of the timer will triggered repeatedly.
 
 As we say, we defined a method `_timerAction(timer:)` to execute the logic when the timer event is triggered:
 
@@ -173,17 +173,17 @@ Although we get the right result, I still feel it is a little complicated and th
 
 1. `NSTimer` needs one live `NSRunLoop` to execute it's events. In main thread, the `NSRunLoop` is always live and will never stop until the app is terminated, but in other threads, you must invoke `run()` to active the `NSRunLoop`;
 
-2. `NSTimer` must invoke `invalidate()` to release the current timer, otherwise, the timer will retain a strong reference of the current instance of `target`, and it will remain in memory until app terminated;
+2. `NSTimer` must invoke `invalidate()` to release the current timer, otherwise, the timer will retain a strong reference of the current instance of `target`, and it will remain in memory until `invalidate()` invoked or app terminated;
 
-3. `NSTimer` must created and invalidate in the same thread, and a lot of times, we may forget that.
+3. `NSTimer` must created and invalidated in the same thread, and a lot of times, we may forget that.
 
-And let me show you GCD Timer.
+And let's find out what GCD Timer is.
 
 #### 2.2. What is GCD Timer and How to use it ?
 
 `GCD Timer` should be called `Timer in GCD`, because `GCD Timer` is not existed, it only is a feature of GCD. Let's look into a demo:
 
-First, let's define two parameters in class:
+First, let's define two parameters *in class*:
 
 ```oc
 let queue: dispatch_queue_t? = dispatch_queue_create("GCDTimerQueue", DISPATCH_QUEUE_CONCURRENT);//Define and initialize a dispatch_queue;
@@ -227,7 +227,7 @@ In the console, we get these outputs:
 ```
 We can see that, the Timer is fired only once, because we canceled the `dispatch_source`.
 
-##### Repeated GCD Timer output:
+##### When we change the parameter `repeated` to be `true`, we get repeated GCD Timer output:
 
 ```
 2016-08-19 14:49:36.031 Timer[97556:2180745] _timerInGCD invoked.
