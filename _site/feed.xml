@@ -5,9 +5,158 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.majinshou.cn/</link>
     <atom:link href="http://www.majinshou.cn/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 24 Aug 2016 16:34:49 +0800</pubDate>
-    <lastBuildDate>Wed, 24 Aug 2016 16:34:49 +0800</lastBuildDate>
+    <pubDate>Wed, 24 Aug 2016 19:42:50 +0800</pubDate>
+    <lastBuildDate>Wed, 24 Aug 2016 19:42:50 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>Acquire Microphone and Camera authorization</title>
+        <description>&lt;h3 id=&quot;microphone-and-camera-in-iphone-devices&quot;&gt;1. Microphone and Camera in iPhone devices&lt;/h3&gt;
+
+&lt;p&gt;Recently, we need to develop an app with video and sound in iOS.
+It is the first time I have been play with AVFoundation Framework, so I surelly get some problems. I want talk about one of them here to avoid the second time mistake.&lt;/p&gt;
+
+&lt;p&gt;In iOS, we use Microphone to get the voice, use Camera to capture the pictures or videos. Also, we know iOS is a safer OS than any others in the market. Most of the Hardwares such as Microphone, Camera, Bluetooth, Accelerometer require an authorization to access, that is the way Apple protecting people’s privacy. So, we need to acquire a permission in our ‘Microphone and Camera app’.&lt;/p&gt;
+
+&lt;h3 id=&quot;steps-for-acquiring-authorization&quot;&gt;2. Steps for acquiring authorization&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;AVFoundation Framework&lt;/code&gt; is required for &lt;code class=&quot;highlighter-rouge&quot;&gt;Audio or Video&lt;/code&gt; development. So firt of all, we import AVFoundation Framework in our class, and here is the header of my class, it includes AVFoundation:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import UIKit
+import Foundation
+import AVFoundation
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;After that, we can use the classes in AVFoundation, and we can acquire authorizations we need.&lt;/p&gt;
+
+&lt;p&gt;Let’s begin with a standalone function called &lt;code class=&quot;highlighter-rouge&quot;&gt;_requestForMediaAuthorization(type:String, callback:AuthorizeResultBlock)&lt;/code&gt;, here is the whole func:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;func _requestForMediaAuthorization(type: String, callback:AuthorizeResultBlock) -&amp;gt; Void {
+    AVCaptureDevice.requestAccessForMediaType(type) { (grant) in
+        if (grant) {
+            NSLog(&quot;Authorize sucessfully with type:\(type)&quot;);
+            callback(succeed: true);
+        } else {
+            NSLog(&quot;Failed to get authorization with type:\(type)&quot;);
+            callback(succeed: false);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We define a function has two parameters: We accept AVMediaType to decide which device authorization is required, and accept a closure to pass the result waiting for the receiver to handle.&lt;/p&gt;
+
+&lt;p&gt;Here is the definition of the closure:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;typealias AuthorizeResultBlock = @convention(block) (succeed:Bool) -&amp;gt; Void;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The closure has only one parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;succeed&lt;/code&gt; to identify the result of accquiring a certain type authorization of device. If &lt;code class=&quot;highlighter-rouge&quot;&gt;succeed&lt;/code&gt; is &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;, it means we succefully acquired the authorization, otherwise failed.&lt;/p&gt;
+
+&lt;p&gt;In function &lt;code class=&quot;highlighter-rouge&quot;&gt;_requestForMediaAuthorization(type:String, callback:AuthorizeResultBlock)&lt;/code&gt;, we use the following definition to do the real thing for acquiring:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class func requestAccessForMediaType(mediaType: String!, completionHandler handler: ((Bool) -&amp;gt; Void)!)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This function is a class function, which means we can directly call it with dot &lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt; appending with the class name. It is just like &lt;code class=&quot;highlighter-rouge&quot;&gt;AVCaptureDevice.requestAccessForMediaType(mediaType,completionBlock)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Basically that is the way we acquiring a permission. However, if we failed to do that, we still need to give a notice that why we can not continue.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-failure-notice-view&quot;&gt;3. The failure notice view&lt;/h3&gt;
+
+&lt;p&gt;Here is the notice handler function with a notice view show up:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;func _showAuthorizationFailureNotice(type: String) -&amp;gt; Void {
+    dispatch_async(dispatch_get_main_queue()) {
+        var tips: String?;
+        let privacyItem: String = type == AVMediaTypeAudio ? &quot;MICROPHONE&quot; : type == AVMediaTypeVideo ? &quot;CAMERA&quot; : &quot;&quot;;
+
+        self.settingsItemURL = NSURL(string: &quot;prefs:root=Privacy&amp;amp;path=\(privacyItem)&quot;);
+
+        if (type == AVMediaTypeAudio) {
+            tips = &quot;Please allow us to use your Microphone to capture audio by opening 'Settings -&amp;gt; Privacy -&amp;gt; Microphone' to grant.&quot;;
+        } else if (type == AVMediaTypeVideo) {
+            tips = &quot;Please allow us to use your Camera to capture video by opening 'Settings -&amp;gt; Privacy -&amp;gt; Camera' to grant.&quot;;
+        } else {
+            tips = &quot;Please allow us to use your device by opening 'Settings -&amp;gt; Privacy' to grant certain authorization.&quot;;
+        }
+
+        let compareResult:NSComparisonResult = UIDevice.currentDevice().systemVersion.compare(&quot;8.0&quot;);
+
+        if (compareResult == NSComparisonResult.OrderedSame || compareResult == NSComparisonResult.OrderedDescending) {
+            let alertController: UIAlertController = UIAlertController(title: &quot;Authorization Request&quot;, message: tips, preferredStyle: UIAlertControllerStyle.Alert);
+            let confirmAction: UIAlertAction = UIAlertAction(title: &quot;OK&quot;, style: UIAlertActionStyle.Default, handler: { (action) in
+                if(UIApplication.sharedApplication().canOpenURL(self.settingsItemURL!)) {
+                    UIApplication.sharedApplication().openURL(self.settingsItemURL!);
+                }
+            });
+
+            let cancelAction: UIAlertAction = UIAlertAction(title: &quot;Cancel&quot;, style: UIAlertActionStyle.Cancel, handler: nil);
+
+            alertController.addAction(confirmAction);
+            alertController.addAction(cancelAction);
+            self.presentViewController(alertController, animated: true, completion: {
+
+            });
+        } else {
+            let alertView: UIAlertView = UIAlertView(title: &quot;Authorization Request&quot;, message: tips!, delegate: self, cancelButtonTitle: &quot;Cancel&quot;, otherButtonTitles: &quot;OK&quot;);
+            alertView.show();
+        }
+    };
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Let’s go deeper into the codes above.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;The Accquiring action is processed in the background thread by iOS, so if we want to display a failure notice view on the screen, we need to switch to the main thread.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;First line in the statement is a &lt;code class=&quot;highlighter-rouge&quot;&gt;GCD&lt;/code&gt; keyword &lt;code class=&quot;highlighter-rouge&quot;&gt;dispatch_async&lt;/code&gt;, with &lt;code class=&quot;highlighter-rouge&quot;&gt;dispatch_get_main_queue()&lt;/code&gt; we move from the background thread to the main thread.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;For the failure notice view, we simply set a message and a button for the user. We set the value of parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;tips&lt;/code&gt; on condition of the value of &lt;code class=&quot;highlighter-rouge&quot;&gt;type&lt;/code&gt;, because different types of accquring bring us different way to handle.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;After we set the value of &lt;code class=&quot;highlighter-rouge&quot;&gt;tips&lt;/code&gt;, we are ready to show it on the screen. And here we have two options:&lt;code class=&quot;highlighter-rouge&quot;&gt;UIAlertView&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;UIAlertController&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;UIAlertView&lt;/code&gt; is the common option for the alert notice view, but from iOS version 8.0, &lt;code class=&quot;highlighter-rouge&quot;&gt;UIAlertView&lt;/code&gt; is marked as &lt;code class=&quot;highlighter-rouge&quot;&gt;Deprecated&lt;/code&gt;, so it is necessary to add &lt;code class=&quot;highlighter-rouge&quot;&gt;UIAlertController&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;UIAlertAction&lt;/code&gt;s to adapt different version of iOS.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;For opening a certain settings page, &lt;a href=&quot;/2016/08/Open-A-Settings-Page-in-iOS/&quot; target=&quot;_blank&quot;&gt;here is a reference&lt;/a&gt;, you can find how to open a settings page.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Remember, &lt;code class=&quot;highlighter-rouge&quot;&gt;UIAlertView&lt;/code&gt; needs a delegate to handle the button actions on it, so we write a simple function implementation.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//MARK: - UIAlertView Delegate Methods
+func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+    if (buttonIndex == 1) {
+        if(UIApplication.sharedApplication().canOpenURL(settingsItemURL!)) {
+            UIApplication.sharedApplication().openURL(settingsItemURL!);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;source-code&quot;&gt;4. Source code&lt;/h3&gt;
+
+&lt;h5 id=&quot;you-can-find-the-source-code--here-httpsgithubcomacttosswift-acttostargetblank-and-you-are-welcomed-to-give-suggestions&quot;&gt;You can find the source code &lt;a href=&quot;https://github.com/acttos/Swift-Acttos&quot; target=&quot;_blank&quot;&gt;[ &lt;em&gt;Here&lt;/em&gt; ]&lt;/a&gt; and you are welcomed to give suggestions.&lt;/h5&gt;
+&lt;p&gt;&lt;em&gt;The codes may be updated from time to time.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 24 Aug 2016 10:12:23 +0800</pubDate>
+        <link>http://www.majinshou.cn/2016/08/Acquire-Microphone-and-Camera-authorization/</link>
+        <guid isPermaLink="true">http://www.majinshou.cn/2016/08/Acquire-Microphone-and-Camera-authorization/</guid>
+        
+        
+        <category>iOS</category>
+        
+      </item>
     
       <item>
         <title>NSTimer and GCD Timer in iOS</title>
@@ -1322,26 +1471,6 @@ For feedback, use the menu `Help` - `Send Feedback`
         <pubDate>Mon, 18 Jul 2016 20:30:31 +0800</pubDate>
         <link>http://www.majinshou.cn/2016/07/source-of-markdown-documents/</link>
         <guid isPermaLink="true">http://www.majinshou.cn/2016/07/source-of-markdown-documents/</guid>
-        
-        
-        <category>Markdown</category>
-        
-      </item>
-    
-      <item>
-        <title>What are Markdown Documents ?</title>
-        <description>&lt;h1 id=&quot;we-will-use-official-document-of-mouhttp25iotargetblank-to-explain-markdown&quot;&gt;We will use official document of &lt;a href=&quot;http://25.io&quot; target=&quot;_blank&quot;&gt;Mou&lt;/a&gt; to explain ‘Markdown’:&lt;/h1&gt;
-
-&lt;hr /&gt;
-&lt;p&gt;&lt;img src=&quot;/images/markdown-intro-01.png&quot; alt=&quot;Intro One&quot; /&gt;
-&lt;img src=&quot;/images/markdown-intro-02.png&quot; alt=&quot;Intro Two&quot; /&gt;
-&lt;img src=&quot;/images/markdown-intro-03.png&quot; alt=&quot;Intro Three&quot; /&gt;
-&lt;img src=&quot;/images/markdown-intro-04.png&quot; alt=&quot;Intro Four&quot; /&gt;
-&lt;img src=&quot;/images/markdown-intro-05.png&quot; alt=&quot;Intro Five&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Mon, 18 Jul 2016 20:17:23 +0800</pubDate>
-        <link>http://www.majinshou.cn/2016/07/what-are-markdown-documents/</link>
-        <guid isPermaLink="true">http://www.majinshou.cn/2016/07/what-are-markdown-documents/</guid>
         
         
         <category>Markdown</category>
