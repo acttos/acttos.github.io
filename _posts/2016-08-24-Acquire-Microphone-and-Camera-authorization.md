@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Acquire Microphone and Camera authorization"
-date:   2016-08-24 10:12:23 +0800
+date:   2016-08-24 21:34:23 +0800
 categories: iOS
 ---
 ### 1. Microphone and Camera in iPhone devices
