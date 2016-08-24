@@ -5,8 +5,8 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.majinshou.cn/</link>
     <atom:link href="http://www.majinshou.cn/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 22 Aug 2016 16:54:35 +0800</pubDate>
-    <lastBuildDate>Mon, 22 Aug 2016 16:54:35 +0800</lastBuildDate>
+    <pubDate>Wed, 24 Aug 2016 16:34:49 +0800</pubDate>
+    <lastBuildDate>Wed, 24 Aug 2016 16:34:49 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -35,7 +35,7 @@
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This class method can return a NSTimer instance and schedule the event too. We set the timer with time interval 3, which means this timer will &lt;code class=&quot;highlighter-rouge&quot;&gt;fire in 3 seconds&lt;/code&gt;, and the &lt;code class=&quot;highlighter-rouge&quot;&gt;target&lt;/code&gt; of the timer is &lt;code class=&quot;highlighter-rouge&quot;&gt;self&lt;/code&gt;, the action is &lt;code class=&quot;highlighter-rouge&quot;&gt;_timerAction(_:)&lt;/code&gt;, pay attention, this &lt;code class=&quot;highlighter-rouge&quot;&gt;:&lt;/code&gt; here is required, method with pattern &lt;code class=&quot;highlighter-rouge&quot;&gt;selectorName(param:)&lt;/code&gt; is called when the timer fires the event, the parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;userInfo&lt;/code&gt; here you can put some key-value pairs for the later use, the parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;repeats&lt;/code&gt; with value &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt; means the timer we scheduled is repeatable, the event of the timer will triggered repeatedly.&lt;/p&gt;
+&lt;p&gt;This class method can return a NSTimer instance and schedule the event too. We set the timer with time interval 3, which means this timer will &lt;code class=&quot;highlighter-rouge&quot;&gt;fire every 3 seconds&lt;/code&gt;, and the &lt;code class=&quot;highlighter-rouge&quot;&gt;target&lt;/code&gt; of the timer is &lt;code class=&quot;highlighter-rouge&quot;&gt;self&lt;/code&gt;, the action is &lt;code class=&quot;highlighter-rouge&quot;&gt;_timerAction(_:)&lt;/code&gt;, pay attention, this &lt;code class=&quot;highlighter-rouge&quot;&gt;:&lt;/code&gt; here is required, method with pattern &lt;code class=&quot;highlighter-rouge&quot;&gt;selectorName(param:)&lt;/code&gt; is called when the timer fires the event, the parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;userInfo&lt;/code&gt; here you can put some key-value pairs for the later use, the parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;repeats&lt;/code&gt; with value &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt; means the timer we scheduled is repeatable, the event of the timer will triggered repeatedly.&lt;/p&gt;
 
 &lt;p&gt;As we say, we defined a method &lt;code class=&quot;highlighter-rouge&quot;&gt;_timerAction(timer:)&lt;/code&gt; to execute the logic when the timer event is triggered:&lt;/p&gt;
 
@@ -177,20 +177,20 @@ Because the code &lt;code class=&quot;highlighter-rouge&quot;&gt;NSLog(&quot;NST
     &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NSTimer&lt;/code&gt; needs one live &lt;code class=&quot;highlighter-rouge&quot;&gt;NSRunLoop&lt;/code&gt; to execute it’s events. In main thread, the &lt;code class=&quot;highlighter-rouge&quot;&gt;NSRunLoop&lt;/code&gt; is always live and will never stop until the app is terminated, but in other threads, you must invoke &lt;code class=&quot;highlighter-rouge&quot;&gt;run()&lt;/code&gt; to active the &lt;code class=&quot;highlighter-rouge&quot;&gt;NSRunLoop&lt;/code&gt;;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NSTimer&lt;/code&gt; must invoke &lt;code class=&quot;highlighter-rouge&quot;&gt;invalidate()&lt;/code&gt; to release the current timer, otherwise, the timer will retain a strong reference of the current instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;target&lt;/code&gt;, and it will remain in memory until app terminated;&lt;/p&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NSTimer&lt;/code&gt; must invoke &lt;code class=&quot;highlighter-rouge&quot;&gt;invalidate()&lt;/code&gt; to release the current timer, otherwise, the timer will retain a strong reference of the current instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;target&lt;/code&gt;, and it will remain in memory until &lt;code class=&quot;highlighter-rouge&quot;&gt;invalidate()&lt;/code&gt; invoked or app terminated;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NSTimer&lt;/code&gt; must created and invalidate in the same thread, and a lot of times, we may forget that.&lt;/p&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NSTimer&lt;/code&gt; must created and invalidated in the same thread, and a lot of times, we may forget that.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;And let me show you GCD Timer.&lt;/p&gt;
+&lt;p&gt;And let’s find out what GCD Timer is.&lt;/p&gt;
 
 &lt;h4 id=&quot;what-is-gcd-timer-and-how-to-use-it-&quot;&gt;2.2. What is GCD Timer and How to use it ?&lt;/h4&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;GCD Timer&lt;/code&gt; should be called &lt;code class=&quot;highlighter-rouge&quot;&gt;Timer in GCD&lt;/code&gt;, because &lt;code class=&quot;highlighter-rouge&quot;&gt;GCD Timer&lt;/code&gt; is not existed, it only is a feature of GCD. Let’s look into a demo:&lt;/p&gt;
 
-&lt;p&gt;First, let’s define two parameters in class:&lt;/p&gt;
+&lt;p&gt;First, let’s define two parameters &lt;em&gt;in class&lt;/em&gt;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-oc&quot;&gt;let queue: dispatch_queue_t? = dispatch_queue_create(&quot;GCDTimerQueue&quot;, DISPATCH_QUEUE_CONCURRENT);//Define and initialize a dispatch_queue;
 var timer: dispatch_source_t? = nil;//To be initialized later;
@@ -232,7 +232,7 @@ var timer: dispatch_source_t? = nil;//To be initialized later;
 &lt;/div&gt;
 &lt;p&gt;We can see that, the Timer is fired only once, because we canceled the &lt;code class=&quot;highlighter-rouge&quot;&gt;dispatch_source&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h5 id=&quot;repeated-gcd-timer-output&quot;&gt;Repeated GCD Timer output:&lt;/h5&gt;
+&lt;h5 id=&quot;when-we-change-the-parameter-repeated-to-be-true-we-get-repeated-gcd-timer-output&quot;&gt;When we change the parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;repeated&lt;/code&gt; to be &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;, we get repeated GCD Timer output:&lt;/h5&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2016-08-19 14:49:36.031 Timer[97556:2180745] _timerInGCD invoked.
 2016-08-19 14:49:36.031 Timer[97556:2180745] timer will be resumed.

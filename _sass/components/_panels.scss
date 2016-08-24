@@ -16,15 +16,15 @@
 .panel-title {
   margin: 0 0 5px 0;
   font-size: 2.5em;
-  letter-spacing: 4px;
+  letter-spacing: 2px;
   color: #FFF;
 }
 
 .panel-subtitle {
   font-family: $sans-font;
-  font-size: 1.2em;
-  font-weight: lighter;
-  letter-spacing: 3px;
+  font-size: 1.0em;
+  font-weight: 200;
+  letter-spacing: 1px;
   color: $gray;
   -webkit-font-smoothing: antialiased;
 }
@@ -66,6 +66,8 @@
 
   .panel-cover__description {
     margin: 0 30px;
+    font-size: 1.0em;
+    font-weight: 200;
   }
 
   .panel-cover__divider {
