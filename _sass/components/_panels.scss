@@ -160,6 +160,9 @@
 .cover-slate {
   @include linear-gradient(140deg, rgba($slate,.6) 20%, rgba(darken($slate, 20%),.8));
 }
+.cover-catred {
+  @include linear-gradient(140deg, rgba($catred,.6) 20%, rgba(darken($catred, 20%),.8));
+}
 
 .cover-disabled {
   background: none;

@@ -5,8 +5,8 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.majinshou.cn/</link>
     <atom:link href="http://www.majinshou.cn/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 24 Aug 2016 21:25:30 +0800</pubDate>
-    <lastBuildDate>Wed, 24 Aug 2016 21:25:30 +0800</lastBuildDate>
+    <pubDate>Thu, 25 Aug 2016 10:58:48 +0800</pubDate>
+    <lastBuildDate>Thu, 25 Aug 2016 10:58:48 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -149,7 +149,7 @@ func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
 
 &lt;p&gt;Thanks!&lt;/p&gt;
 </description>
-        <pubDate>Wed, 24 Aug 2016 10:12:23 +0800</pubDate>
+        <pubDate>Wed, 24 Aug 2016 21:34:23 +0800</pubDate>
         <link>http://www.majinshou.cn/2016/08/Acquire-Microphone-and-Camera-authorization/</link>
         <guid isPermaLink="true">http://www.majinshou.cn/2016/08/Acquire-Microphone-and-Camera-authorization/</guid>
         

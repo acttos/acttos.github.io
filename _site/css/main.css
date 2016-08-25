@@ -472,6 +472,11 @@ hr {
   background-image: -webkit-linear-gradient(-410deg, rgba(61, 66, 96, 0.6) 20%, rgba(21, 23, 34, 0.8));
   background-image: linear-gradient(140deg,rgba(61, 66, 96, 0.6) 20%, rgba(21, 23, 34, 0.8)); }
 
+.cover-catred {
+  background-color: rgba(191, 24, 39, 0.6);
+  background-image: -webkit-linear-gradient(-410deg, rgba(191, 24, 39, 0.6) 20%, rgba(100, 13, 20, 0.8));
+  background-image: linear-gradient(140deg,rgba(191, 24, 39, 0.6) 20%, rgba(100, 13, 20, 0.8)); }
+
 .cover-disabled {
   background: none; }
 
