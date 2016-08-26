@@ -7,7 +7,7 @@ categories: iOS
 ### 1. Microphone and Camera in iPhone devices
 
 Recently, we need to develop an app with video and sound in iOS.
-It is the first time I have been play with AVFoundation Framework, so I surelly get some problems. I want talk about one of them here to avoid the second time mistake.
+It is the first time I have been play with AVFoundation Framework, so I surelly get some problems. I want to talk about one of them here to avoid the second time mistake.
 
 In iOS, we use Microphone to get the voice, use Camera to capture the pictures or videos. Also, we know iOS is a safer OS than any others in the market. Most of the Hardwares such as Microphone, Camera, Bluetooth, Accelerometer require an authorization to access, that is the way Apple protecting people's privacy. So, we need to acquire a permission in our 'Microphone and Camera app'.
 
