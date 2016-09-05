@@ -9,19 +9,19 @@ categories: Structure
 
 ## 1. Goals of code structures
 
-I believe every programmer prefers a clear, simple and scalable code structure in the project. A good design of structure is a good start of a project, it can brings very fast coding, searching, refactoring and also brings a pleasant feeling of breath which I think is very important while coding.
+I believe every programmer prefers a clear, simple and scalable code structure in the project. A good design of structure is a good start of a project, it can bring very fast coding, searching, refactoring and can also bring a pleasant feeling of breath which I think is very important while coding.
 
 #### 1.1. Team Work
 
-Most of us are not working alone. We have colleagues or co-workers doing the coding job. If we write codes independently without enough communication or there is not so much of time while codeing, the good design of code structures is the key of collaboration. Based on the same code structure, everyone is codeing inside the part of himself, and provides well designed interfaces among parts of others'.
+Most of us are not working alone. We have colleagues or co-workers doing the coding job. If we write codes independently without enough communication or there is not so much of time while codeing, the good design of code structures is the key of collaboration. Based on the same code structure, everyone is coding inside the part of himself, and it provides well designed interfaces among parts of others'.
 
 #### 1.2. Codes Handover
 
-We can't be sure that we will work at the same palce or do jobs with only one project, and we also will take over projects from former coders. A well designed code structure here is strongly needed, otherwise, we will need much more time dealing with reading and understanding the codes, and with well knowing of codes, there might come with modifying and even refactoring next.
+We can't be sure that we will work at the same palce or do jobs with only one project, and we also will take over projects from former coders. A well designed code structure here is strongly needed, otherwise, we will need much more time dealing with reading and understanding the codes, and with good understanding of codes, there might come with modifying and even refactoring next.
 
 #### 1.3. Maintenance
 
-On special condition, you are always at the same place with the same job, but what about the time? You can't stop time, so your codes all will become a history, one day you need to locate an old postion to handle an issue possibly caused by some codes you wrote before, do you need a well designed code structure? Ofcourse you do.
+On special condition, you are always at the same place with the same job, but what about the time? You can't stop time, your codes will be changed or added and finally become a thing of the past, one day you need to locate an old postion to handle an issue possibly caused by some of the codes you wrote before, do you need a well designed code structure? Ofcourse you do.
 
 
 ## 2. Frequently used designs
@@ -29,9 +29,9 @@ I can't say I am so good at code structures designing, I only have some real pra
 
 #### 2.1. K.I.S.S
 
-I always belive and insist that `The simpler your code is, the easier you job will be`. No one want to put himself into a complicated situation. So, rember to keep every thing simple, the simpler the better.
+I always belive and insist that `The simpler your code is, the easier you job will be`. No one want to put himself into a complicated situation. So, remember to keep every thing simple, the simpler the better.
 
-`K.I.S.S` means `Keep it simple, stupid`, the word `stupid` here does not mean `Write codes stupidly`, `stupid` is the same as `simple`, `K.I.S.S` uses `simple` and `stupid` to tell us how to write codes.
+`K.I.S.S` means `Keep it simple, stupid`, the word `stupid` here does not mean `Write codes stupidly`, `stupid` is the same as `simple`, `K.I.S.S` uses `simple` and `stupid` to tell us how to write codes which can be maintained easily.
 
 *Here is a example of Objective-C to fill an user info:*
 
@@ -79,13 +79,13 @@ Let's see more:
 }
 ```
 
-I usually see some one writing the `showing` and `hiding` methods in only one statement. Ofcourse, that is OK, we can completely do lots of things in one place except we are willing to keep simple and clear.
+I usually see someone writing the `showing` and `hiding` methods in only one statement. Ofcourse, that is OK, we can completely do lots of things in one place except we are willing to keep the code simple and clear.
 
 #### 2.2. MVC & MVP
 
-We also want an clear structure in our project, I saw many projects with bad codes hierarchy, you can feel it:
+We also want a clear structure in our project, I saw many projects with bad code hierarchy, you can feel it yourself:
 
-*A codes hierarchy:*
+*A code hierarchy:*
 
 ```
 SAViewController
@@ -150,12 +150,13 @@ SAStore
 
 ![](/images/201609-code-structure/sastore-mvc-structure.png)
 
+See? The later one fits my taste much more.
 
-Now, let's see what is `MVC`:
+**Now, let's see what is `MVC`:**
 
 > *MVC* means *Model,View,Controller*, it is a design pattern of flow control or data control.  
 
-> *MVC* is used widely in J2EE projects, the source codes in the *Model* layer response for the logic such as `database invoke,data cache`, the source codes in `Controller` response for the logic of `business logic control`, and the source codes in `View` response for the `user interface`.   
+> *MVC* is used widely in J2EE projects, the source codes in the *Model* layer response for the logic such as `database invoking,cached data handling`, the source codes in `Controller` response for the logic of `business logic control`, and the source codes in `View` response for the `user interface`.   
 
 *Role of Model, View, Controller:*
 
@@ -170,15 +171,13 @@ Controller: Control the business logic.
 
 ![](/images/201609-code-structure/mvc-invoke-flow.png)
 
-The user can interactive with these two flow-chats below:
+The user can interactive in `MVC` through these two maps below:
 
 ![](/images/201609-code-structure/mvc-invoke-flow-with-user.png)
 
-The left one shows up that the user interactives through the `View` layer, it is seen in a web application: *User Registration or Signing In*. Most of this type requires the user to input some forms for the data to transfer and then the *Controller* handles the business logic with the data, at last,the *Model* gives the result to the *View* and the user can get a result of inputs.
+The left one shows up that the user interactives through the `View` layer, it may be seen in a web application such as *User Registration or Signing In*. Most of this type requires the user to input some forms for the data to transfer and then the *Controller* handles the business logic with the data, at last, the *Model* gives the result to the *View* and the user can get a result of inputs.
 
-The right one shows up that the user passes data directly to the *Controller* layer, then, *Controller* passes the request data to *Model*, the *Model* returns the result to *View*. This kind of *MVC* can be seen in Apps linked with an App-Server. Most of the time, there is no input views for the user, the pages in the App can handle the request data as input key-value(s).
-
-
+The right one shows up that the user passes data directly to the *Controller* layer, then, *Controller* passes the request data to *Model*, the *Model* returns the result to *View*. This kind of *MVC* can be seen in Apps which linked with an App-Server. Most of the time, there is no input views for the user, the pages in the App can handle the request data as input key-value(s).
 
 There is another Design Partten called *MVP* which is familiar to *MVC*.
 
@@ -193,5 +192,8 @@ The key difference between *MVP* and *MVC* is the data transmission. All the dat
 I prefer *MVP* as my design partten, there is no reason, or it is much clearer.
 
 ## 3. Thanks
+
+The *Code Structure* is very important in our developments, I hope and wish there is going to be a day that everyone follows the common design pattern to build our simple, effective, lovely coding life.
+
 <br/>
 *Thank [RuanYifeng](http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html) very much for the introduction and pictures of MVC and MVP*
