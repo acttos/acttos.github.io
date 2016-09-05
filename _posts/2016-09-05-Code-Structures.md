@@ -195,5 +195,4 @@ I prefer *MVP* as my design partten, there is no reason, or it is much clearer.
 
 The *Code Structure* is very important in our developments, I hope and wish there is going to be a day that everyone follows the common design pattern to build our simple, effective, lovely coding life.
 
-<br/>
 *Thank [RuanYifeng](http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html) very much for the introduction and pictures of MVC and MVP*
