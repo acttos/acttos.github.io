@@ -246,11 +246,11 @@ For function control, I add some buttons and actions in the storyboard and code.
 
 ##### The storyboard looks like this:
 
-![](/images/nstimer-and-gcd-timer-in-ios/timer-storyboard.png)
+![](/images/201608-nstimer-and-gcd-timer-in-ios/timer-storyboard.png)
 
 ##### The button actions in code:
 
-![](/images/nstimer-and-gcd-timer-in-ios/button-actions-in-code.png)
+![](/images/201608-nstimer-and-gcd-timer-in-ios/button-actions-in-code.png)
 
 
 #### 2.3. Something need to know about GCD Timer

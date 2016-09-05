@@ -15,15 +15,15 @@ When we need to develop with third apps to exchange some data, such as using WeC
 
 ###### Here is an example:
 
-![](/images/url-types/url-types.png)
+![](/images/201608-url-types/url-types.png)
 
 We can also see the values in our `Info.plist` file:
 
-![](/images/url-types/url-types-in-plist.png)
+![](/images/201608-url-types/url-types-in-plist.png)
 
 If we dig deeper, we can see the source code of `Info.plist` which we have added:
 
-![](/images/url-types/url-types-in-plist-code.png)
+![](/images/201608-url-types/url-types-in-plist-code.png)
 
 The key `FBundleURLTypes` stands for URLs our app can handle, it is an array, which give us ablitity to handle more than one URL. The key `CFBundleURLName` stands for a category of URL Types in our app, it can be any words you want, just give it a name which can suitably describle the URLs. For example: we use `Wechat` or `weixin` for URLs which is called by Wechat(微信), we use `Weibo` for URLs which is called by Weibo(微博). But remember: `It can be anything you want to input`.
 

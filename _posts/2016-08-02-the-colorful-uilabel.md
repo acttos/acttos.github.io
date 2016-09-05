@@ -64,7 +64,7 @@ func initColorfulLabel() -> UIView {
 
 Oh,My God,It worked! ^0^:
 
-![colorfulLabelsInContainerView.png](/images/colorful-uilabel/colorfulLabelsInContainerView.png)
+![colorfulLabelsInContainerView.png](/images/201608-colorful-uilabel/colorfulLabelsInContainerView.png)
 
 
 ### 1.2 The suggested way a mentor told me recently
@@ -96,7 +96,7 @@ func initColorfulLabelOfMentor() -> UILabel {
 
 It works too:
 
-![colorfulLabel.png](/images/colorful-uilabel/colorfulLabel.png)
+![colorfulLabel.png](/images/201608-colorful-uilabel/colorfulLabel.png)
 
 After I made the colorful texts in the screen,the product manager said we still need to add a shadow to the text, and again, for catching the eyes of audiences.
 
@@ -156,7 +156,7 @@ func initShadowLabel() -> UIView {
 
 Oh,My God,It worked again:
 
-![shadowLabelsInContainerView.png](/images/colorful-uilabel/shadowLabelsInContainerView.png)
+![shadowLabelsInContainerView.png](/images/201608-colorful-uilabel/shadowLabelsInContainerView.png)
 
 
 ### 2.2 The suggested way of a mentor
@@ -188,7 +188,7 @@ See? It is more simple and clearer.
 
 Here is the result in picture:
 
-![shadowLabel.png](/images/colorful-uilabel/shadowLabel.png)
+![shadowLabel.png](/images/201608-colorful-uilabel/shadowLabel.png)
 
 ## 3. Source Code:
 

@@ -5,9 +5,213 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.majinshou.cn/</link>
     <atom:link href="http://www.majinshou.cn/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 25 Aug 2016 15:21:15 +0800</pubDate>
-    <lastBuildDate>Thu, 25 Aug 2016 15:21:15 +0800</lastBuildDate>
+    <pubDate>Mon, 05 Sep 2016 17:01:02 +0800</pubDate>
+    <lastBuildDate>Mon, 05 Sep 2016 17:01:02 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>The bloody codes structure in projects</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;Summary:&lt;br /&gt;For years, I was working with many old projects handed over from previous coders. Most of the time, I feel upset very much at some of them which have badly designed codes structures. I do NOT like it and I want to make a change. That is why this article comes out.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;goals-of-codes-structures&quot;&gt;1. Goals of codes structures&lt;/h2&gt;
+
+&lt;p&gt;I believe every programmer prefers a clear, simple and scalable codes structure in the project. A good design of structure is a good start of a project, it can brings very fast coding, searching, refactoring and also brings a pleasant feeling of breath which I think is very important while coding.&lt;/p&gt;
+
+&lt;h4 id=&quot;team-work&quot;&gt;1.1. Team Work&lt;/h4&gt;
+
+&lt;p&gt;Most of us are not working alone. We have colleagues or co-workers doing the coding job. If we write codes independently without enough communication or there is not so much of time while codeing, the good design of codes structures is the key of collaboration. Based on the same codes structure, everyone is codeing inside the part of himself, and provides well designed interfaces among parts of others’.&lt;/p&gt;
+
+&lt;h4 id=&quot;codes-handover&quot;&gt;1.2. Codes Handover&lt;/h4&gt;
+
+&lt;p&gt;We can’t be sure that we will work at the same palce or do jobs with only one project, and we also will take over projects from former coders. A well designed codes structure here is strongly needed, otherwise, we will need much more time dealing with reading and understanding the codes, and with well knowing of codes, there might come with modifying and even refactoring next.&lt;/p&gt;
+
+&lt;h4 id=&quot;maintenance&quot;&gt;1.3. Maintenance&lt;/h4&gt;
+
+&lt;p&gt;On special condition, you are always at the same place with the same job, but what about the time? You can’t stop time, so your codes all will become a history, one day you need to locate an old postion to handle an issue possibly caused by some codes you wrote before, do you need a well designed codes structure? Ofcourse you do.&lt;/p&gt;
+
+&lt;h2 id=&quot;frequently-used-designs&quot;&gt;2. Frequently used designs&lt;/h2&gt;
+&lt;p&gt;I can’t say I am so good at codes structure designing, I only have some real practises which I think can give some ideas. I know there are so many ways to design the structure, I am not able to figure all of them out. Please allow me show you the three frequently used designs below:&lt;/p&gt;
+
+&lt;h4 id=&quot;kiss&quot;&gt;2.1. K.I.S.S&lt;/h4&gt;
+
+&lt;p&gt;I always belive and insist that &lt;code class=&quot;highlighter-rouge&quot;&gt;The simpler your code is, the easier you job will be&lt;/code&gt;. No one want to put himself into a complicated situation. So, rember to keep every thing simple, the simpler the better.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;K.I.S.S&lt;/code&gt; means &lt;code class=&quot;highlighter-rouge&quot;&gt;Keep it simple, stupid&lt;/code&gt;, the word &lt;code class=&quot;highlighter-rouge&quot;&gt;stupid&lt;/code&gt; here does not mean &lt;code class=&quot;highlighter-rouge&quot;&gt;Write codes stupidly&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;stupid&lt;/code&gt; is the same as &lt;code class=&quot;highlighter-rouge&quot;&gt;simple&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;K.I.S.S&lt;/code&gt; uses &lt;code class=&quot;highlighter-rouge&quot;&gt;simple&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;stupid&lt;/code&gt; to tell us how to write codes.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Here is a example of Objective-C to fill an user info:&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#pragma mark - Private Methods for only Self-using
+-(void)_fillViewWithUserInfo:(SPUserInfo *)userInfo {
+    UIImage *iconImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:userInfo.portraitURL]]];
+    self.userIconBackgroundImageView.image = iconImage;
+    self.userIconImageView.image = iconImage;
+    self.userNicknameLabel.text = userInfo.nickName;
+    self.userIdLabel.text = userInfo.userId;
+    self.userIntroLabel.text = @&quot;&quot;;
+    self.userFunCountLabel.text = [NSString stringWithFormat:@&quot;%ld&quot;,userInfo.fansNum];
+    self.userFocusCountLabel.text = [NSString stringWithFormat:@&quot;%ld&quot;,userInfo.subsNum];
+    self.userStarTicketCountLabel.text = [NSString stringWithFormat:@&quot;%ld&quot;,userInfo.totalStarTickets];
+    self.userIncomeCountNumberLabel.text = [NSString stringWithFormat:@&quot;%f&quot;,userInfo.userIncome];
+    self.userStarBeanCountNumberLabel.text = [NSString stringWithFormat:@&quot;%ld&quot;,userInfo.userStarCoins];
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The method above fills an user info, and it is the only thing it does. &lt;code class=&quot;highlighter-rouge&quot;&gt;Simple&lt;/code&gt; does not mean there is less lines of codes, it means &lt;code class=&quot;highlighter-rouge&quot;&gt;Very easy to understand and Designed for only one purpose&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let’s see more:
+&lt;em&gt;Control method and sub-control methods&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// I am the control method for deciding route
+-(void)_switchBroadcastingLeftItems {
+    if (!self.isLeftItemsButtonShowing) {
+        //Show them
+        [self _showBroadcastingLeftItems];
+    } else {
+        //Hide them
+        [self _hideBroadcastingLeftItems];
+    }
+}
+
+// I am the sub-control method for showing thing
+-(void)_showBroadcastingLeftItems {
+	//Do the showing thing
+}
+// I am the sub-control method for hiding thing
+-(void)_hideBroadcastingLeftItems {
+	//Do the hiding thing
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I usually see some one writing the &lt;code class=&quot;highlighter-rouge&quot;&gt;showing&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;hiding&lt;/code&gt; methods in only one statement. Ofcourse, that is OK, we can completely do lots of things in one place except we are willing to keep simple and clear.&lt;/p&gt;
+
+&lt;h4 id=&quot;mvc--mvp&quot;&gt;2.2. MVC &amp;amp; MVP&lt;/h4&gt;
+
+&lt;p&gt;We also want an clear structure in our project, I saw many projects with bad codes hierarchy, you can feel it:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;A codes hierarchy:&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SAViewController
+|____SAImagePicker
+|____SACameraController
+|____SADashboardController
+| |____dashboardImage
+| |____PremiumFeatures
+|____SAFBLoginController
+|____SAMediaController
+|____SAMenuController
+|____SAMessenger
+| |____Chat
+| |____Friend
+|____SAPhotoBrowser
+| |____CustomNavBar
+| |____EGORefreshTable
+| |____HPGrowingTextView
+| |____MBProgressHUD
+| |____Popover
+| |____SAActivityIndicatorView
+| |____SAAlertView
+| |____SAEmojiKeyboard
+| |____SALabel
+| |____SALazyImageView
+| |____SAProgressBar
+| |____SASeparateView
+| |____StyledPageControl
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Why there are so many un-controller class folders under &lt;code class=&quot;highlighter-rouge&quot;&gt;SAViewController&lt;/code&gt;? Why there is a model &lt;code class=&quot;highlighter-rouge&quot;&gt;SAMessenger&lt;/code&gt; under &lt;code class=&quot;highlighter-rouge&quot;&gt;SAViewController&lt;/code&gt;? I was totally lost in it the first time I saw it.&lt;/p&gt;
+
+&lt;p&gt;In my opinion, we should place the same type of files in a folder, the same functioning of files in a folder, even the same type of language in a folder and so on.&lt;/p&gt;
+
+&lt;p&gt;In one words:&lt;code class=&quot;highlighter-rouge&quot;&gt;We always put files which have something in common into a folder&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Here is another example which places the file with a better designed hierarchy:&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SAStore
+|____Controller
+| |____SAStoreViewController.h
+| |____SAStoreViewController.m
+| |____SAProductWebViewController.h
+| |____SAProductWebViewController.m
+|____Model
+| |____SAStoreProduct.h
+| |____SAStoreProduct.m
+| |____SAStoreProductListResponse.h
+| |____SAStoreProductListResponse.m
+|____SAStore.storyboard
+|____SAStore.xib
+|____View
+| |____NJKWebViewProgress
+| | |____NJKWebViewProgress.h
+| | |____NJKWebViewProgress.m
+| | |____NJKWebViewProgressView.h
+| | |____NJKWebViewProgressView.m
+| |____SAProductCollectionViewCell.h
+| |____SAProductCollectionViewCell.m
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Here is the code structure in Xcode:&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-code-structure/sastore-mvc-structure.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, let’s see what is &lt;code class=&quot;highlighter-rouge&quot;&gt;MVC&lt;/code&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;MVC&lt;/em&gt; means &lt;em&gt;Model,View,Controller&lt;/em&gt;, it is a design pattern of flow control or data control.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;MVC&lt;/em&gt; is used widely in J2EE projects, the source codes in the &lt;em&gt;Model&lt;/em&gt; layer response for the logic such as &lt;code class=&quot;highlighter-rouge&quot;&gt;database invoke,data cache&lt;/code&gt;, the source codes in &lt;code class=&quot;highlighter-rouge&quot;&gt;Controller&lt;/code&gt; response for the logic of &lt;code class=&quot;highlighter-rouge&quot;&gt;business logic control&lt;/code&gt;, and the source codes in &lt;code class=&quot;highlighter-rouge&quot;&gt;View&lt;/code&gt; response for the &lt;code class=&quot;highlighter-rouge&quot;&gt;user interface&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Role of Model, View, Controller:&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Model: Handle most of the data logic in a system, such as database access, remote http invoking and so on.
+
+View: Handle the 'User Interface' thing in a system.
+
+Controller: Control the business logic.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Here is the invoking flow of MVC:&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-code-structure/mvc-invoke-flow.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The user can interactive with these two flow-chats below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-code-structure/mvc-invoke-flow-with-user.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The left one shows up that the user interactives through the &lt;code class=&quot;highlighter-rouge&quot;&gt;View&lt;/code&gt; layer, it is seen in a web application: &lt;em&gt;User Registration or Signing In&lt;/em&gt;. Most of this type requires the user to input some forms for the data to transfer and then the &lt;em&gt;Controller&lt;/em&gt; handles the business logic with the data, at last,the &lt;em&gt;Model&lt;/em&gt; gives the result to the &lt;em&gt;View&lt;/em&gt; and the user can get a result of inputs.&lt;/p&gt;
+
+&lt;p&gt;The right one shows up that the user passes data directly to the &lt;em&gt;Controller&lt;/em&gt; layer, then, &lt;em&gt;Controller&lt;/em&gt; passes the request data to &lt;em&gt;Model&lt;/em&gt;, the &lt;em&gt;Model&lt;/em&gt; returns the result to &lt;em&gt;View&lt;/em&gt;. This kind of &lt;em&gt;MVC&lt;/em&gt; can be seen in Apps linked with an App-Server. Most of the time, there is no input views for the user, the pages in the App can handle the request data as input key-value(s).&lt;/p&gt;
+
+&lt;p&gt;There is another Design Partten called &lt;em&gt;MVP&lt;/em&gt; which is familiar to &lt;em&gt;MVC&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Here is the invoking flow of MVP:&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-code-structure/mvp-invoke-flow.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In &lt;em&gt;MVP&lt;/em&gt;, we can’t see the layer &lt;em&gt;Controller&lt;/em&gt;, instead of, we get &lt;em&gt;Presenter&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The key difference between &lt;em&gt;MVP&lt;/em&gt; and &lt;em&gt;MVC&lt;/em&gt; is the data transmission. All the data must be handled by &lt;em&gt;Presenter&lt;/em&gt; in &lt;em&gt;MVP&lt;/em&gt;. &lt;em&gt;Presenter&lt;/em&gt; is the main door and only door of data.&lt;/p&gt;
+
+&lt;p&gt;I prefer &lt;em&gt;MVP&lt;/em&gt; as my design partten, there is no reason, or it is much clearer.&lt;/p&gt;
+
+&lt;h2 id=&quot;thanks&quot;&gt;3. Thanks&lt;/h2&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;em&gt;Thank &lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html&quot;&gt;RuanYifeng&lt;/a&gt; very much for the introduction and pictures of MVC and MVP&lt;/em&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 05 Sep 2016 16:53:29 +0800</pubDate>
+        <link>http://www.majinshou.cn/2016/09/Codes-Structure/</link>
+        <guid isPermaLink="true">http://www.majinshou.cn/2016/09/Codes-Structure/</guid>
+        
+        
+        <category>Structure</category>
+        
+      </item>
     
       <item>
         <title>Frequently Used Markdown Formats</title>
@@ -252,7 +456,7 @@ baz | baz  | baz
         <description>&lt;h3 id=&quot;microphone-and-camera-in-iphone-devices&quot;&gt;1. Microphone and Camera in iPhone devices&lt;/h3&gt;
 
 &lt;p&gt;Recently, we need to develop an app with video and sound in iOS.
-It is the first time I have been play with AVFoundation Framework, so I surelly get some problems. I want talk about one of them here to avoid the second time mistake.&lt;/p&gt;
+It is the first time I have been play with AVFoundation Framework, so I surelly get some problems. I want to talk about one of them here to avoid the second time mistake.&lt;/p&gt;
 
 &lt;p&gt;In iOS, we use Microphone to get the voice, use Camera to capture the pictures or videos. Also, we know iOS is a safer OS than any others in the market. Most of the Hardwares such as Microphone, Camera, Bluetooth, Accelerometer require an authorization to access, that is the way Apple protecting people’s privacy. So, we need to acquire a permission in our ‘Microphone and Camera app’.&lt;/p&gt;
 
@@ -638,11 +842,11 @@ var timer: dispatch_source_t? = nil;//To be initialized later;
 
 &lt;h5 id=&quot;the-storyboard-looks-like-this&quot;&gt;The storyboard looks like this:&lt;/h5&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/nstimer-and-gcd-timer-in-ios/timer-storyboard.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-nstimer-and-gcd-timer-in-ios/timer-storyboard.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;the-button-actions-in-code&quot;&gt;The button actions in code:&lt;/h5&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/nstimer-and-gcd-timer-in-ios/button-actions-in-code.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-nstimer-and-gcd-timer-in-ios/button-actions-in-code.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;something-need-to-know-about-gcd-timer&quot;&gt;2.3. Something need to know about GCD Timer&lt;/h4&gt;
 
@@ -852,17 +1056,17 @@ Wi-Fi — prefs:root=WIFI;
 
 &lt;h5 id=&quot;an-error-possibly-caused-by-files-owner&quot;&gt;An error possibly caused by &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt;:&lt;/h5&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/files-owner/files-owner-issue.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-files-owner/files-owner-issue.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We searched the possible reasons associated with this error, and found most of the results are about &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt;, so we checked the codes and the settings in xib file and found:&lt;/p&gt;
 
 &lt;h5 id=&quot;the-codes-in-xcode&quot;&gt;The codes in Xcode:&lt;/h5&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/files-owner/files-owner-issue-create-from-nib.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-files-owner/files-owner-issue-create-from-nib.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;the-settings-of-files-owner-in-xib-file&quot;&gt;The settings of &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; in xib file:&lt;/h5&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/files-owner/files-owner-issue-nib-setting.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-files-owner/files-owner-issue-nib-setting.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 The method &lt;code class=&quot;highlighter-rouge&quot;&gt;loadNibNamed:owner:options&lt;/code&gt; will unarchive the contents of a nib file in the bundle and return an array containing the top-level objects in the nib file. All the objects in the array are instantiated when the nib file is unarchived. But the objects do NOT contain references to &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; object or any proxy objects.
@@ -877,7 +1081,7 @@ Now, Let’s pay more attention to the param &lt;code class=&quot;highlighter-ro
 
 &lt;h5 id=&quot;files-owner-in-apple-official-documents&quot;&gt;File’s Owner in Apple official documents:&lt;/h5&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/files-owner/apples-files-owner.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-files-owner/apples-files-owner.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We can see that &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; object is one of the most important objects in a nib file, and &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; is a placeholder object, and is NOT created when the nib file is loaded. &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; object must be created by yourself and you need to pass it to the nib-loading code to recreate the link of the code and the contents of a nib file. We can tell the &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; object can be &lt;code class=&quot;highlighter-rouge&quot;&gt;NSObject&lt;/code&gt; in the Xcode and when you link your UI elements with your code (most of the time it is the ViewController class), the &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; object is specified (and it is your ViewController instance).&lt;/p&gt;
 
@@ -891,11 +1095,11 @@ Now, Let’s pay more attention to the param &lt;code class=&quot;highlighter-ro
 
 &lt;h5 id=&quot;the-default-value-of-files-owner-in-xcode&quot;&gt;The default value of &lt;code class=&quot;highlighter-rouge&quot;&gt;File's Owner&lt;/code&gt; in Xcode:&lt;/h5&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/files-owner/files-owner-issue-nib-setting.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-files-owner/files-owner-issue-nib-setting.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;the-value-of-the-root-view-in-xib-file-is-specified-to-be-a-existed-class-name&quot;&gt;The value of the root view in xib file is specified to be a existed class name:&lt;/h5&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/files-owner/files-owner-issue-nib-setting-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-files-owner/files-owner-issue-nib-setting-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -929,15 +1133,15 @@ Now, Let’s pay more attention to the param &lt;code class=&quot;highlighter-ro
 
 &lt;h6 id=&quot;here-is-an-example&quot;&gt;Here is an example:&lt;/h6&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/url-types/url-types.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-url-types/url-types.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We can also see the values in our &lt;code class=&quot;highlighter-rouge&quot;&gt;Info.plist&lt;/code&gt; file:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/url-types/url-types-in-plist.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-url-types/url-types-in-plist.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;If we dig deeper, we can see the source code of &lt;code class=&quot;highlighter-rouge&quot;&gt;Info.plist&lt;/code&gt; which we have added:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/url-types/url-types-in-plist-code.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-url-types/url-types-in-plist-code.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The key &lt;code class=&quot;highlighter-rouge&quot;&gt;FBundleURLTypes&lt;/code&gt; stands for URLs our app can handle, it is an array, which give us ablitity to handle more than one URL. The key &lt;code class=&quot;highlighter-rouge&quot;&gt;CFBundleURLName&lt;/code&gt; stands for a category of URL Types in our app, it can be any words you want, just give it a name which can suitably describle the URLs. For example: we use &lt;code class=&quot;highlighter-rouge&quot;&gt;Wechat&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;weixin&lt;/code&gt; for URLs which is called by Wechat(微信), we use &lt;code class=&quot;highlighter-rouge&quot;&gt;Weibo&lt;/code&gt; for URLs which is called by Weibo(微博). But remember: &lt;code class=&quot;highlighter-rouge&quot;&gt;It can be anything you want to input&lt;/code&gt;.&lt;/p&gt;
 
@@ -1309,7 +1513,7 @@ func initColorfulLabel() -&amp;gt; UIView {
 
 &lt;p&gt;Oh,My God,It worked! ^0^:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/colorful-uilabel/colorfulLabelsInContainerView.png&quot; alt=&quot;colorfulLabelsInContainerView.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-colorful-uilabel/colorfulLabelsInContainerView.png&quot; alt=&quot;colorfulLabelsInContainerView.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;the-suggested-way-a-mentor-told-me-recently&quot;&gt;1.2 The suggested way a mentor told me recently&lt;/h3&gt;
 
@@ -1340,7 +1544,7 @@ func initColorfulLabelOfMentor() -&amp;gt; UILabel {
 
 &lt;p&gt;It works too:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/colorful-uilabel/colorfulLabel.png&quot; alt=&quot;colorfulLabel.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-colorful-uilabel/colorfulLabel.png&quot; alt=&quot;colorfulLabel.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;After I made the colorful texts in the screen,the product manager said we still need to add a shadow to the text, and again, for catching the eyes of audiences.&lt;/p&gt;
 
@@ -1402,7 +1606,7 @@ func initShadowLabel() -&amp;gt; UIView {
 
 &lt;p&gt;Oh,My God,It worked again:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/colorful-uilabel/shadowLabelsInContainerView.png&quot; alt=&quot;shadowLabelsInContainerView.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-colorful-uilabel/shadowLabelsInContainerView.png&quot; alt=&quot;shadowLabelsInContainerView.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;the-suggested-way-of-a-mentor&quot;&gt;2.2 The suggested way of a mentor&lt;/h3&gt;
 
@@ -1433,7 +1637,7 @@ func initShadowLabelOfMentor() -&amp;gt; UILabel {
 
 &lt;p&gt;Here is the result in picture:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/colorful-uilabel/shadowLabel.png&quot; alt=&quot;shadowLabel.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/201608-colorful-uilabel/shadowLabel.png&quot; alt=&quot;shadowLabel.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;source-code&quot;&gt;3. Source Code:&lt;/h2&gt;
 
@@ -1445,19 +1649,6 @@ func initShadowLabelOfMentor() -&amp;gt; UILabel {
         
         
         <category>iOS</category>
-        
-      </item>
-    
-      <item>
-        <title>What is MVC,MVP and MVVM ?</title>
-        <description>&lt;p&gt;Check the &lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html&quot; target=&quot;_blank&quot;&gt;MVC，MVP 和 MVVM 的图示&lt;/a&gt; to view detail info.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 18 Jul 2016 21:28:39 +0800</pubDate>
-        <link>http://www.majinshou.cn/2016/07/what-is-MVC-MVP-MVVM/</link>
-        <guid isPermaLink="true">http://www.majinshou.cn/2016/07/what-is-MVC-MVP-MVVM/</guid>
-        
-        
-        <category>Design-Pattern</category>
         
       </item>
     

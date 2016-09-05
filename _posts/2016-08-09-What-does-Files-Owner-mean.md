@@ -11,17 +11,17 @@ categories: iOS
 
 ##### An error possibly caused by `File's Owner`:
 
-![](/images/files-owner/files-owner-issue.png)
+![](/images/201608-files-owner/files-owner-issue.png)
 
 We searched the possible reasons associated with this error, and found most of the results are about `File's Owner`, so we checked the codes and the settings in xib file and found:
 
 ##### The codes in Xcode:
 
-![](/images/files-owner/files-owner-issue-create-from-nib.png)
+![](/images/201608-files-owner/files-owner-issue-create-from-nib.png)
 
 ##### The settings of `File's Owner` in xib file:
 
-![](/images/files-owner/files-owner-issue-nib-setting.png)
+![](/images/201608-files-owner/files-owner-issue-nib-setting.png)
 
 <br/>
 The method `loadNibNamed:owner:options` will unarchive the contents of a nib file in the bundle and return an array containing the top-level objects in the nib file. All the objects in the array are instantiated when the nib file is unarchived. But the objects do NOT contain references to `File's Owner` object or any proxy objects.
@@ -36,7 +36,7 @@ I checked the documents of `File's Owner` in Apple official document, and here i
 
 ##### File's Owner in Apple official documents:
 
-![](/images/files-owner/apples-files-owner.png)
+![](/images/201608-files-owner/apples-files-owner.png)
 
 We can see that `File's Owner` object is one of the most important objects in a nib file, and `File's Owner` is a placeholder object, and is NOT created when the nib file is loaded. `File's Owner` object must be created by yourself and you need to pass it to the nib-loading code to recreate the link of the code and the contents of a nib file. We can tell the `File's Owner` object can be `NSObject` in the Xcode and when you link your UI elements with your code (most of the time it is the ViewController class), the `File's Owner` object is specified (and it is your ViewController instance).
 
@@ -50,11 +50,11 @@ So far as we know, We just leave the value of `File's Owner` to be `NSObject` in
 
 ##### The default value of `File's Owner` in Xcode:
 
-![](/images/files-owner/files-owner-issue-nib-setting.png)
+![](/images/201608-files-owner/files-owner-issue-nib-setting.png)
 
 ##### The value of the root view in xib file is specified to be a existed class name:
 
-![](/images/files-owner/files-owner-issue-nib-setting-2.png)
+![](/images/201608-files-owner/files-owner-issue-nib-setting-2.png)
 
 <br/>
 
