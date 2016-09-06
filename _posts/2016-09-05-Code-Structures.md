@@ -160,13 +160,9 @@ See? The later one fits my taste much more.
 
 *Role of Model, View, Controller:*
 
-```
-Model: Handle most of the data logic in a system, such as database access, remote http invoking and so on.
-
-View: Handle the 'User Interface' thing in a system.
-
-Controller: Control the business logic.
-```
+1. Model <——> Handle most of the data logic in a system, such as database access, remote http invoking and so on.
+2. View  <——> Handle the 'User Interface' thing in a system.
+3. Controller <——> Control the business logic.
 *Here is the invoking flow of MVC:*
 
 ![](/images/201609-code-structure/mvc-invoke-flow.png)

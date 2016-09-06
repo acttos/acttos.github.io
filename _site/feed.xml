@@ -5,8 +5,8 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.majinshou.cn/</link>
     <atom:link href="http://www.majinshou.cn/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 05 Sep 2016 19:35:27 +0800</pubDate>
-    <lastBuildDate>Mon, 05 Sep 2016 19:35:27 +0800</lastBuildDate>
+    <pubDate>Tue, 06 Sep 2016 14:43:28 +0800</pubDate>
+    <lastBuildDate>Tue, 06 Sep 2016 14:43:28 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -171,14 +171,12 @@
 
 &lt;p&gt;&lt;em&gt;Role of Model, View, Controller:&lt;/em&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Model: Handle most of the data logic in a system, such as database access, remote http invoking and so on.
-
-View: Handle the 'User Interface' thing in a system.
-
-Controller: Control the business logic.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;em&gt;Here is the invoking flow of MVC:&lt;/em&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Model &amp;lt;——&amp;gt; Handle most of the data logic in a system, such as database access, remote http invoking and so on.&lt;/li&gt;
+  &lt;li&gt;View  &amp;lt;——&amp;gt; Handle the ‘User Interface’ thing in a system.&lt;/li&gt;
+  &lt;li&gt;Controller &amp;lt;——&amp;gt; Control the business logic.
+&lt;em&gt;Here is the invoking flow of MVC:&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/201609-code-structure/mvc-invoke-flow.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -206,8 +204,7 @@ Controller: Control the business logic.
 
 &lt;p&gt;The &lt;em&gt;Code Structure&lt;/em&gt; is very important in our developments, I hope and wish there is going to be a day that everyone follows the common design pattern to build our simple, effective, lovely coding life.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
-&lt;em&gt;Thank &lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html&quot;&gt;RuanYifeng&lt;/a&gt; very much for the introduction and pictures of MVC and MVP&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thank &lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html&quot;&gt;RuanYifeng&lt;/a&gt; very much for the introduction and pictures of MVC and MVP&lt;/em&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 05 Sep 2016 16:53:29 +0800</pubDate>
         <link>http://www.majinshou.cn/2016/09/Code-Structures/</link>
