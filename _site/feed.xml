@@ -5,9 +5,213 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.majinshou.cn/</link>
     <atom:link href="http://www.majinshou.cn/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 06 Sep 2016 14:43:28 +0800</pubDate>
-    <lastBuildDate>Tue, 06 Sep 2016 14:43:28 +0800</lastBuildDate>
+    <pubDate>Thu, 08 Sep 2016 20:06:16 +0800</pubDate>
+    <lastBuildDate>Thu, 08 Sep 2016 20:06:16 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>Using UICollectionView Step by Step</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;Summary: &lt;br /&gt;&lt;br /&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UICollectionView&lt;/code&gt; allows us to display more than one cell in the same line which is not allowed in &lt;code class=&quot;highlighter-rouge&quot;&gt;UITableView&lt;/code&gt;. We can design Apps such as &lt;em&gt;Photo Gallery&lt;/em&gt;, &lt;em&gt;Video Wall&lt;/em&gt; using &lt;code class=&quot;highlighter-rouge&quot;&gt;UICollectionView&lt;/code&gt;. We will create a target &lt;code class=&quot;highlighter-rouge&quot;&gt;CollectionView&lt;/code&gt; in &lt;a href=&quot;https://github.com/acttos/Swift-Acttos&quot;&gt;Swift-Acttos&lt;/a&gt; step by step. Keeping the main usages of &lt;code class=&quot;highlighter-rouge&quot;&gt;UICollectionView&lt;/code&gt; in mind is OK, no one can remember all the features of a thing, not just &lt;code class=&quot;highlighter-rouge&quot;&gt;UICollectionView&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;let-us-just-begin-to-build-this-target-collectionview&quot;&gt;Let us just begin to build this target CollectionView:&lt;/h2&gt;
+
+&lt;h3 id=&quot;create-a-target&quot;&gt;1. Create a target&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Click the plus button to add a target ‘CollectionView’&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/000.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Choose Single View Application&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/001.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Fill in the blanks with values you want&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/002.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After all these steps above, we have a new target &lt;code class=&quot;highlighter-rouge&quot;&gt;CollectionView&lt;/code&gt; with &lt;em&gt;Code Structure&lt;/em&gt; looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/003.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;drag-a-collection-view-to-the-storyboard&quot;&gt;2. Drag a Collection View to the Storyboard&lt;/h3&gt;
+
+&lt;p&gt;Let’s select &lt;em&gt;Main.stroyboard&lt;/em&gt; in the left navigator. We will see a blank Scene in the main window.&lt;/p&gt;
+
+&lt;p&gt;In the &lt;em&gt;View Controller Scene&lt;/em&gt; we drag a &lt;em&gt;Collection View&lt;/em&gt; to the Document Outline and just under &lt;em&gt;View&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;The Collection View in the Object library:&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/0031.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;The hierarchy of Views in the scene:&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/0032.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;set-the-constraints&quot;&gt;3. Set the constraints&lt;/h3&gt;
+
+&lt;p&gt;We need to add some constraints to make the page beautiful.
+Do &lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl + Drag&lt;/code&gt; from &lt;em&gt;Collection View&lt;/em&gt; to &lt;em&gt;View&lt;/em&gt;, with &lt;code class=&quot;highlighter-rouge&quot;&gt;Shift + Option&lt;/code&gt; we add four constraints at once:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/004.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then you get a &lt;em&gt;View Controller Scene&lt;/em&gt; with a UICollectionView in it.
+And the values of constraints are all zeros:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/005.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, let’s modify the &lt;em&gt;Collection View Cell&lt;/em&gt; by adding an UIImageView with a picture ‘wechat.png’:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/wechat.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The constraints of the &lt;em&gt;UIImageView&lt;/em&gt; and the &lt;em&gt;Collection View Cell&lt;/em&gt; is like the &lt;em&gt;View&lt;/em&gt; and &lt;em&gt;Collection View&lt;/em&gt;, all the values are 0.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/0033.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The scene now looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/0034.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;adjust-the-inner-layout-of-collection-view&quot;&gt;4. Adjust the inner-layout of Collection View&lt;/h3&gt;
+
+&lt;p&gt;Now let’s modify the inner-layout of &lt;em&gt;Collection View&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Select &lt;em&gt;Collection View&lt;/em&gt; in the &lt;em&gt;Document Outline&lt;/em&gt; and modify the layout in &lt;em&gt;Size Inspector&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/0035.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;After all those steps above, we finally get a &lt;em&gt;UICollectionView&lt;/em&gt; in &lt;em&gt;Main.storyboard&lt;/em&gt;. The effective way of developing an App is &lt;strong&gt;Design the user interface first, then write the codes&lt;/strong&gt;. So, we make the user interface first and write codes later.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Now, if you run &lt;code class=&quot;highlighter-rouge&quot;&gt;CMD + R&lt;/code&gt; to see the face of your App, you probably will get a Black page on the screen. we will discuss about it later.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;define-a-class-for-collection-view-cell-if-needed&quot;&gt;5. Define a class for Collection View Cell if needed&lt;/h3&gt;
+
+&lt;p&gt;If you want to control the appearance of the cell dynamically, you’d better define a class for the cell in the storyboard.&lt;/p&gt;
+
+&lt;p&gt;Just click &lt;code class=&quot;highlighter-rouge&quot;&gt;CMD + N&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;iOS&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Source&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Cocoa Touch Class&lt;/code&gt; to open the guide of creating new file, give a name you want, choose a place to put the class file, and then you may get this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/0036.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Don’t forget to change the class type of the &lt;code class=&quot;highlighter-rouge&quot;&gt;Collection View Cell&lt;/code&gt; in the Scene and set the ReuseIdentifier as &lt;em&gt;CollectionViewCell&lt;/em&gt; in the &lt;em&gt;Attributes Inspector&lt;/em&gt;. Here is my settings:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Class type:&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/0037.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;ReuseIdentifier:&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/00371.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You may want to modify the appearance of the cell, here is just a ImageView, let’s drag a link between the storyboard and the class file:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/0038.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;At last, we set the DataSource and Delegate of CollectionView by dragging a link through InterfaceBuilder:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/201609-uicollection-view/00381.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Do the link again to the &lt;code class=&quot;highlighter-rouge&quot;&gt;delegate&lt;/code&gt; in the &lt;em&gt;Connections Inspector&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;now-lets-do-the-coding-part-of-collectionview&quot;&gt;6. Now let’s do the coding part of CollectionView&lt;/h3&gt;
+
+&lt;p&gt;First of all, we let &lt;code class=&quot;highlighter-rouge&quot;&gt;ViewController&lt;/code&gt; implement the Protocol of &lt;code class=&quot;highlighter-rouge&quot;&gt;UICollectionViewDataSource&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;UICollectionViewDelegate&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You may get an error &lt;code class=&quot;highlighter-rouge&quot;&gt;Type 'ViewController' does not conform to protocol 'UICollectionViewDataSource'&lt;/code&gt;, that is because we have not implemented the methods in &lt;code class=&quot;highlighter-rouge&quot;&gt;UICollectionViewDataSource&lt;/code&gt; yet, don’t worry, we will add them later.&lt;/p&gt;
+
+&lt;h4 id=&quot;the-datasource-methods-of-collectionview&quot;&gt;6.1 The DataSource methods of CollectionView&lt;/h4&gt;
+
+&lt;p&gt;The DataSource methods define the number of sections, the number of cells and the cell of a &lt;code class=&quot;highlighter-rouge&quot;&gt;UICollectionView&lt;/code&gt;, so we need to implement these methods to tell iOS how to handle our &lt;code class=&quot;highlighter-rouge&quot;&gt;UICollectionView&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//MARK: - DataSource Methods of UICollectionView
+func numberOfSectionsInCollectionView(collectionView: UICollectionView) -&amp;gt; Int {
+    return 3;
+}
+
+func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -&amp;gt; Int {
+    return 7;
+}
+
+func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -&amp;gt; UICollectionViewCell {
+    let cell: CollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(&quot;CollectionViewCell&quot;, forIndexPath: indexPath) as! CollectionViewCell;
+
+    if (indexPath.section % 2 == 0) {
+        cell.backgroundImageView.image = UIImage.init(data: NSData(contentsOfURL: NSURL(string: &quot;https://avatars2.githubusercontent.com/u/6056509?v=3&amp;amp;s=460&quot;)!)!);
+    } else {
+        cell.backgroundImageView.image = UIImage(named: &quot;wechat.png&quot;);
+    }
+
+    return cell;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Don’t forget to set the &lt;em&gt;Collection Resuable View’s Identifier&lt;/em&gt; as &lt;em&gt;CollectionViewCell&lt;/em&gt;, just the same as the ReuseIdentifier in &lt;code class=&quot;highlighter-rouge&quot;&gt;func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;That is enough for now, you can run &lt;code class=&quot;highlighter-rouge&quot;&gt;CMD + R&lt;/code&gt; to check the result.&lt;/p&gt;
+
+&lt;h4 id=&quot;the-delegate-methods-of-collectionview&quot;&gt;6.2 The Delegate methods of CollectionView&lt;/h4&gt;
+
+&lt;p&gt;The delegate methods define the actions of &lt;em&gt;UICollectionView&lt;/em&gt;, there are more than one method in the Delegate protocol. we just implement some of them to show the usage, you can try the else yourself to test more.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Here is the delege methods in this target:&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//MARK: - Delegate Methods of UICollectionView
+func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    NSLog(&quot;The cell at section : \(indexPath.section), row : \(indexPath.row) has been clicked....&quot;);
+}
+
+func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+    let cell: CollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell;
+    let frame: CGRect = cell.backgroundImageView.frame;
+    cell.backgroundImageView.frame = CGRectMake(frame.origin.x + 4, frame.origin.y + 4, frame.size.width - 8, frame.size.height - 8);
+}
+
+func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
+    let cell: CollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell;
+    let frame: CGRect = cell.backgroundImageView.frame;
+    cell.backgroundImageView.frame = CGRectMake(frame.origin.x - 4, frame.origin.y - 4, frame.size.width + 8, frame.size.height + 8);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When you click on the cell in the CollectionView, you’ll get a zooming animation and an output in console:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2016-09-08 19:59:45.204 CollectionView[50014:2032904] The cell at section : 0, row : 5 has been clicked....
+2016-09-08 19:59:46.418 CollectionView[50014:2032904] The cell at section : 0, row : 5 has been clicked....
+2016-09-08 19:59:46.830 CollectionView[50014:2032904] The cell at section : 0, row : 5 has been clicked....
+2016-09-08 19:59:47.709 CollectionView[50014:2032904] The cell at section : 0, row : 5 has been clicked....
+2016-09-08 19:59:48.343 CollectionView[50014:2032904] The cell at section : 0, row : 5 has been clicked....
+2016-09-08 19:59:48.823 CollectionView[50014:2032904] The cell at section : 0, row : 5 has been clicked....
+2016-09-08 19:59:49.064 CollectionView[50014:2032904] The cell at section : 0, row : 5 has been clicked....
+2016-09-08 19:59:49.278 CollectionView[50014:2032904] The cell at section : 0, row : 5 has been clicked....
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;epilogue&quot;&gt;7. Epilogue&lt;/h3&gt;
+
+&lt;p&gt;Until now, there must be a clear known about the usages of UICollectionView. you can write codes by yourself to verify the content of this article. You will find some mistakes maybe, please let me know if you do.&lt;/p&gt;
+
+&lt;h3 id=&quot;thanks-for-visiting&quot;&gt;Thanks for visiting!&lt;/h3&gt;
+</description>
+        <pubDate>Wed, 07 Sep 2016 16:53:29 +0800</pubDate>
+        <link>http://www.majinshou.cn/2016/09/UICollectionView/</link>
+        <guid isPermaLink="true">http://www.majinshou.cn/2016/09/UICollectionView/</guid>
+        
+        
+        <category>iOS</category>
+        
+      </item>
     
       <item>
         <title>The code structures in projects</title>
@@ -1446,208 +1650,6 @@ func useClosure() -&amp;gt; Void {
         <pubDate>Thu, 04 Aug 2016 20:31:18 +0800</pubDate>
         <link>http://www.majinshou.cn/2016/08/how-to-use-GCD-in-swift/</link>
         <guid isPermaLink="true">http://www.majinshou.cn/2016/08/how-to-use-GCD-in-swift/</guid>
-        
-        
-        <category>iOS</category>
-        
-      </item>
-    
-      <item>
-        <title>The Colorful UILabel in iOS</title>
-        <description>&lt;h1 id=&quot;the-colorful-uilabel-in-ios-development&quot;&gt;The Colorful UILabel in iOS development&lt;/h1&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;Once up on a time,I had a request which needed to display a colorful UILabel in the screen.&lt;/p&gt;
-
-&lt;p&gt;The product manager said the colorful texts can catch the eyes of audiences.&lt;/p&gt;
-
-&lt;p&gt;OK,I sure chose to believe them.&lt;/p&gt;
-
-&lt;p&gt;Then,I had a question:&lt;/p&gt;
-
-&lt;h2 id=&quot;how-to-set-different-colors-to-each-word-in-the-uilabel&quot;&gt;1. How to set different colors to each word in the UILabel?&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;I started my work with my own ideas:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;An UILabel can display the texts;&lt;/li&gt;
-  &lt;li&gt;The color of the texts can be set by ‘UILabel.textColor’;&lt;/li&gt;
-  &lt;li&gt;Adding two UILabels with different colors will do;&lt;/li&gt;
-  &lt;li&gt;Excellent! (I said to myself).&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I opened the Xcode.app to edit my codes like this:&lt;/p&gt;
-
-&lt;h3 id=&quot;the-way-i-did-in-the-past-time&quot;&gt;1.1 The way I did in the past time&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
- Initializes a colorful label container view
-
- - returns: A colorful label container view instance
- */
-func initColorfulLabel() -&amp;gt; UIView {
-    let containerViewFrame:CGRect = CGRect(x: -7, y: 100, width: self.view.bounds.width, height: 20);
-    let containerView:UIView = UIView(frame: containerViewFrame);
-
-    let redLabelFrame = CGRect(x: 0, y: 0, width: containerView.bounds.width / 2, height: 20);
-    let redLabel:UILabel = UILabel(frame: redLabelFrame);
-    redLabel.text = &quot;RED&quot;;
-    redLabel.textColor = UIColor.redColor();
-    redLabel.textAlignment = NSTextAlignment.Right;
-
-    containerView.addSubview(redLabel);
-
-    let blueLabelFrame = CGRect(x: containerView.bounds.width / 2, y: 0, width: containerView.bounds.width / 2, height: 20);
-    let blueLabel:UILabel = UILabel(frame: blueLabelFrame);
-    blueLabel.text = &quot; BLUE&quot;;
-    blueLabel.textColor = UIColor.blueColor();
-    blueLabel.textAlignment = NSTextAlignment.Left;
-
-    containerView.addSubview(blueLabel);
-
-
-    return containerView;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Oh,My God,It worked! ^0^:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/201608-colorful-uilabel/colorfulLabelsInContainerView.png&quot; alt=&quot;colorfulLabelsInContainerView.png&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;the-suggested-way-a-mentor-told-me-recently&quot;&gt;1.2 The suggested way a mentor told me recently&lt;/h3&gt;
-
-&lt;p&gt;My mentor told me that UILabel supports different texts with different colors by setting UILabel’s attributedText.&lt;/p&gt;
-
-&lt;p&gt;Here is the newer one:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
- Initializes a real colorful UILabel instance instead of a container view,this method is guided by a mentor
-
- - returns: A real colorful UILabel instance
- */
-func initColorfulLabelOfMentor() -&amp;gt; UILabel {
-    let str:NSMutableAttributedString = NSMutableAttributedString(string: &quot;RED BLUE&quot;);
-    str.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(), range: NSMakeRange(0, 3));
-    str.addAttribute(NSForegroundColorAttributeName, value: UIColor.blueColor(), range: NSMakeRange(4, 4));
-
-    let labelFrame = CGRect(x: 0, y: 140, width: self.view.bounds.width, height: 20);
-    let label:UILabel = UILabel(frame: labelFrame);
-    label.attributedText = str;
-    label.textAlignment = NSTextAlignment.Center;
-
-
-    return label;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;It works too:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/201608-colorful-uilabel/colorfulLabel.png&quot; alt=&quot;colorfulLabel.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;After I made the colorful texts in the screen,the product manager said we still need to add a shadow to the text, and again, for catching the eyes of audiences.&lt;/p&gt;
-
-&lt;p&gt;OK,I would do it. Because I always chose to believe them.&lt;/p&gt;
-
-&lt;p&gt;So,I had a new question here:&lt;/p&gt;
-
-&lt;h2 id=&quot;how-to-add-a-shadow-to-the-words-in-uilabel&quot;&gt;2. How to add a shadow to the words in UILabel?&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;I started my thinking again,of course I chose to add two different UILabels to make the shadow:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Add an UILabel to display the given texts with certain color(color of the shadow);&lt;/li&gt;
-  &lt;li&gt;Add another UILabel to display the texts with shadow color;&lt;/li&gt;
-  &lt;li&gt;Put the two UILabels together into a container UIView to make a shadow;&lt;/li&gt;
-  &lt;li&gt;Return the UIView instance called ‘containerView’.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;So,I put my ideas into codes:&lt;/p&gt;
-
-&lt;h3 id=&quot;the-way-i-did-in-the-past-time-1&quot;&gt;2.1 The way I did in the past time&lt;/h3&gt;
-
-&lt;p&gt;Here is the implementation of my idea:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
- Initializes a shadow label container view
-
- - returns: A UIView instance which contains two UILabels to display a shadow
- */
-func initShadowLabel() -&amp;gt; UIView {
-
-    let containerViewFrame:CGRect = CGRect(x: 0, y: 180, width: self.view.bounds.width, height: 20);
-    let containerView:UIView = UIView(frame: containerViewFrame);
-
-    let lowerLabelFrame = CGRect(x: 1, y: 1, width: self.view.bounds.width, height: 20);
-    let lowerLabel:UILabel = UILabel(frame: lowerLabelFrame);
-    lowerLabel.text = &quot;LABEL WITH SHADOW&quot;;
-    lowerLabel.textColor = UIColor.blueColor();
-    lowerLabel.textAlignment = NSTextAlignment.Center;
-
-    containerView.addSubview(lowerLabel);
-
-
-    let upperLabelFrame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 20);
-    let upperLabel:UILabel = UILabel(frame: upperLabelFrame);
-    upperLabel.text = &quot;LABEL WITH SHADOW&quot;;
-    upperLabel.textColor = UIColor.redColor();
-    upperLabel.textAlignment = NSTextAlignment.Center;
-
-    containerView.addSubview(upperLabel);
-
-
-    return containerView;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Oh,My God,It worked again:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/201608-colorful-uilabel/shadowLabelsInContainerView.png&quot; alt=&quot;shadowLabelsInContainerView.png&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;the-suggested-way-of-a-mentor&quot;&gt;2.2 The suggested way of a mentor&lt;/h3&gt;
-
-&lt;p&gt;Once again,a mentor occured,And he gave me another way to implement the shadow in UILabel:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
- Initializes a real shadow UILabel instance instead of a container view,this method is guided by a mentor
-
- - returns: A UILabel which has a shadow
- */
-func initShadowLabelOfMentor() -&amp;gt; UILabel {
-
-    let labelFrame = CGRect(x: 0, y: 220, width: self.view.bounds.width, height: 20);
-    let label:UILabel = UILabel(frame: labelFrame);
-    label.text = &quot;LABEL WITH SHADOW&quot;;
-    label.textColor = UIColor.redColor();
-    label.shadowColor = UIColor.blueColor();
-    label.shadowOffset = CGSize(width: 1, height: 1);
-    label.textAlignment = NSTextAlignment.Center;
-
-
-    return label;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;See? It is more simple and clearer.&lt;/p&gt;
-
-&lt;p&gt;Here is the result in picture:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/201608-colorful-uilabel/shadowLabel.png&quot; alt=&quot;shadowLabel.png&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;source-code&quot;&gt;3. Source Code:&lt;/h2&gt;
-
-&lt;p&gt;You can find all the codes &lt;a href=&quot;https://github.com/acttos/ColorfulLabel&quot; target=&quot;_blank&quot;&gt;Here&lt;/a&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 02 Aug 2016 20:56:01 +0800</pubDate>
-        <link>http://www.majinshou.cn/2016/08/the-colorful-uilabel/</link>
-        <guid isPermaLink="true">http://www.majinshou.cn/2016/08/the-colorful-uilabel/</guid>
         
         
         <category>iOS</category>
