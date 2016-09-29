@@ -3,11 +3,24 @@
   <channel>
     <title>Acttos</title>
     <description>Goals determine what you’re going to be.</description>
-    <link>http://www.majinshou.cn/</link>
-    <atom:link href="http://www.majinshou.cn/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 08 Sep 2016 20:11:40 +0800</pubDate>
-    <lastBuildDate>Thu, 08 Sep 2016 20:11:40 +0800</lastBuildDate>
+    <link>http://www.acttos.org/</link>
+    <atom:link href="http://www.acttos.org/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 29 Sep 2016 19:48:03 +0800</pubDate>
+    <lastBuildDate>Thu, 29 Sep 2016 19:48:03 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>Common usage of UIWebView</title>
+        <description>&lt;h1 id=&quot;to-be-continued-&quot;&gt;To be continued …&lt;/h1&gt;
+</description>
+        <pubDate>Tue, 27 Sep 2016 21:01:39 +0800</pubDate>
+        <link>http://www.acttos.org/2016/09/Common-Usage-Of-UIWebView/</link>
+        <guid isPermaLink="true">http://www.acttos.org/2016/09/Common-Usage-Of-UIWebView/</guid>
+        
+        
+        <category>iOS</category>
+        
+      </item>
     
       <item>
         <title>Using UICollectionView Step by Step</title>
@@ -205,8 +218,8 @@ func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexP
 &lt;h3 id=&quot;thanks-for-visiting&quot;&gt;Thanks for visiting!&lt;/h3&gt;
 </description>
         <pubDate>Thu, 08 Sep 2016 20:11:19 +0800</pubDate>
-        <link>http://www.majinshou.cn/2016/09/UICollectionView/</link>
-        <guid isPermaLink="true">http://www.majinshou.cn/2016/09/UICollectionView/</guid>
+        <link>http://www.acttos.org/2016/09/UICollectionView/</link>
+        <guid isPermaLink="true">http://www.acttos.org/2016/09/UICollectionView/</guid>
         
         
         <category>iOS</category>
@@ -411,8 +424,8 @@ func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexP
 &lt;p&gt;&lt;em&gt;Thank &lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html&quot;&gt;RuanYifeng&lt;/a&gt; very much for the introduction and pictures of MVC and MVP&lt;/em&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 05 Sep 2016 16:53:29 +0800</pubDate>
-        <link>http://www.majinshou.cn/2016/09/Code-Structures/</link>
-        <guid isPermaLink="true">http://www.majinshou.cn/2016/09/Code-Structures/</guid>
+        <link>http://www.acttos.org/2016/09/Code-Structures/</link>
+        <guid isPermaLink="true">http://www.acttos.org/2016/09/Code-Structures/</guid>
         
         
         <category>Structure</category>
@@ -649,8 +662,8 @@ baz | baz  | baz
 &lt;/div&gt;
 </description>
         <pubDate>Thu, 25 Aug 2016 15:14:53 +0800</pubDate>
-        <link>http://www.majinshou.cn/2016/08/Frequently-Used-Markdown-Formats/</link>
-        <guid isPermaLink="true">http://www.majinshou.cn/2016/08/Frequently-Used-Markdown-Formats/</guid>
+        <link>http://www.acttos.org/2016/08/Frequently-Used-Markdown-Formats/</link>
+        <guid isPermaLink="true">http://www.acttos.org/2016/08/Frequently-Used-Markdown-Formats/</guid>
         
         
         <category>Markdown</category>
@@ -798,8 +811,8 @@ func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
 &lt;p&gt;Thanks!&lt;/p&gt;
 </description>
         <pubDate>Wed, 24 Aug 2016 21:34:23 +0800</pubDate>
-        <link>http://www.majinshou.cn/2016/08/Acquire-Microphone-and-Camera-authorization/</link>
-        <guid isPermaLink="true">http://www.majinshou.cn/2016/08/Acquire-Microphone-and-Camera-authorization/</guid>
+        <link>http://www.acttos.org/2016/08/Acquire-Microphone-and-Camera-authorization/</link>
+        <guid isPermaLink="true">http://www.acttos.org/2016/08/Acquire-Microphone-and-Camera-authorization/</guid>
         
         
         <category>iOS</category>
@@ -1159,8 +1172,8 @@ Dispatch sources are used to automatically submit event handler blocks to dispat
 &lt;p&gt;Thanks!&lt;/p&gt;
 </description>
         <pubDate>Fri, 19 Aug 2016 19:09:27 +0800</pubDate>
-        <link>http://www.majinshou.cn/2016/08/NSTimer-and-GCD-Timer-in-iOS/</link>
-        <guid isPermaLink="true">http://www.majinshou.cn/2016/08/NSTimer-and-GCD-Timer-in-iOS/</guid>
+        <link>http://www.acttos.org/2016/08/NSTimer-and-GCD-Timer-in-iOS/</link>
+        <guid isPermaLink="true">http://www.acttos.org/2016/08/NSTimer-and-GCD-Timer-in-iOS/</guid>
         
         
         <category>iOS</category>
@@ -1246,8 +1259,8 @@ Wi-Fi — prefs:root=WIFI;
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;UIAlertController&lt;/code&gt; is only available since iOS 8.0, so we set the condition of &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; statement is &lt;code class=&quot;highlighter-rouge&quot;&gt;systemVersion &amp;gt; 8.0&lt;/code&gt;.&lt;/p&gt;
 </description>
         <pubDate>Fri, 12 Aug 2016 20:12:23 +0800</pubDate>
-        <link>http://www.majinshou.cn/2016/08/Open-A-Settings-Page-in-iOS/</link>
-        <guid isPermaLink="true">http://www.majinshou.cn/2016/08/Open-A-Settings-Page-in-iOS/</guid>
+        <link>http://www.acttos.org/2016/08/Open-A-Settings-Page-in-iOS/</link>
+        <guid isPermaLink="true">http://www.acttos.org/2016/08/Open-A-Settings-Page-in-iOS/</guid>
         
         
         <category>iOS</category>
@@ -1320,8 +1333,8 @@ Now, Let’s pay more attention to the param &lt;code class=&quot;highlighter-ro
 &lt;h3 id=&quot;thanks-for-visiting&quot;&gt;Thanks for visiting.&lt;/h3&gt;
 </description>
         <pubDate>Tue, 09 Aug 2016 21:21:07 +0800</pubDate>
-        <link>http://www.majinshou.cn/2016/08/What-does-Files-Owner-mean/</link>
-        <guid isPermaLink="true">http://www.majinshou.cn/2016/08/What-does-Files-Owner-mean/</guid>
+        <link>http://www.acttos.org/2016/08/What-does-Files-Owner-mean/</link>
+        <guid isPermaLink="true">http://www.acttos.org/2016/08/What-does-Files-Owner-mean/</guid>
         
         
         <category>iOS</category>
@@ -1359,8 +1372,8 @@ The key word &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo&lt;/code&g
 &lt;h3 id=&quot;thanks-for-visiting&quot;&gt;Thanks for visiting.&lt;/h3&gt;
 </description>
         <pubDate>Mon, 08 Aug 2016 19:51:29 +0800</pubDate>
-        <link>http://www.majinshou.cn/2016/08/Tips-of-URL-Types-in-iOS/</link>
-        <guid isPermaLink="true">http://www.majinshou.cn/2016/08/Tips-of-URL-Types-in-iOS/</guid>
+        <link>http://www.acttos.org/2016/08/Tips-of-URL-Types-in-iOS/</link>
+        <guid isPermaLink="true">http://www.acttos.org/2016/08/Tips-of-URL-Types-in-iOS/</guid>
         
         
         <category>iOS</category>
@@ -1549,107 +1562,8 @@ The key word &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo&lt;/code&g
 &lt;/blockquote&gt;
 </description>
         <pubDate>Sat, 06 Aug 2016 20:21:58 +0800</pubDate>
-        <link>http://www.majinshou.cn/2016/08/Introduction-of-CommonUtilities/</link>
-        <guid isPermaLink="true">http://www.majinshou.cn/2016/08/Introduction-of-CommonUtilities/</guid>
-        
-        
-        <category>iOS</category>
-        
-      </item>
-    
-      <item>
-        <title>How to use GCD in Swift ?</title>
-        <description>&lt;h2 id=&quot;condition&quot;&gt;#1. Condition&lt;/h2&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;The first time GCD came to my sight,I was impressed by the beauty and efficient of it.
-For a while, I used GCD in all my Network modules. I put the Network operation which always costs a little time in the background thread queue,and when the data is ready,I switch to the main thread to refresh UI. I believe most of us,the iOS developer,would act like this.&lt;/p&gt;
-
-&lt;p&gt;Here is an example of GCD in Objective-C:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-
-    //Put the codes which will cost a little more time here.
-    self.filterList = [NetworkDispatchManager getFilterListWithURL:self.serverURL];
-
-    //When the data is ready,we switch to main thread to refresh UI.
-    dispatch_async(dispatch_get_main_queue(), ^{
-        //Refresh UI.
-        [self.tableView reloadData];
-    });
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Familiar? That is right, this is the common solution when we need to load a data from Network or read|write files on disk and then refresh the UI on the screen.&lt;/p&gt;
-
-&lt;p&gt;Now,I have an idea,what if I change the codes above in to Swift ? What would it look like ?&lt;/p&gt;
-
-&lt;p&gt;So I start my work to exchange:&lt;/p&gt;
-
-&lt;h2 id=&quot;the-code-exchanged-in-swift&quot;&gt;#2.The Code exchanged in Swift&lt;/h2&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;Here is my implementation:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    //Put the codes which will cost a little more time here.
-    self.filterList = NetworkDispatchManager.getFilterListWithURL(self.serverURL);
-    //When the data is ready,we switch to main thread to refresh UI.
-    dispatch_async(dispatch_get_main_queue(), ^{
-        //Refresh UI.
-        self.tableView.reloadData();
-    });
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;We can see that GCD in both Objective-C and Swift are almost the same.&lt;/p&gt;
-
-&lt;h2 id=&quot;something-about-closure-in-swift&quot;&gt;#3. Something about Closure in Swift&lt;/h2&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;The closure in Swift is defined like this:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(arguments)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Typs&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;statements&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;We can set the closure as a value of a variable like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;let aClosure = aClosureDefinition&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Here is an implementation:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Define a closure and set it to variable `aClosure`:
-let aClosure = {(location: NSURL?, response: NSURLResponse?, error: NSError?) in
-    // For a demonstration here just print a message.
-    print(&quot;The statement of a closure&quot;);
-};
-
-/**
- * The function who uses the closure defined before.
- */
-func useClosure() -&amp;gt; Void {
-    if let url: NSURL = NSURL(string: &quot;http://domain.com/files/a-big-file.zip&quot;) {
-        let request: NSURLRequest = NSURLRequest(URL: url, cachePolicy: NSURLRequestCachePolicy.ReturnCacheDataElseLoad, timeoutInterval: 10);
-        let session:NSURLSession = NSURLSession.sharedSession();
-        //We use variable `aClosure` as the argument `completionHandler`
-        let task:NSURLSessionDownloadTask = session.downloadTaskWithRequest(request, completionHandler: aClosure);
-
-        task.resume();
-    } else {
-        print(&quot;The URL is illegal.&quot;);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;thanks-for-your-visiting&quot;&gt;Thanks for your visiting.&lt;/h3&gt;
-</description>
-        <pubDate>Thu, 04 Aug 2016 20:31:18 +0800</pubDate>
-        <link>http://www.majinshou.cn/2016/08/how-to-use-GCD-in-swift/</link>
-        <guid isPermaLink="true">http://www.majinshou.cn/2016/08/how-to-use-GCD-in-swift/</guid>
+        <link>http://www.acttos.org/2016/08/Introduction-of-CommonUtilities/</link>
+        <guid isPermaLink="true">http://www.acttos.org/2016/08/Introduction-of-CommonUtilities/</guid>
         
         
         <category>iOS</category>
