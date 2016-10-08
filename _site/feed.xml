@@ -5,17 +5,131 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.acttos.org/</link>
     <atom:link href="http://www.acttos.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 29 Sep 2016 19:48:03 +0800</pubDate>
-    <lastBuildDate>Thu, 29 Sep 2016 19:48:03 +0800</lastBuildDate>
+    <pubDate>Sat, 08 Oct 2016 19:07:43 +0800</pubDate>
+    <lastBuildDate>Sat, 08 Oct 2016 19:07:43 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
         <title>Common usage of UIWebView</title>
-        <description>&lt;h1 id=&quot;to-be-continued-&quot;&gt;To be continued …&lt;/h1&gt;
+        <description>&lt;h2 id=&quot;what-is-uiwebview&quot;&gt;1.What is UIWebView?&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;UIWebView&lt;/code&gt; is a UI kit from UIKit. ^_^ We can show a web page in our apps without opening &lt;code class=&quot;highlighter-rouge&quot;&gt;Safari&lt;/code&gt; browser in iOS. Most of the apps do not need a web page to show the extra info, sometimes, we want to display some ADs, or we need to show a recommend product list or something else, and we may want to change the contents of the page without publishing a new version of app. Now, we need a web server in remote and an &lt;code class=&quot;highlighter-rouge&quot;&gt;UIWebView&lt;/code&gt; in our apps.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-use-uiwebview&quot;&gt;2.How to use UIWebView?&lt;/h2&gt;
+
+&lt;p&gt;In iOS, we can just drag an &lt;code class=&quot;highlighter-rouge&quot;&gt;UIWebView&lt;/code&gt; from the &lt;code class=&quot;highlighter-rouge&quot;&gt;Object library&lt;/code&gt; in the right-bottom of Xcode. Drag an &lt;code class=&quot;highlighter-rouge&quot;&gt;IBOutlet&lt;/code&gt; from the storyboard or xib to the controller. That is simple and clear, I will not spend much time on introducing it. Now let’s meet the real magic part of &lt;code class=&quot;highlighter-rouge&quot;&gt;UIWebView&lt;/code&gt;: The UIWebView Methods and The Delegate Methods.&lt;/p&gt;
+
+&lt;h2 id=&quot;functioning-methods-and-delegate-methods-of-uiwebview&quot;&gt;3.Functioning Methods and Delegate Methods of UIWebView&lt;/h2&gt;
+
+&lt;h3 id=&quot;functioning-methods-of-uiwebview&quot;&gt;3.1 Functioning Methods of UIWebView&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ * UIWebView will load a request with this method,
+ * we need initialize an URLRequest instance first
+ */
+open func loadRequest(_ request: URLRequest);
+
+/**
+ * UIWebView can load a local html content with
+ * this method, it is safer than loadRequest from a server.
+ */
+open func loadHTMLString(_ string: String, baseURL: URL?);
+
+/**
+ * This method can load a Data instance such
+ * HTML,JPEG,PNG and some other file types, the
+ * mimeType should identify the type.
+ */
+open func load(_ data: Data, mimeType MIMEType: String, textEncodingName: String, baseURL: URL);
+
+/** Using this method to reload the content of the UIWebView */
+open func reload();
+
+/** Using this method to stop current loading action. */
+open func stopLoading();
+
+/** Make the UIWebView go back if it can */
+open func goBack();
+
+/** Make the UIWebView go forward if it can. */
+open func goForward();
+
+/** A value tells whether the UIWebView can go back */
+open var canGoBack: Bool { get };
+
+/** A value tells whether the UIWebView can go forward */
+open var canGoForward: Bool { get };
+
+/** A value tells whether the UIWebView is loading a content */
+open var isLoading: Bool { get };
+
+/**
+ * This method can acquire the string value of the content
+ * of UIWebView by evaluating the given JavaScript string
+ */
+open func stringByEvaluatingJavaScript(from script: String) -&amp;gt; String?;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;delegate-methods-of-uiwebview&quot;&gt;3.2 Delegate Methods of UIWebView&lt;/h3&gt;
+
+&lt;p&gt;Now let’s see what are included in UIWebView’s delegate methods.&lt;/p&gt;
+
+&lt;p&gt;All the delegate methods of &lt;code class=&quot;highlighter-rouge&quot;&gt;UIWebView&lt;/code&gt; is defined in class &lt;code class=&quot;highlighter-rouge&quot;&gt;UIWebViewDelegate&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public protocol UIWebViewDelegate : NSObjectProtocol {
+
+    /**
+     * Sent before a web view begins loading a frame.
+     * @param webView
+     * The web view that is about to load a new frame.
+     * @param request
+     * The content location.
+     * @param navigationType
+     * The type of user action that started the load request.
+     *
+     * @returns true if the web view should begin loading content; otherwise, false .
+    */
+    @available(iOS 2.0, *)
+    optional public func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -&amp;gt; Bool
+    /**
+     * Sent after a web view starts loading a frame.
+     * @param webView
+     * The web view that has begun loading a new frame.
+    */
+    @available(iOS 2.0, *)
+    optional public func webViewDidStartLoad(_ webView: UIWebView)
+    /**
+     * Sent after a web view finishes loading a frame.
+     * @param webView
+     * The web view has finished loading.
+    */
+    @available(iOS 2.0, *)
+    optional public func webViewDidFinishLoad(_ webView: UIWebView)
+    /**
+     * Sent if a web view failed to load a frame.
+     * @param webView
+     * The web view that failed to load a frame.
+     * @param error
+     * The error that occurred during loading.
+    */
+    @available(iOS 2.0, *)
+    optional public func webView(_ webView: UIWebView, didFailLoadWithError error: Error)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;It is shown what the delegate methods do. There is no more to explain.&lt;/p&gt;
+
+&lt;p&gt;Using the delegate methods, we can do most of the actions of a &lt;code class=&quot;highlighter-rouge&quot;&gt;UIWebView&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-demo-project-of-using-uiwebview&quot;&gt;4.A demo project of using UIWebView&lt;/h2&gt;
+
+&lt;p&gt;Here is a demo of using &lt;code class=&quot;highlighter-rouge&quot;&gt;UIWebView&lt;/code&gt;, please &lt;a href=&quot;https://github.com/acttos/Swift-Acttos/tree/master/WebView&quot; target=&quot;_blank&quot;&gt;click here.&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Tue, 27 Sep 2016 21:01:39 +0800</pubDate>
-        <link>http://www.acttos.org/2016/09/Common-Usage-Of-UIWebView/</link>
-        <guid isPermaLink="true">http://www.acttos.org/2016/09/Common-Usage-Of-UIWebView/</guid>
+        <pubDate>Sat, 08 Oct 2016 10:51:39 +0800</pubDate>
+        <link>http://www.acttos.org/2016/10/Common-Usage-Of-UIWebView/</link>
+        <guid isPermaLink="true">http://www.acttos.org/2016/10/Common-Usage-Of-UIWebView/</guid>
         
         
         <category>iOS</category>
