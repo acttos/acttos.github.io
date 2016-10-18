@@ -2,7 +2,7 @@
 layout: post
 title:  "常用的几种设计模式"
 date:   2016-10-13 21:30:19 +0800
-categories: iOS
+categories: Design Pattern
 ---
 
 ## 常用的几种设计模式

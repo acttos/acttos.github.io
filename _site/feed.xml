@@ -5,8 +5,8 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.acttos.org/</link>
     <atom:link href="http://www.acttos.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 14 Oct 2016 11:10:02 +0800</pubDate>
-    <lastBuildDate>Fri, 14 Oct 2016 11:10:02 +0800</lastBuildDate>
+    <pubDate>Tue, 18 Oct 2016 17:41:42 +0800</pubDate>
+    <lastBuildDate>Tue, 18 Oct 2016 17:41:42 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -22,7 +22,9 @@
         <guid isPermaLink="true">http://www.acttos.org/2016/10/Design-Pattern/</guid>
         
         
-        <category>iOS</category>
+        <category>Design</category>
+        
+        <category>Pattern</category>
         
       </item>
     
