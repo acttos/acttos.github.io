@@ -5,9 +5,413 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.acttos.org/</link>
     <atom:link href="http://www.acttos.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 18 Oct 2016 17:41:42 +0800</pubDate>
-    <lastBuildDate>Tue, 18 Oct 2016 17:41:42 +0800</lastBuildDate>
+    <pubDate>Wed, 19 Oct 2016 11:46:03 +0800</pubDate>
+    <lastBuildDate>Wed, 19 Oct 2016 11:46:03 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>Design Pattern of Factory</title>
+        <description>&lt;h2 id=&quot;summary&quot;&gt;1. Summary&lt;/h2&gt;
+
+&lt;p&gt;When we development with some request description, we need to design a code struct to write codes with. The code struct design has some very famous design patterns when development. One of the most famous design pattern is called &lt;code class=&quot;highlighter-rouge&quot;&gt;Factory&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In our developments, we usually need some domain classes to handle the producing of objects, and most of the time, the layer of handling logic and the layer of creating objects are divided, standalone and have no interactions at all. Both of the layers do not need to know what is happening in the other side and do not care how the other side works.&lt;/p&gt;
+
+&lt;p&gt;Design Pattern of &lt;code class=&quot;highlighter-rouge&quot;&gt;Factory&lt;/code&gt; is a pattern producing objects in the development. It contains three different types of pattern: &lt;code class=&quot;highlighter-rouge&quot;&gt;Simple Factory Pattern&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Factory Methods Pattern&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Abstract Factory Pattern&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-three-design-patterns-of-factory&quot;&gt;2. The three design patterns of factory&lt;/h2&gt;
+
+&lt;h3 id=&quot;simple-factory-pattern&quot;&gt;2.1. Simple Factory Pattern&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Simple Factory Pattern&lt;/code&gt; is the simplest pattern of ‘Factory’, it just creates products and return the objects, we can define a simple factory like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class SimpleFactory {
+	private static SimpleFactory instance;
+
+	private SimpleFactory() {
+		super();
+	}
+
+	public static SimpleFactory instance() {
+		if (instance == null) {
+			instance = new SimpleFactory();
+		}
+
+		return instance;
+	}
+
+	public static SimpleFactory getInstance() {
+		if (instance == null) {
+			instance = new SimpleFactory();
+		}
+
+		return instance;
+	}
+
+	public static Product create() {
+		System.out.println(&quot;Factory is creating Product ...&quot;);
+		Product product = new Product();
+
+		return product;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We have a &lt;code class=&quot;highlighter-rouge&quot;&gt;private&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt; object of type &lt;code class=&quot;highlighter-rouge&quot;&gt;SimpleFactory&lt;/code&gt;, and it is not available to the outside of the class, we also set the constructor of &lt;code class=&quot;highlighter-rouge&quot;&gt;SimpleFactory&lt;/code&gt; to be &lt;code class=&quot;highlighter-rouge&quot;&gt;private&lt;/code&gt; too, so the caller can NOT invoke it directly, the only way we can get an instance if by calling &lt;code class=&quot;highlighter-rouge&quot;&gt;SimpleFactory.instance()&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;SimpleFactory.getInstance()&lt;/code&gt;, then we can invoke &lt;code class=&quot;highlighter-rouge&quot;&gt;instance.create()&lt;/code&gt; to produce objects.&lt;/p&gt;
+
+&lt;p&gt;Let’s define a class &lt;code class=&quot;highlighter-rouge&quot;&gt;Producer&lt;/code&gt; to use this &lt;code class=&quot;highlighter-rouge&quot;&gt;SimpleFactory&lt;/code&gt;, it is just like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Producer {
+	public static void main(String[] args) {
+		Product p = SimpleFactory.create();
+		System.out.println(&quot;A product called '&quot; + p.getName() + &quot;' has been created.&quot;);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here is the output of this class in my console:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Factory is creating Product ...
+Product is created.
+A product called 'Super Product' has been created.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We can see that, the &lt;code class=&quot;highlighter-rouge&quot;&gt;Producer&lt;/code&gt; and the &lt;code class=&quot;highlighter-rouge&quot;&gt;Product&lt;/code&gt; is divided, standalone and has no interactions at all. The &lt;code class=&quot;highlighter-rouge&quot;&gt;Producer&lt;/code&gt; acquires an object &lt;code class=&quot;highlighter-rouge&quot;&gt;Product&lt;/code&gt; through &lt;code class=&quot;highlighter-rouge&quot;&gt;SimpleFactory&lt;/code&gt; and does not care how the product is produced. Apparently, we have reduced the coupling of producing an object.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Simple Factory Pattern&lt;/code&gt; can produce single type of product very well, but when we need to add many other types of product, what are we going to do? Creating more SimpleFactory with a type of product? Adding more types of product in the single one &lt;code class=&quot;highlighter-rouge&quot;&gt;SimpleFactory&lt;/code&gt;? Both are OK. This question brings another pattern of &lt;code class=&quot;highlighter-rouge&quot;&gt;Factory&lt;/code&gt;, it is called &lt;code class=&quot;highlighter-rouge&quot;&gt;Factory Methods&lt;/code&gt;:&lt;/p&gt;
+
+&lt;h3 id=&quot;factory-methods-pattern&quot;&gt;2.2. Factory Methods Pattern&lt;/h3&gt;
+
+&lt;p&gt;When we produce only one simple product, the pattern &lt;code class=&quot;highlighter-rouge&quot;&gt;Simple Factory&lt;/code&gt; is well enough for us. when we need to add some more products, we need another pattern &lt;code class=&quot;highlighter-rouge&quot;&gt;Factory Methods Pattern&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;So, what is different between &lt;code class=&quot;highlighter-rouge&quot;&gt;Simple Factory&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Factory Methods&lt;/code&gt;? It is simple, &lt;code class=&quot;highlighter-rouge&quot;&gt;SimpleFactory&lt;/code&gt; pattern is good at the condition of single one product, &lt;code class=&quot;highlighter-rouge&quot;&gt;Factory Methods&lt;/code&gt; pattern is good at handling more than one products in the same type.&lt;/p&gt;
+
+&lt;p&gt;Though we need to support different sub-types of product, we need different factories to do the job. We hope all the factories have the same method for producer to invoke, so we can define factory methods with an interface in this way:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ * @author &amp;lt;a href=&quot;mailto:acttosma@gmail.com&quot;&amp;gt;Acttos&amp;lt;/a&amp;gt;
+ * @version 1.0.0
+ */
+public interface IMethodFactory {
+	public Product create();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;We have an interface class with a method &lt;code class=&quot;highlighter-rouge&quot;&gt;create()&lt;/code&gt; in it. All the factories implemented the interface must contain &lt;code class=&quot;highlighter-rouge&quot;&gt;create()&lt;/code&gt;, so the producer can just invoke &lt;code class=&quot;highlighter-rouge&quot;&gt;create()&lt;/code&gt; without worries.&lt;/p&gt;
+
+&lt;p&gt;Now, let’s write down two classes which implemented the interface :&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;MethodFactoryBeijingImpl&lt;/code&gt; represents Beijing factory who only produces &lt;code class=&quot;highlighter-rouge&quot;&gt;BeijingProduct&lt;/code&gt;：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ * @author &amp;lt;a href=&quot;mailto:acttosma@gmail.com&quot;&amp;gt;Acttos&amp;lt;/a&amp;gt;
+ * @version 1.0.0
+ */
+public class MethodFactoryBeijingImpl implements IMethodFactory {
+
+	@Override
+	public Product create() {
+		System.out.println(&quot;Beijing factory is creating a product ...&quot;);
+
+		Product product = new BeijingProduct();
+
+		return product;
+	}
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;MethodFactoryShanghaiImpl&lt;/code&gt; represents Shanghai factory who only produces &lt;code class=&quot;highlighter-rouge&quot;&gt;ShanghaiProduct&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ * @author &amp;lt;a href=&quot;mailto:acttosma@gmail.com&quot;&amp;gt;Acttos&amp;lt;/a&amp;gt;
+ * @version 1.0.0
+ */
+public class MethodFactoryShanghaiImpl implements IMethodFactory {
+
+	@Override
+	public Product create() {
+		System.out.println(&quot;Shanghai factory is creating a product ...&quot;);
+
+		Product product = new ShanghaiProduct();
+
+		return product;
+	}
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Both of &lt;code class=&quot;highlighter-rouge&quot;&gt;BeijingProduct&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;ShanghaiProduct&lt;/code&gt; are sub-type of &lt;code class=&quot;highlighter-rouge&quot;&gt;Product&lt;/code&gt;, they all are the same type.&lt;/p&gt;
+
+&lt;p&gt;We can see the Beijing factory and Shanghai factory have different implementations of &lt;code class=&quot;highlighter-rouge&quot;&gt;create()&lt;/code&gt;, each factory creates product with specified type.&lt;/p&gt;
+
+&lt;p&gt;Now, let’s check this codes out by creating a class &lt;code class=&quot;highlighter-rouge&quot;&gt;Producer&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ * @author &amp;lt;a href=&quot;mailto:acttosma@gmail.com&quot;&amp;gt;Acttos&amp;lt;/a&amp;gt;
+ * @version 1.0.0
+ */
+public class Producer {
+
+	/**
+	 * We receive an implement of IMethodFactory to do the producing.
+	 * @param factory the implement of IMethodFactory which does nothing but defining.
+	 * @return a product created by the give factory.
+	 */
+	public static Product create(IMethodFactory factory) {
+		Product product = factory.create();
+
+		return product;
+	}
+
+	public static void main(String[] args) {
+		/**
+		 * These lines below are a directly invoking of the implements of the interface.
+		 */
+		System.out.println(&quot;These lines below are a directly invoking of the implements of the interface.&quot;
+				+ &quot;\n================================================================================\n&quot;);
+		IMethodFactory beijingFactory = new MethodFactoryBeijingImpl();
+		Product beijingP = beijingFactory.create();
+
+		System.out.println(&quot;A product called '&quot; + beijingP.getName() + &quot;' has been created.\n&quot;);
+
+		IMethodFactory shanghaiFactory = new MethodFactoryShanghaiImpl();
+		Product shanghaiP = shanghaiFactory.create();
+
+		System.out.println(&quot;A product called '&quot; + shanghaiP.getName() + &quot;' has been created.\n&quot;);
+
+		/**
+		 * These lines below create a product with the given implement of IMethodFactory.
+		 */
+		System.out.println(&quot;These lines below create a product with the given implement of IMethodFactory.&quot;
+				+ &quot;\n================================================================================\n&quot;);
+//		Product product = Producer.create(beijingFactory);//Uncomment this line to verify the beijingFactory
+		Product product = Producer.create(shanghaiFactory);
+
+		System.out.println(&quot;A product called '&quot; + product.getName() + &quot;' has been created.\n&quot;);
+
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here is the output in my console, you can type the codes yourself and check the result:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;These lines below are a directly invoking of the implements of the interface.
+================================================================================
+
+Beijing factory is creating a product ...
+Product is created.
+BeijingProduct is created at Beijing.
+A product called 'BeijingProduct' has been created.
+
+Shanghai factory is creating a product ...
+Product is created.
+ShanghaiProduct is created at Shanghai.
+A product called 'ShanghaiProduct' has been created.
+
+These lines below create a product with the given implement of IMethodFactory.
+================================================================================
+
+Shanghai factory is creating a product ...
+Product is created.
+ShanghaiProduct is created at Shanghai.
+A product called 'ShanghaiProduct' has been created.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Factory Methods Pattern&lt;/code&gt; is designed to handle multiple products of a single type with multiple factories, each sub-factory produces a specified product. But, what are we going to do when we need produce more than one type of product? such as &lt;code class=&quot;highlighter-rouge&quot;&gt;InternalProduct&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;AbroadProduct&lt;/code&gt;? they are with different type, how to handle this?&lt;/p&gt;
+
+&lt;h3 id=&quot;abstract-factory&quot;&gt;2.3. Abstract Factory&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Factory Methods Pattern&lt;/code&gt; is for producing multiple sub-types products with one single type. when we want to produce multiple types of product, we have &lt;code class=&quot;highlighter-rouge&quot;&gt;Abstract Factory Pattern&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In &lt;code class=&quot;highlighter-rouge&quot;&gt;Abstract Factory Pattern&lt;/code&gt;, the factory can produce more than one type of product, so we define a &lt;code class=&quot;highlighter-rouge&quot;&gt;abstract class&lt;/code&gt; called &lt;code class=&quot;highlighter-rouge&quot;&gt;AbstractFactory&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ * The creator of product, the 'createProduct..' methods count is the same as the type of product
+ * @author &amp;lt;a href=&quot;mailto:acttosma@gmail.com&quot;&amp;gt;Acttos&amp;lt;/a&amp;gt;
+ * @version 1.0.0
+ */
+ public abstract class AbstractFactory {
+ 	/**
+ 	 * Define a method to produce ProductA.
+ 	 * @return an instance of AbstractProductA.
+ 	 */
+ 	public abstract AbstractProductA createProductA();
+ 	/**
+ 	 * Define a method to produce ProductB.
+ 	 * @return an instance of AbstractProductB.
+ 	 */
+ 	public abstract AbstractProductB createProductB();
+ }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In this class, we have two methods &lt;code class=&quot;highlighter-rouge&quot;&gt;createProductA()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;createProductB&lt;/code&gt; which is made to produce &lt;code class=&quot;highlighter-rouge&quot;&gt;ProductA&lt;/code&gt; and `ProductB.&lt;/p&gt;
+
+&lt;p&gt;In &lt;code class=&quot;highlighter-rouge&quot;&gt;Abstract Factory Pattern&lt;/code&gt;, we can produce different types of product. &lt;code class=&quot;highlighter-rouge&quot;&gt;ProductA&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;ProductB&lt;/code&gt; are different types of product. so we defined two methods to do the job.&lt;/p&gt;
+
+&lt;p&gt;Now, let’s implement this class `AbstractFactory, here we go:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;AbroadProductFactory&lt;/code&gt; implements &lt;code class=&quot;highlighter-rouge&quot;&gt;AbstractFactory&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ * Only produces abroad products
+ * @author &amp;lt;a href=&quot;mailto:acttosma@gmail.com&quot;&amp;gt;Acttos&amp;lt;/a&amp;gt;
+ * @version 1.0.0
+ */
+public class AbroadProductFactory extends AbstractFactory {
+
+	@Override
+	public AbstractProductA createProductA() {
+		return new AbroadProductA();
+	}
+
+	@Override
+	public AbstractProductB createProductB() {
+		return new AbroadProductB();
+	}
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Here we define class &lt;code class=&quot;highlighter-rouge&quot;&gt;AbroadProductFactory&lt;/code&gt; for abroad products, we can just define a class &lt;code class=&quot;highlighter-rouge&quot;&gt;ProductAFactory&lt;/code&gt; only produce &lt;code class=&quot;highlighter-rouge&quot;&gt;ProductA&lt;/code&gt;, that is under &lt;code class=&quot;highlighter-rouge&quot;&gt;Abstract Factory Pattern&lt;/code&gt; too. Here we produce two types of product to make it a little complex to help us to understand the pattern.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;InternalProductFactory&lt;/code&gt; implements &lt;code class=&quot;highlighter-rouge&quot;&gt;AbstractFactory&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ * Only produces internal products
+ * @author &amp;lt;a href=&quot;mailto:acttosma@gmail.com&quot;&amp;gt;Acttos&amp;lt;/a&amp;gt;
+ * @version 1.0.0
+ */
+public class InternalProductFactory extends AbstractFactory {
+
+	@Override
+	public AbstractProductA createProductA() {
+		return new InternalProductA();
+	}
+
+	@Override
+	public AbstractProductB createProductB() {
+		return new InternalProductB();
+	}
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We have two factories for the producing, now, let’s check the result in a class called &lt;code class=&quot;highlighter-rouge&quot;&gt;Producer&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ * Here is a demo class shows how to use 'Design Pattern Abstract Factory'.
+ * Commonly, we define two products and two types, and one Abstract Factory
+ * with the same count methods of products.
+ * @author &amp;lt;a href=&quot;mailto:acttosma@gmail.com&quot;&amp;gt;Acttos&amp;lt;/a&amp;gt;
+ * @version 1.0.0
+ */
+public class Producer {
+	@SuppressWarnings(&quot;unused&quot;)
+	public static void main(String[] args) {
+		/**
+		 * Here we define two factories for 'Abroad' and 'Internal' products
+		 */
+		AbstractFactory abroadProductFactory = new AbroadProductFactory();
+		AbstractFactory internalProductFactory = new InternalProductFactory();
+
+		/**
+		 * Here we define two 'ProductA' with 'Abroad' and 'Internal'
+		 */
+		AbstractProductA abstractAbroadProductA = abroadProductFactory.createProductA();
+		AbstractProductA abstractInternalProductA = internalProductFactory.createProductA();
+
+		/**
+		 * Here we define two 'ProductB' with 'Abroad' and 'Internal'
+		 */
+		AbstractProductB abstractAbroadProductB = abroadProductFactory.createProductB();
+		AbstractProductB abstractInternalProductB = internalProductFactory.createProductB();
+
+		/**
+		 * Here we can do anything we want.
+		 */
+		System.out.println(abroadProductFactory);
+		System.out.println(internalProductFactory);
+
+		System.out.println(abstractAbroadProductA);
+		System.out.println(abstractInternalProductA);
+
+		System.out.println(abstractAbroadProductB);
+		System.out.println(abstractInternalProductB);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In the class’ main method, we just print out the class name and the addresses in memory, we can do much more with the products in specified requirements.&lt;/p&gt;
+
+&lt;p&gt;Here is the output in my console:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;org.acttos.pattern.factory.abstrakt.AbroadProductFactory@7852e922
+org.acttos.pattern.factory.abstrakt.InternalProductFactory@4e25154f
+org.acttos.pattern.factory.AbroadProductA@70dea4e
+org.acttos.pattern.factory.InternalProductA@5c647e05
+org.acttos.pattern.factory.AbroadProductB@33909752
+org.acttos.pattern.factory.InternalProductB@55f96302
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You can practice with the codes above to understand &lt;code class=&quot;highlighter-rouge&quot;&gt;Abstract Factory Pattern&lt;/code&gt; deeply.&lt;/p&gt;
+
+&lt;p&gt;PS: The codes above are just apart of the whole project, you can imagine the last part by yourself or you can visit &lt;a href=&quot;https://github.com/acttos/&quot; target=&quot;_blank&quot;&gt;My Git&lt;/a&gt; to clone the whole project (Design Pattern) to verify.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;3. Conclusion&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Pattern Name&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Scenarios&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Simple Factory&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Produces simple products, does not support multiple types of products, when need to add a new type of product, you need to add new factory class.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Factory Methods&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Produces products in a single type. Supports sub-type of products with sub-class of super-class of product, does not support to add new types of product.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Abstract Factory&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Produces multiple types of product, each type of product needs a method in the factory class, does not support to add new product.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Design Pattern is very useful to manage the code struct in our projects, a well formatted code struct can bring happiness while coding, less communications, more comfortable feelings.&lt;/p&gt;
+
+&lt;p&gt;I was plan to write codes about &lt;code class=&quot;highlighter-rouge&quot;&gt;Design Pattern&lt;/code&gt; in &lt;a href=&quot;https://github.com/acttos/&quot; target=&quot;_blank&quot;&gt;My Git&lt;/a&gt;, welcome to be a part of &lt;a href=&quot;https://github.com/acttos/DesignPattern&quot; target=&quot;_blank&quot;&gt;this project&lt;/a&gt; with me.&lt;/p&gt;
+
+&lt;h2 id=&quot;thanks-for-visiting&quot;&gt;4.Thanks for visiting.&lt;/h2&gt;
+</description>
+        <pubDate>Tue, 18 Oct 2016 17:41:49 +0800</pubDate>
+        <link>http://www.acttos.org/2016/10/Design-Pattern-Of-Factory/</link>
+        <guid isPermaLink="true">http://www.acttos.org/2016/10/Design-Pattern-Of-Factory/</guid>
+        
+        
+        <category>Design</category>
+        
+        <category>Pattern</category>
+        
+      </item>
     
       <item>
         <title>常用的几种设计模式</title>
@@ -1468,45 +1872,6 @@ Now, Let’s pay more attention to the param &lt;code class=&quot;highlighter-ro
         <pubDate>Tue, 09 Aug 2016 21:21:07 +0800</pubDate>
         <link>http://www.acttos.org/2016/08/What-does-Files-Owner-mean/</link>
         <guid isPermaLink="true">http://www.acttos.org/2016/08/What-does-Files-Owner-mean/</guid>
-        
-        
-        <category>iOS</category>
-        
-      </item>
-    
-      <item>
-        <title>Tips of URL Types in iOS</title>
-        <description>&lt;h3 id=&quot;what-is-url-types-and-how-to-use-it-&quot;&gt;What is URL Types and how to use it ?&lt;/h3&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;URL Types&lt;/code&gt; is a collection of &lt;code class=&quot;highlighter-rouge&quot;&gt;URL Definition&lt;/code&gt;, these URL Definitions can be used by any apps if needed. &lt;code class=&quot;highlighter-rouge&quot;&gt;URL Types&lt;/code&gt; make it possible to exchange data amoung different apps.&lt;/p&gt;
-
-&lt;p&gt;When we need to develop with third apps to exchange some data, such as using WeChat to open it’s OpenAPI to identify an user, we need to define URL Types in our app’s Info.plist file by adding URL Types through &lt;code class=&quot;highlighter-rouge&quot;&gt;Targets -&amp;gt; App -&amp;gt; Info -&amp;gt; URL Types&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h6 id=&quot;here-is-an-example&quot;&gt;Here is an example:&lt;/h6&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/201608-url-types/url-types.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We can also see the values in our &lt;code class=&quot;highlighter-rouge&quot;&gt;Info.plist&lt;/code&gt; file:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/201608-url-types/url-types-in-plist.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;If we dig deeper, we can see the source code of &lt;code class=&quot;highlighter-rouge&quot;&gt;Info.plist&lt;/code&gt; which we have added:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/201608-url-types/url-types-in-plist-code.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The key &lt;code class=&quot;highlighter-rouge&quot;&gt;FBundleURLTypes&lt;/code&gt; stands for URLs our app can handle, it is an array, which give us ablitity to handle more than one URL. The key &lt;code class=&quot;highlighter-rouge&quot;&gt;CFBundleURLName&lt;/code&gt; stands for a category of URL Types in our app, it can be any words you want, just give it a name which can suitably describle the URLs. For example: we use &lt;code class=&quot;highlighter-rouge&quot;&gt;Wechat&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;weixin&lt;/code&gt; for URLs which is called by Wechat(微信), we use &lt;code class=&quot;highlighter-rouge&quot;&gt;Weibo&lt;/code&gt; for URLs which is called by Weibo(微博). But remember: &lt;code class=&quot;highlighter-rouge&quot;&gt;It can be anything you want to input&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The key &lt;code class=&quot;highlighter-rouge&quot;&gt;CFBundleURLSchemes&lt;/code&gt; defines an array which our app can handle. For example: we add a value &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo&lt;/code&gt; to receive requests from other apps who called &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo://some-parameters&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo://*****&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo&lt;/code&gt; is a key word such as &lt;code class=&quot;highlighter-rouge&quot;&gt;http,https,ftp&lt;/code&gt; and so on.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Remember&lt;/strong&gt;:
-The key word &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo&lt;/code&gt; is suggested to be unique from other apps. iOS will ignore the later registeration of URL Types if there is already a same key word &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenDemo&lt;/code&gt; registered.&lt;/p&gt;
-
-&lt;h3 id=&quot;thanks-for-visiting&quot;&gt;Thanks for visiting.&lt;/h3&gt;
-</description>
-        <pubDate>Mon, 08 Aug 2016 19:51:29 +0800</pubDate>
-        <link>http://www.acttos.org/2016/08/Tips-of-URL-Types-in-iOS/</link>
-        <guid isPermaLink="true">http://www.acttos.org/2016/08/Tips-of-URL-Types-in-iOS/</guid>
         
         
         <category>iOS</category>

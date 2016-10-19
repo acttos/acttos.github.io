@@ -366,6 +366,12 @@ PS: The codes above are just apart of the whole project, you can imagine the las
 
 ## 3. Conclusion
 
+| Pattern Name |Scenarios|
+|:-------------:|:---------:|
+|Simple Factory|Produces simple products, does not support multiple types of products, when need to add a new type of product, you need to add new factory class.|
+|Factory Methods|Produces products in a single type. Supports sub-type of products with sub-class of super-class of product, does not support to add new types of product.|
+|Abstract Factory|Produces multiple types of product, each type of product needs a method in the factory class, does not support to add new product.|
+
 Design Pattern is very useful to manage the code struct in our projects, a well formatted code struct can bring happiness while coding, less communications, more comfortable feelings.
 
 I was plan to write codes about `Design Pattern` in [My Git](https://github.com/acttos/){:target="_blank"}, welcome to be a part of [this project](https://github.com/acttos/DesignPattern){:target="_blank"} with me.
