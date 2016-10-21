@@ -220,7 +220,7 @@ A product called 'ShanghaiProduct' has been created.
 
 The `Factory Methods Pattern` is designed to handle multiple products of a single type with multiple factories, each sub-factory produces a specified product. But, what are we going to do when we need produce more than one type of product? such as `InternalProduct` and `AbroadProduct`? they are with different type, how to handle this?
 
-### 2.3. Abstract Factory
+### 2.3. Abstract Factory Pattern
 
 The `Factory Methods Pattern` is for producing multiple sub-types products with one single type. when we want to produce multiple types of product, we have `Abstract Factory Pattern`.
 
