@@ -5,8 +5,8 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.acttos.org/</link>
     <atom:link href="http://www.acttos.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 19 Oct 2016 11:46:03 +0800</pubDate>
-    <lastBuildDate>Wed, 19 Oct 2016 11:46:03 +0800</lastBuildDate>
+    <pubDate>Thu, 24 Nov 2016 15:08:41 +0800</pubDate>
+    <lastBuildDate>Thu, 24 Nov 2016 15:08:41 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -226,7 +226,7 @@ A product called 'ShanghaiProduct' has been created.
 
 &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Factory Methods Pattern&lt;/code&gt; is designed to handle multiple products of a single type with multiple factories, each sub-factory produces a specified product. But, what are we going to do when we need produce more than one type of product? such as &lt;code class=&quot;highlighter-rouge&quot;&gt;InternalProduct&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;AbroadProduct&lt;/code&gt;? they are with different type, how to handle this?&lt;/p&gt;
 
-&lt;h3 id=&quot;abstract-factory&quot;&gt;2.3. Abstract Factory&lt;/h3&gt;
+&lt;h3 id=&quot;abstract-factory-pattern&quot;&gt;2.3. Abstract Factory Pattern&lt;/h3&gt;
 
 &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Factory Methods Pattern&lt;/code&gt; is for producing multiple sub-types products with one single type. when we want to produce multiple types of product, we have &lt;code class=&quot;highlighter-rouge&quot;&gt;Abstract Factory Pattern&lt;/code&gt;.&lt;/p&gt;
 
