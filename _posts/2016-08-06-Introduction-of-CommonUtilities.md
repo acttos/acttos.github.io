@@ -356,7 +356,7 @@ pod 'CUtil'
 
 ## 开源协议
 
-[ [CommonUtilities] ](https://github.com/majinshou/CommonUtilities) 基于 [ [The MIT License(MIT)] ](https://mit-license.org/) 协议开源。
+[ [CommonUtilities] ](https://github.com/acttos/CommonUtilities) 基于 [ [The MIT License(MIT)] ](https://mit-license.org/) 协议开源。
 <br/>
 <br/>
 
