@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "CUtil: A Common Utilities for iOS"
-date:   2016-12-05 18:14:23 +0800
+date:   2016-12-07 20:01:23 +0800
 categories: iOS
 ---
 
@@ -27,7 +27,7 @@ pod 'CUtil'
 pod 'CUtil', '~> x.x.x'
 ```
 
-CUtil在CocoaPods中的版本请参见：[CocoaPods-CUtil](https://cocoapods.org/pods/CUtil){:target="_blank"}。
+CUtil在CocoaPods中的版本请参见：[[CUtil on CocoaPods.org]](https://cocoapods.org/pods/CUtil){:target="_blank"}。
 
 然后在需要使用到CUtil的地方添加引入Module：
 
@@ -310,6 +310,7 @@ CUtil在CocoaPods中的版本请参见：[CocoaPods-CUtil](https://cocoapods.org
 
  @param tag 视图对应的tag，方便隐藏时使用
  @param _message Waiting视图中显示的文字消息
+ @warning 本方法不能应用在Extension中，因为获取不到UIWindow.keyWindow.
  */
 +(void)showFullScreenWaitingViewWithTag:(NSUInteger)tag message:(NSString *)_message;
 
@@ -319,8 +320,19 @@ CUtil在CocoaPods中的版本请参见：[CocoaPods-CUtil](https://cocoapods.org
  @param tag 视图对应的tag，方便隐藏时使用
  @param _frame 视图整体的大小和位置参数
  @param _message Waiting视图中显示的文字消息
+ @warning 本方法不能应用在Extension中，因为获取不到UIWindow.keyWindow.
  */
 +(void)showWaitingViewWithTag:(NSUInteger)tag frame:(CGRect)_frame message:(NSString *)_message;
+
+/**
+ 在指定的view中显示一个根据frame生成的带有转动菊花的Waiting视图
+ 
+ @param view waiting视图的父视图
+ @param tag 视图对应的tag，方便隐藏时使用
+ @param _frame 视图整体的大小和位置参数
+ @param _message Waiting视图中显示的文字消息
+ */
++(void)showWaitingViewInView:(UIView *)view withTag:(NSUInteger)tag frame:(CGRect)_frame message:(NSString *)_message;
 
 /**
  在视图顶部显示的一个Tips视图，可包含文字和图片，该Tips视图会自动以向上滑出的方式消失
@@ -338,6 +350,16 @@ CUtil在CocoaPods中的版本请参见：[CocoaPods-CUtil](https://cocoapods.org
  @param tag 视图对应的tag
  */
 +(void)hideViewInWindowWithTag:(NSUInteger)tag;
+
+/**
+ 根据宽和高生成一个在屏幕（Screen）上下左右居中的CGRect结构体
+
+ @param width 宽数值
+ @param _height 高数值
+ @return 全居中的frame数值
+ */
++(CGRect)centeredFrameWithWidth:(float)width height:(float)_height;
+
 ```
 
 ### 编解码相关
