@@ -27,9 +27,24 @@ pod 'CUtil'
 pod 'CUtil', '~> x.x.x'
 ```
 
-CUtil在CocoaPods中的版本请参见：[[CUtil on CocoaPods.org]](https://cocoapods.org/pods/CUtil){:target="_blank"}。
+CUtil在CocoaPods中的版本请参见：*[[CUtil on CocoaPods.org]](https://cocoapods.org/pods/CUtil){:target="_blank"}*。
 
-然后在需要使用到CUtil的地方添加引入Module：
+**需要注意的是，当你需要更新本地已有的CUtil库时，还是需要指定你要升级到的版本的。**
+比如，我要将本地的`CUtil ~> 0.0.10` 升级到 `CUtil ~> 0.1.6`就需要修改Podfile中的版本号为0.1.6，并执行`pod install`:
+
+```
+[majinshou@acttos.org:~/CUtilPod]$pod install
+Analyzing dependencies
+Downloading dependencies
+Installing CUtil 0.1.6 (was 0.0.10)
+Generating Pods project
+Integrating client project
+Sending stats
+Pod installation complete! There is 1 dependency from the Podfile and 1 total pod installed.
+
+```
+
+使用CUtil时，只需要在使用到CUtil的地方添加引入Module：
 
 ```
 @import CUtil;
@@ -336,6 +351,14 @@ CUtil在CocoaPods中的版本请参见：[[CUtil on CocoaPods.org]](https://coco
 +(void)showFullScreenWaitingViewWithTag:(NSUInteger)tag message:(NSString *)_message;
 
 /**
+ 在给定的view上展示一个全屏的waiting视图，采用默认tag运算，隐藏时调用[CUTipsView hideWaitingViewInView:]。
+
+ @param view Waiting视图覆盖的低层视图
+ @param _message 需要在Waiting视图中显示的消息
+ */
++(void)showFullScreenWaitingViewInView:(UIView *)view message:(NSString *)_message;
+
+/**
  显示一个根据给定frame生成的带有转动菊花的Waiting视图
  
  @param tag 视图对应的tag，方便隐藏时使用
@@ -349,11 +372,10 @@ CUtil在CocoaPods中的版本请参见：[[CUtil on CocoaPods.org]](https://coco
  在指定的view中显示一个根据frame生成的带有转动菊花的Waiting视图
  
  @param view waiting视图的父视图
- @param tag 视图对应的tag，方便隐藏时使用
  @param _frame 视图整体的大小和位置参数
  @param _message Waiting视图中显示的文字消息
  */
-+(void)showWaitingViewInView:(UIView *)view withTag:(NSUInteger)tag frame:(CGRect)_frame message:(NSString *)_message;
++(void)showWaitingViewInView:(UIView *)view frame:(CGRect)_frame message:(NSString *)_message;
 
 /**
  在视图顶部显示的一个Tips视图，可包含文字和图片，该Tips视图会自动以向上滑出的方式消失
@@ -372,6 +394,12 @@ CUtil在CocoaPods中的版本请参见：[[CUtil on CocoaPods.org]](https://coco
  */
 +(void)hideViewInWindowWithTag:(NSUInteger)tag;
 
+/**
+ 隐藏waiting视图，采用默认tag运算
+
+ @param view waiting视图覆盖的视图
+ */
++(void)hideWaitingViewInView:(UIView *)view;
 
 /**
  根据宽和高生成一个在屏幕（Screen）上下左右居中的CGRect结构体
