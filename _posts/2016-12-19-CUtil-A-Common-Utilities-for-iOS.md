@@ -1,10 +1,9 @@
 ---
 layout: post
 title:  "CUtil: A Common Utilities for iOS"
-date:   2016-12-05 18:14:23 +0800
+date:   2016-12-19 16:14:23 +0800
 categories: iOS
 ---
-
 # 介绍
 
 CUtil是一个日常的、适用于iOS开发的、通用的、工具类的Framework，采用Objective-C编写。
@@ -36,22 +35,35 @@ pod 'CUtil', '~> x.x.x'
 CUtil在CocoaPods中的版本请参见：*[[CUtil on CocoaPods.org]](https://cocoapods.org/pods/CUtil){:target="_blank"}*。
 
 **需要注意的是，当你需要更新本地已有的CUtil库时，还是需要指定你要升级到的版本的。**
-比如，我要将本地的`CUtil ~> 0.0.10` 升级到 `CUtil ~> 0.1.6`就需要修改Podfile中的版本号为0.1.6，并执行`pod install`:
+
+*比如，我要将本地的 `CUtil ~> 0.0.10` 升级到 `CUtil ~> 0.1.8` 就需要修改Podfile中的版本号为0.1.8:*
+
+```
+pod 'CUtil', '~> 0.1.8'  
+# was pod 'CUtil', '~> 0.0.10'
+```
+
+并执行 `pod install` :
 
 ```
 [acttos@acttos.org:~/CUtilPod]$pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CUtil 0.1.6 (was 0.0.10)
+Installing CUtil 0.1.8 (was 0.0.10)
 Generating Pods project
 Integrating client project
 Sending stats
 Pod installation complete! There is 1 dependency from the Podfile and 1 total pod installed.
 ```
 
-使用CUtil时，只需要在使用到CUtil的地方引入Module：
+使用CUtil时，只需要在使用到CUtil的类中引入CUtil模块：
 
 ```
+#import <Foundation/Foundation.h>
+#import "AppDelegate.h"
+//.... 以上为示例 ....
+
+//.... 引入CUtil模块 ....
 @import CUtil;
 ```
 
