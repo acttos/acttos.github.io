@@ -5,20 +5,201 @@
     <description>Goals determine what you’re going to be.</description>
     <link>http://www.acttos.org/</link>
     <atom:link href="http://www.acttos.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 02 Dec 2016 10:08:06 +0800</pubDate>
-    <lastBuildDate>Fri, 02 Dec 2016 10:08:06 +0800</lastBuildDate>
+    <pubDate>Thu, 22 Dec 2016 17:58:21 +0800</pubDate>
+    <lastBuildDate>Thu, 22 Dec 2016 17:58:21 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
+        <title>Design Pattern of Facade</title>
+        <description>&lt;h2 id=&quot;summary&quot;&gt;1.Summary&lt;/h2&gt;
+
+&lt;p&gt;This article is about &lt;code class=&quot;highlighter-rouge&quot;&gt;Facade Design Pattern&lt;/code&gt;, this pattern is usually used to handle requests which have a common feature or can be implemented by the same entrance.&lt;/p&gt;
+
+&lt;p&gt;First of all, let’s see a picture of &lt;code class=&quot;highlighter-rouge&quot;&gt;Facade Design Pattern&lt;/code&gt; which was drawn before through MindNode.app:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/201612-facade-pattern/facade.png&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;/images/201612-facade-pattern/facade.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-example-in-java&quot;&gt;2.The example in Java&lt;/h2&gt;
+
+&lt;p&gt;The biggest feature of &lt;code class=&quot;highlighter-rouge&quot;&gt;Facade&lt;/code&gt; pattern is that there is a key-door waiting to handle the requests. The main handler class is called &lt;code class=&quot;highlighter-rouge&quot;&gt;Facade.java&lt;/code&gt; and it has a method called &lt;code class=&quot;highlighter-rouge&quot;&gt;public void handleRequest(EntryInfo entryInfo)&lt;/code&gt;, we will use this method to play the role of doorman who will handle all the requests received.&lt;/p&gt;
+
+&lt;p&gt;Now, let see the codes of this method in &lt;code class=&quot;highlighter-rouge&quot;&gt;Facade.java&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public void handleRequest(EntryInfo entryInfo) {
+	//Facade Pattern Example
+	try {
+		entryMap.get(entryInfo.getCity()).enter(entryInfo);
+	} catch (Exception e) {
+		this.printError(&quot;Sorry, we can NOT handle &quot; + entryInfo.getCity() + &quot;’s cargos for now.&quot;);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;See? All the requests are handled by &lt;code class=&quot;highlighter-rouge&quot;&gt;entryMap.get(entryInfo.getCity()).enter(entryInfo)&lt;/code&gt;, so, what happened in the &lt;code class=&quot;highlighter-rouge&quot;&gt;entryMap&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;The codes of entryMap’s initialization:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;private static Map&amp;lt;String,IEntry&amp;gt; entryMap = null;
+	
+static {
+	entryMap = new HashMap&amp;lt;String,IEntry&amp;gt;();
+	entryMap.put(&quot;Beijing&quot;, new EntryBeijingImpl());
+	entryMap.put(&quot;Shanghai&quot;, new EntryShanghaiImpl());
+	entryMap.put(&quot;Guangzhou&quot;, new EntryGuangzhouImpl());
+	entryMap.put(&quot;Shenzhen&quot;, new EntryShenzhenImpl());
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In this map, we put some key-values in it. The key is identified by a city’s name, the value is a certain implementation of interface &lt;code class=&quot;highlighter-rouge&quot;&gt;IEntry&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We have interface &lt;code class=&quot;highlighter-rouge&quot;&gt;IEntry&lt;/code&gt; looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;package org.acttos.pattern.facade.entry;
+
+import org.acttos.pattern.facade.entry.domain.EntryInfo;
+
+/**
+ * @author &amp;lt;a href=&quot;mailto:acttosma@gmail.com&quot;&amp;gt;Acttos&amp;lt;/a&amp;gt;
+ * @version 1.0.0
+ */
+public interface IEntry {
+	public void enter(EntryInfo entryInfo);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;There is only method called &lt;code class=&quot;highlighter-rouge&quot;&gt;public void enter(EntryInfo entryInfo)&lt;/code&gt; in this interface which needs to be implemented by the classes which do the real job.&lt;/p&gt;
+
+&lt;p&gt;We have &lt;code class=&quot;highlighter-rouge&quot;&gt;EntryBeijingImpl.java&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;EntryShanghaiImpl.java&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;EntryGuangzhouImpl.java&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;EntryShenzhenImpl.java&lt;/code&gt; to handle the request (Here is &lt;code class=&quot;highlighter-rouge&quot;&gt;EntryInfo&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;One of the implementation of the interface &lt;code class=&quot;highlighter-rouge&quot;&gt;IEntry&lt;/code&gt; can be on behalf of all theothers, here let’s see &lt;code class=&quot;highlighter-rouge&quot;&gt;EntryBeijingImpl.java&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class EntryBeijingImpl implements IEntry {
+
+	/* (non-Javadoc)
+	 * @see org.acttos.pattern.facade.entry.IEntry#enter(org.acttos.pattern.facade.entry.domain.EntryInfo)
+	 */
+	@Override
+	public void enter(EntryInfo entryInfo) {
+		System.out.println(&quot;I am Beijing Entry handler, I received a cargo '&quot; + entryInfo.getCargo() + &quot;'.&quot;);
+	}
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We just print out the message with different cargos in all the EntryXxxxImpl.java files. In fact, we will do the different things in every implementation class of IEntry, that is the meaning of &lt;code class=&quot;highlighter-rouge&quot;&gt;Facade&lt;/code&gt;:’Do different things through only one key-door’.&lt;/p&gt;
+
+&lt;p&gt;Then, we need to take a look at class &lt;code class=&quot;highlighter-rouge&quot;&gt;EntryInfo&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class EntryInfo {
+	private String city;
+	private String cargo;
+	/**
+	 * @return the city
+	 */
+	public String getCity() {
+		return city;
+	}
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+	/**
+	 * @return the cargo
+	 */
+	public String getCargo() {
+		return cargo;
+	}
+	/**
+	 * @param cargo the cargo to set
+	 */
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+	
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here &lt;code class=&quot;highlighter-rouge&quot;&gt;EntryInfo.java&lt;/code&gt; is just a pojo which has some properties, we also need to design the common request class in real job.&lt;/p&gt;
+
+&lt;p&gt;Now, let’s finish the main method in &lt;code class=&quot;highlighter-rouge&quot;&gt;Facade.java&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static void main(String[] args) {
+	Facade facade = new Facade();
+		
+	EntryInfo entryInfo = new EntryInfo();
+	entryInfo.setCity(&quot;Beijing&quot;);
+	entryInfo.setCargo(&quot;Cargo for &quot; + entryInfo.getCity());
+	facade.handleRequest(entryInfo);
+		
+	entryInfo.setCity(&quot;Shanghai&quot;);
+	entryInfo.setCargo(&quot;Cargo for &quot; + entryInfo.getCity());
+	facade.handleRequest(entryInfo);
+		
+	entryInfo.setCity(&quot;Guangzhou&quot;);
+	entryInfo.setCargo(&quot;Cargo for &quot; + entryInfo.getCity());
+	facade.handleRequest(entryInfo);
+		
+	entryInfo.setCity(&quot;Shenzhen&quot;);
+	entryInfo.setCargo(&quot;Cargo for &quot; + entryInfo.getCity());
+	facade.handleRequest(entryInfo);
+		
+	entryInfo.setCity(&quot;Nanjing&quot;);
+	entryInfo.setCargo(&quot;Cargo for &quot; + entryInfo.getCity());
+	facade.handleRequest(entryInfo);
+	
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When we execute &lt;code class=&quot;highlighter-rouge&quot;&gt;Facade.java&lt;/code&gt; as Java application, we will get the output mostly like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;I am Beijing Entry handler, I received a cargo 'Cargo for Beijing'.
+I am Shanghai Entry handler, I received a cargo 'Cargo for Shanghai'.
+I am Guangzhou Entry handler, I received a cargo 'Cargo for Guangzhou'.
+I am Shenzhen Entry handler, I received a cargo 'Cargo for Shenzhen'.
+========== ERROR ==========
+Sorry, we can NOT handle Nanjing’s cargos for now.
+========== ERROR ==========
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Maybe you could’t understand the codes above, because these codes are just part of Java project &lt;code class=&quot;highlighter-rouge&quot;&gt;Design Pattern&lt;/code&gt;, you can see the completed codes &lt;a href=&quot;https://github.com/acttos/DesignPattern&quot; target=&quot;_blank&quot;&gt;[ Here ]&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;thanks-for-visiting&quot;&gt;3.Thanks for visiting.&lt;/h2&gt;
+</description>
+        <pubDate>Thu, 22 Dec 2016 17:58:17 +0800</pubDate>
+        <link>http://www.acttos.org/2016/12/Design-Pattern-Of-Facade/</link>
+        <guid isPermaLink="true">http://www.acttos.org/2016/12/Design-Pattern-Of-Facade/</guid>
+        
+        
+        <category>iOS</category>
+        
+      </item>
+    
+      <item>
         <title>CUtil: A Common Utilities for iOS</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;介绍&lt;/h2&gt;
+        <description>&lt;h1 id=&quot;section&quot;&gt;介绍&lt;/h1&gt;
 
 &lt;p&gt;CUtil是一个日常的、适用于iOS开发的、通用的、工具类的Framework，采用Objective-C编写。
 所有代码来源并总结于平时，会不定期更新，欢迎&lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#097;&amp;#099;&amp;#116;&amp;#116;&amp;#111;&amp;#115;&amp;#109;&amp;#097;&amp;#064;&amp;#103;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&quot;&gt;提出意见和建议&lt;/a&gt;。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;使用方法&lt;/h2&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;注意：&lt;/h3&gt;
 
-&lt;h4 id=&quot;cocoapods&quot;&gt;使用CocoaPods：&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;CUtil最近修正了一个问题，请采用0.1.8及以上版本。&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;section-2&quot;&gt;使用方法&lt;/h1&gt;
+
+&lt;h2 id=&quot;cocoapods&quot;&gt;1、使用CocoaPods集成：&lt;/h2&gt;
+
 &lt;p&gt;CUtil已经支持通过Cocoapods进行安装：&lt;/p&gt;
 
 &lt;p&gt;在工程的Podfile中添加：&lt;/p&gt;
@@ -33,116 +214,136 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;CUtil在CocoaPods中的版本请参见：&lt;a href=&quot;https://cocoapods.org/pods/CUtil&quot; target=&quot;_blank&quot;&gt;CocoaPods-CUtil&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;CUtil在CocoaPods中的版本请参见：&lt;em&gt;&lt;a href=&quot;https://cocoapods.org/pods/CUtil&quot; target=&quot;_blank&quot;&gt;[CUtil on CocoaPods.org]&lt;/a&gt;&lt;/em&gt;。&lt;/p&gt;
 
-&lt;p&gt;然后在需要使用到CUtil的地方添加引入Module：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;需要注意的是，当你需要更新本地已有的CUtil库时，还是需要指定你要升级到的版本的。&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@import CUtil;
+&lt;p&gt;&lt;em&gt;比如，我要将本地的 &lt;code class=&quot;highlighter-rouge&quot;&gt;CUtil ~&amp;gt; 0.0.10&lt;/code&gt; 升级到 &lt;code class=&quot;highlighter-rouge&quot;&gt;CUtil ~&amp;gt; 0.1.8&lt;/code&gt; 就需要修改Podfile中的版本号为0.1.8:&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pod 'CUtil', '~&amp;gt; 0.1.8'  
+# was pod 'CUtil', '~&amp;gt; 0.0.10'
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h4 id=&quot;cocoapods-1&quot;&gt;未使用CocoaPods:&lt;/h4&gt;
-&lt;p&gt;如果工程尚未支持CocoaPods，则需要将CUtil下的所有文件拖拽到项目的frameworks下，并添加到Xcode的groups中。在需要使用CUtil的文件中引入：&lt;/p&gt;
+&lt;p&gt;并执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;pod install&lt;/code&gt; :&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[acttos@acttos.org:~/CUtilPod]$pod install
+Analyzing dependencies
+Downloading dependencies
+Installing CUtil 0.1.8 (was 0.0.10)
+Generating Pods project
+Integrating client project
+Sending stats
+Pod installation complete! There is 1 dependency from the Podfile and 1 total pod installed.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;使用CUtil时，只需要在使用到CUtil的类中引入CUtil模块：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#import &amp;lt;Foundation/Foundation.h&amp;gt;
+#import &quot;AppDelegate.h&quot;
+//.... 以上为示例 ....
+
+//.... 引入CUtil模块 ....
+@import CUtil;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;cocoapods-1&quot;&gt;2、未使用CocoaPods，手动集成:&lt;/h2&gt;
+
+&lt;p&gt;如果工程尚未支持CocoaPods，则需要将CUtil下的所有文件拷贝到项目的frameworks下，并添加到Xcode的groups中。然后在需要使用CUtil的文件中引入：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#import &amp;lt;CUtil/CUtil.h&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h2 id=&quot;section-2&quot;&gt;功能介绍&lt;/h2&gt;
+&lt;h1 id=&quot;section-3&quot;&gt;功能介绍&lt;/h1&gt;
 
-&lt;h3 id=&quot;section-3&quot;&gt;存储功能相关&lt;/h3&gt;
+&lt;h2 id=&quot;section-4&quot;&gt;存储功能相关&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;CUStorage.h&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
- *  将自定义data的数据写入系统Keychain中，data的值不随app的卸载、重装而发生变化，常用于存储固定的UserId。
- *
- *  @param key  用来存储数据的Key
- *  @param data 需要存储的数据
- *  @warning 跟Keychain相关的读写操作，仅在真机上验证通过
+ 将自定义data的数据写入系统Keychain中，data的值不随app的卸载、重装而发生变化，常用于存储固定的UserId。
+ 
+ @param key  用来存储数据的Key
+ @param data 需要存储的数据
+ @warning 跟Keychain相关的读写操作，仅在真机上验证通过
  */
 + (void)storeInKeychainWithKey:(NSString *)key data:(id)data;
 
 /**
- *  根据key名称获取写入系统Keychain的数据
- *
- *  @param key 获取数据对应的Key
- *
- *  @return 存储在keychain中的数据
- *  @warning 跟Keychain相关的读写操作，仅在真机上验证通过
+ 根据key名称获取写入系统Keychain的数据
+ 
+ @param key 获取数据对应的Key
+ @warning 跟Keychain相关的读写操作，仅在真机上验证通过
+ @return 存储在keychain中的数据
  */
 + (id)loadFromKeychainWithKey:(NSString *)key;
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;section-4&quot;&gt;颜色设置相关&lt;/h3&gt;
+&lt;h2 id=&quot;section-5&quot;&gt;颜色设置相关&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;CUColor.h&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
- *  根据传递的16进制数据生成UIColor实例
- *
- *  @param hexValue 16进制的颜色表示方式。如：0xFF00FF
- *
- *  @return 对应色值的UIColor实例
+ 根据传递的16进制数据生成UIColor实例
+ 
+ @param hexValue 16进制的颜色表示方式。如：0xFF00FF
+ @return 对应色值的UIColor实例
  */
 + (UIColor *)colorWithHex:(NSInteger)hexValue;
 
 /**
- *  根据传递的16进制数据生成UIColor实例，该UIColor包含指定的透明度
- *
- *  @param hexValue 16进制的颜色表示方式。如：0xFF00FF
- *  @param alpha    颜色的透明度
- *
- *  @return 对应色值的UIColor实例
+ 根据传递的16进制数据生成UIColor实例，该UIColor包含指定的透明度
+ 
+ @param hexValue 16进制的颜色表示方式。如：0xFF00FF
+ @param alpha    颜色的透明度
+ @return 对应色值的UIColor实例
  */
 + (UIColor *)colorWithHex:(NSInteger)hexValue alpha:(CGFloat)alpha;
 
 /**
- *  根据传递的色值字符串生成UIColor实例
- *
- *  @param hexString 以##开头的16进制色值字符串。如：##FF00FF
- *
- *  @return 对应色值的UIColor实例
+ 根据传递的色值字符串生成UIColor实例
+ 
+ @param hexString 以#开头的16进制色值字符串。如：#FF00FF
+ @return 对应色值的UIColor实例
  */
 + (UIColor *)colorWithHexString:(NSString *)hexString;
 
 /**
- *  根据传递的色值字符串生成UIColor实例，该UIColor包含指定的透明度
- *
- *  @param hexString 以##开头的16进制色值字符串。如：##FF00FF
- *  @param alpha     颜色的透明度
- *
- *  @return 对应色值的UIColor实例
+ 根据传递的色值字符串生成UIColor实例，该UIColor包含指定的透明度
+ 
+ @param hexString 以#开头的16进制色值字符串。如：#FF00FF
+ @param alpha     颜色的透明度
+ @return 对应色值的UIColor实例
  */
 + (UIColor *)colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;section-5&quot;&gt;文件目录相关&lt;/h3&gt;
+&lt;h2 id=&quot;section-6&quot;&gt;文件目录相关&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;CUFile.h&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
- *  返回当前App的Documents路径
- *
- *  @return Documents的URL
+ 返回当前App的Documents路径
+
+ @return Documents的URL
  */
 + (NSURL *)getDocumentsDirectory;
 
 /**
  在指定路径创建目录，创建的目录包括父目录。
 
- @param path 给定的创建目录
- 
- @return 目录存在或创建成功：YES，否则：NO
+ @param path 给定的创建目录，需要直接写具体路径，如：&quot;/videos/2016/12/&quot;
  @warning 该方法的根目录为当前应用的data目录，所有目录的建立，均在此data目录下。PS：data目录可理解为沙河中可访问的顶层目录。
+ @return 目录存在或创建成功：YES，否则：NO
  */
 + (BOOL)createDirectoryAtPath:(NSString *)path;
 
@@ -150,8 +351,7 @@
  在指定的path目录存储data数据
 
  @param data 要存储的数据
- @param path 存储数据的具体路径，注意这个路径是包含文件名的路径，不是存放文件的目录
- 
+ @param path 存储数据的具体路径，注意这个路径是&quot;包含文件名的&quot;路径，不是存放文件的目录，不能以&quot;/&quot;结尾
  @return 保存成功：YES，否则：NO
  */
 + (BOOL)saveFile:(NSData *)data atPath:(NSString *)path;
@@ -160,107 +360,193 @@
  在指定的path目录，按照fileName存储数据data。
 
  @param data 要存储的数据
- @param path 存储数据的具体目录，此处问文件存储的具体目录
+ @param path 存储数据的具体目录，此处为文件存储的具体目录，不能以&quot;/&quot;结尾
  @param fileName 要存放的data的文件名称
- 
  @return 保存成功：YES，否则：NO
  */
 + (BOOL)saveFile:(NSData *)data atPath:(NSString *)path withName:(NSString *)fileName;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;json&quot;&gt;JSON解析相关&lt;/h3&gt;
+&lt;h2 id=&quot;json&quot;&gt;JSON解析相关&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;CUJSON.h&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
- *  根据给定的NSArray实例生成JSON字符串
- *
- *  @param array NSArray实例
- *
- *  @return NSArray对应的JSON字符串
+ 根据给定的NSArray实例生成JSON字符串
+ 
+ @param array NSArray实例
+ @return NSArray对应的JSON字符串
  */
 +(NSString *)JSONStringFromArray:(NSArray *)array;
 
 /**
- *  根据给定的NSDictionary实例生成JSON字符串
- *
- *  @param dictionary NSDictionary实例
- *
- *  @return NSDictionary对应的JSON字符串
+ 根据给定的NSDictionary实例生成JSON字符串
+ 
+ @param dictionary NSDictionary实例
+ @return NSDictionary对应的JSON字符串
  */
 +(NSString *)JSONStringFromDictionary:(NSDictionary *)dictionary;
 
 /**
- *  将任意对象转换成JSON字符串，当给定object为nil或者不可解析为JSON时，返回错误
- *
- *  @param object 任意NSObject对象
- *
- *  @return 解析的JSON或错误内容
+ 将任意对象转换成JSON字符串，当给定object为nil或者不可解析为JSON时，返回错误
+ 
+ @param object 任意NSObject对象
+ @return 解析的JSON或错误内容
  */
 +(NSString *)parseJSONStringFromObject:(NSObject *)object;
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;section-6&quot;&gt;日期操作相关&lt;/h3&gt;
+&lt;h2 id=&quot;section-7&quot;&gt;字符串操作相关&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;NSString+CUString.h&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ 判断当前字符串是否为空；空代表：“nil”，“” 或者 “  ”，即：任何无字符的字符串均为空
+ @return YES：为空，NO：不为空
+ */
+-(BOOL)isEmpty;
+
+/**
+ 判断当前字符串是否由给定的字符串作为开头
+
+ @param string 给定的开头字符串，用来做判断条件
+ @return YES：符合开头判断，NO：不符合开头判断
+ */
+-(BOOL)startsWith:(NSString *)string;
+
+/**
+ 判断当前字符串是否由给定的字符串作为结尾
+ 
+ @param string 给定的结尾字符串，用来做判断条件
+ @return YES：符合结尾判断，NO：不符合结尾判断
+ */
+-(BOOL)endsWith:(NSString *)string;
+
+/**
+ 按照给定的索引来截取字符串
+
+ @param beginIndex 开始索引，截取后的字符串[包含]该索引对应的字符
+ @param endIndex 结束索引，截取后的字符串[不包含]该索引对应的字符
+ @return 截取后的字符串
+ */
+-(NSString *)substring:(NSUInteger)beginIndex to:(NSUInteger)endIndex;
+
+/**
+ 将当前字符串首尾处的空字符删除并返回
+
+ @return 删除收尾空字符后的字符串
+ */
+-(NSString *)trim;
+
+/**
+ 将当前字符串按照给定的分隔符进行拆分,拆分后的数组不包含空元素
+
+ @param pattern 给定的分隔符
+ @return 根据分隔符拆分后的数组
+ */
+-(NSArray *)splitBy:(NSString *)pattern;
+
+/**
+ 获取字符串中符合匹配的首个索引
+
+ @param pattern 需要匹配的字符串
+ @return 匹配字符的首个匹配索引
+ */
+-(NSUInteger)indexOf:(NSString *)pattern;
+
+/**
+ 获取字符串中符合匹配的最后一个索引
+
+ @param pattern 需要匹配的字符串
+ @return 匹配字符的最后一个匹配索引
+ */
+-(NSUInteger)lastIndexOf:(NSString *)pattern;
+
+/**
+ 替换首个匹配的字符
+
+ @param pattern 需要进行匹配的字符
+ @param replacement 用于将匹配到的字符替换为的字符
+ @return 替换完毕的新字符串
+ */
+-(NSString *)replaceFirst:(NSString *)pattern with:(NSString *)replacement;
+
+/**
+ 替换最后一个匹配的字符
+ 
+ @param pattern 需要进行匹配的字符
+ @param replacement 用于将匹配到的字符替换为的字符
+ @return 替换完毕的新字符串
+ */
+-(NSString *)replaceLast:(NSString *)pattern with:(NSString *)replacement;
+
+/**
+ 替换所有匹配的字符
+ 
+ @param pattern 需要进行匹配的字符
+ @param replacement 用于将匹配到的字符替换为的字符
+ @return 替换完毕的新字符串
+ */
+-(NSString *)replaceAll:(NSString *)pattern with:(NSString *)replacement;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;日期操作相关&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;CUDate.h&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
- *  根据当前时间创建时间戳
- *
- *  @return 当前时间的时间戳，精确到毫秒
+ 根据当前时间创建时间戳
+ 
+ @return 当前时间的时间戳，精确到毫秒
  */
 +(long long)generateMillisecondTime;
 
 /**
- *  根据给定日期创建时间戳
- *
- *  @param date 需要转换为时间戳的NSDate对象
- *
- *  @return 转换后的时间戳，精确到毫秒
+ 根据给定日期创建时间戳
+ 
+ @param date 需要转换为时间戳的NSDate对象,date为nil时，取当前时刻
+ @return 转换后的时间戳，精确到毫秒
  */
 +(long long)generateMillisecondTimeWithDate:(NSDate *)date;
 
 /**
- *  将毫秒的时间转化为NSDate实例
- *
- *  @param milliseconds 某个时间对应的毫秒值
- *
- *  @return 给定时间戳对应的NSDate对象
+ 将毫秒的时间转化为NSDate实例
+ 
+ @param milliseconds 某个时间对应的毫秒值
+ @return 给定时间戳对应的NSDate对象
  */
 +(NSDate *)generateDateWithMilliseconds:(long long)milliseconds;
 
 /**
- *  将NSDate对象进行格式化，采用当前时区
- *
- *  @param date   NSDate对象
- *  @param format 格式化字符串，如果为空或者nil，采用“yyyy-MM-dd HH:mm:ss”
- *
- *  @return 格式化后的字符串
+ 将NSDate对象进行格式化，采用当前时区
+ 
+ @param date   NSDate对象
+ @param format 格式化字符串，如果为空或者nil，采用“yyyy-MM-dd HH:mm:ss”
+ @return 格式化后的字符串
  */
 +(NSString *)stringOfDate:(NSDate *)date withFormat:(NSString *)format;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;section-7&quot;&gt;系统配置操作相关&lt;/h3&gt;
+&lt;h2 id=&quot;section-9&quot;&gt;系统配置操作相关&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;CUConfig.h&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
  获取当前系统首选的语言标识
-
  @return 当前系统首选的语言，采用系统给出的值
  */
 + (NSString *)getDeviceLanguage;
 
 /**
  获取当前系统的语言编码
-
  @return 语言编码，如：en,zh,ar,fr等
  */
 + (NSString *)getDeviceLanguageCode;
@@ -274,7 +560,6 @@
 
 /**
  以i18N的格式输出当前系统的语言和地域，如&quot;en_US,zh_CN,zh_TW,en_FR&quot;
-
  @return 将国家码和语言码组合后返回，是目前网络协议中常见的格式。
  */
 + (NSString *)getLocalStringIni18N;
@@ -299,11 +584,10 @@
  @return 法语：YES，否则：NO
  */
 + (BOOL)isFrenchLang;
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;section-8&quot;&gt;视图相关&lt;/h3&gt;
+&lt;h2 id=&quot;section-10&quot;&gt;视图相关&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;CULabel.h&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -324,53 +608,146 @@
 &lt;/blockquote&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
- 已全屏幕的方式展现出一个带有转动菊花的Waiting视图
+ 在给定的view中显示一个类似于Android Toast效果的弹框。
+ 
+ @param view     弹框的父视图容器View
+ @param message  弹框需要显示的文字内容
+ @param _duration Toast消失过程持续的时间，单位：秒
+ @param _delay    Toast持续显示的时间，单位：秒
+ */
++ (void)showToastInView:(UIView *)view withMessage:(NSString *)message duration:(float)_duration delay:(float)_delay;
 
+/**
+ 在给定的view中显示一个类似于Android Toast效果的弹框。该弹框支持自定义frame
+
+ @param view 弹框的父视图容器view
+ @param frame 弹框的frame
+ @param _message 弹框要显示的消息
+ @param _duration Toast消失过程持续的时间，单位：秒
+ @param _delay Toast持续显示的时间，单位：秒
+ */
++ (void)showToastInView:(UIView *)view withFrame:(CGRect)frame message:(NSString *)_message duration:(float)_duration delay:(float)_delay;
+
+/**
+ 已全屏幕的方式展现出一个带有转动菊花的Waiting视图
+ 
  @param tag 视图对应的tag，方便隐藏时使用
  @param _message Waiting视图中显示的文字消息
+ @warning 本方法不能应用在Extension中，因为获取不到UIWindow.keyWindow.
  */
 +(void)showFullScreenWaitingViewWithTag:(NSUInteger)tag message:(NSString *)_message;
 
 /**
- 显示一个根据给定frame生成的带有转动菊花的Waiting视图
+ 在给定的view上展示一个全屏的waiting视图，采用默认tag运算，隐藏时调用[CUTipsView hideWaitingViewInView:]。
 
+ @param view Waiting视图覆盖的低层视图
+ @param _message 需要在Waiting视图中显示的消息
+ */
++(void)showFullScreenWaitingViewInView:(UIView *)view message:(NSString *)_message;
+
+/**
+ 显示一个根据给定frame生成的带有转动菊花的Waiting视图
+ 
  @param tag 视图对应的tag，方便隐藏时使用
  @param _frame 视图整体的大小和位置参数
  @param _message Waiting视图中显示的文字消息
+ @warning 本方法不能应用在Extension中，因为获取不到UIWindow.keyWindow.
  */
 +(void)showWaitingViewWithTag:(NSUInteger)tag frame:(CGRect)_frame message:(NSString *)_message;
 
 /**
- 在视图顶部显示的一个Tips视图，可包含文字和图片，该Tips视图会自动以向上滑出的方式消失
+ 在指定的view中显示一个根据frame生成的带有转动菊花的Waiting视图
+ 
+ @param view waiting视图的父视图
+ @param _frame 视图整体的大小和位置参数
+ @param _message Waiting视图中显示的文字消息
+ */
++(void)showWaitingViewInView:(UIView *)view frame:(CGRect)_frame message:(NSString *)_message;
 
- @param _yOffset Tips视图距离屏幕顶部的偏移量，一般为0.0f
+/**
+ 在指定的view中显示一个转动的ActivityIndicatorView
+
+ @param view ActivityIndicatorView的父视图
+ @param _center ActivityIndicatorView的中心点坐标
+ @param _theme ActivityIndicatorView的视图样式
+ */
++(void)showActivityIndicatorInView:(UIView *)view center:(CGPoint)_center theme:(CUTipsViewTheme)_theme;
+
+/**
+ 在视图顶部显示的一个Tips视图，可包含文字和图片，该Tips视图会自动以向上滑出的方式消失
+ 
+ @param view Tips视图的父View
  @param aImage Tips视图中的图片，位于aMessage的左侧
  @param aMessage Tips视图中显示的文字消息
- @param view Tips视图的父View
+ @param _yOffset Tips视图距离屏幕顶部的偏移量，一般为0.0f
  */
-+(void)showPopDownTipsViewWithImage:(UIImage *)aImage message:(NSString *)aMessage yOffset:(CGFloat)_yOffset inView:(UIView *)view;
++(void)showPopDownTipsViewInView:(UIView *)view withImage:(UIImage *)aImage message:(NSString *)aMessage yOffset:(CGFloat)_yOffset;
 
 /**
  隐藏某个tag对应的视图，并从父视图中移除
-
+ 
  @param tag 视图对应的tag
  */
 +(void)hideViewInWindowWithTag:(NSUInteger)tag;
+
+/**
+ 隐藏waiting视图，采用默认tag运算
+
+ @param view waiting视图覆盖的视图
+ */
++(void)hideWaitingViewInView:(UIView *)view;
+
+/**
+ 根据宽和高生成一个在屏幕（Screen）上下左右居中的CGRect结构体
+
+ @param width 宽数值
+ @param _height 高数值
+ @return 全居中的frame数值
+ */
++(CGRect)centeredFrameWithWidth:(float)width height:(float)_height;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;section-9&quot;&gt;编解码相关&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;CUToastView.h (Duplicated from CUTipsView.h)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ 在给定的view中显示一个类似于Android Toast效果的弹框。
+
+ @param view     弹框的父视图容器View
+ @param message  弹框需要显示的文字内容
+ @param _duration Toast消失过程持续的时间，单位：秒
+ @param _delay    Toast持续显示的时间，单位：秒
+ */
++ (void)showToastInView:(UIView *)view withMessage:(NSString *)message duration:(float)_duration delay:(float)_delay;
+
+/**
+ 在给定的view中显示一个类似于Android Toast效果的弹框。该弹框支持自定义frame
+ 
+ @param view 弹框的父视图容器view
+ @param frame 弹框的frame
+ @param _message 弹框要显示的消息
+ @param _duration Toast消失过程持续的时间，单位：秒
+ @param _delay Toast持续显示的时间，单位：秒
+ */
++ (void)showToastInView:(UIView *)view withFrame:(CGRect)frame message:(NSString *)_message duration:(float)_duration delay:(float)_delay;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-11&quot;&gt;编解码相关&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;CUCode.h&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
- 生成一个全球唯一的Id ^_-，可结合
+ 生成一个全球唯一的Id ^_-。&amp;lt;br/&amp;gt;
+ 可结合本类中其它方法将此Id持久化，并保持不变。&amp;lt;br/&amp;gt;
+ 适应需要唯一确定用户身份的场景。
 
  @return 全球唯一的编号
  */
 + (NSString *)uniqueIdentifier;
-
 
 /**
  采用Keychain来保存唯一ID,如果之前有保存过，则覆盖旧值
@@ -379,7 +756,6 @@
  @warning 跟Keychain相关的读写操作，仅在真机上验证通过
  */
 + (void)saveInKeychainWithIdentifier:(NSString *)identifier;
-
 
 /**
  从Keychain中加载保存的唯一ID
@@ -424,7 +800,7 @@
 /**
  根据给定的path对应的文件进行MD5摘要
 
- @param path 文件的path
+ @param path 文件的path，需要直接写具体路径，如：&quot;/home/user/photo.png&quot;
  @return 文件的MD5摘要
  */
 + (NSString *) MD5CodeWithFileAtPath:(NSString *) path;
@@ -432,7 +808,7 @@
 /**
  根据给定的url对应的文件进行MD5摘要
  
- @param url 文件的url
+ @param url 文件的url，url的构建需要符合文件头scheme，如：&quot;file:///home/user/photo.png&quot;
  @return 文件的MD5摘要
  */
 + (NSString *) MD5CodeWithFileAtURL:(NSURL *) url;
@@ -456,7 +832,7 @@
 /**
  根据给定的path对应的文件进行SHA1摘要
  
- @param path 文件的path
+ @param path 文件的path，需要直接写具体路径，如：&quot;/home/user/photo.png&quot;
  @return 文件的SHA1摘要
  */
 + (NSString *) SHA1CodeWithFileAtPath:(NSString *) path;
@@ -464,15 +840,46 @@
 /**
  根据给定的url对应的文件进行SHA1摘要
  
- @param url 文件的url
+ @param url 文件的url，url的构建需要符合文件头scheme，如：&quot;file:///home/user/photo.png&quot;
  @return 文件的SHA1摘要
  */
 + (NSString *) SHA1CodeWithFileAtURL:(NSURL *) url;
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h2 id=&quot;section-10&quot;&gt;开源协议&lt;/h2&gt;
+&lt;h2 id=&quot;section-12&quot;&gt;系统宏定义&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;CUDefine.h&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ Constant Key-Values
+ */
+#define kScreen_Width    [[UIScreen mainScreen] bounds].size.width
+#define kScreen_Height   [[UIScreen mainScreen] bounds].size.height
+
+
+/* Sting Values */
+#define kDefault_Unique_Identifier_Key_In_Keychain          @&quot;kDefault_Unique_Identifier_Key_In_Keychain&quot;
+
+/* Number Values */
+#define kDefault_Tag_4_Pop_Down_Tips_View                   2016120801
+#define kDefault_Tag_4_Toast_View                           2016120802
+#define kDefault_Tag_4_Waiting_View                         2016120803
+
+
+/**
+ Define Logger
+ */
+#ifdef DEBUG
+#define Logger(...) NSLog(@&quot;%s:%d %@&quot;, __PRETTY_FUNCTION__, __LINE__, [NSString stringWithFormat:__VA_ARGS__])
+#else
+#define Logger(format, ...)
+#endif
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;section-13&quot;&gt;开源协议&lt;/h1&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/acttos/CommonUtilities&quot; target=&quot;_blank&quot;&gt; [CUtil] &lt;/a&gt; 基于 &lt;a href=&quot;https://mit-license.org/&quot;&gt; [The MIT License(MIT)] &lt;/a&gt; 协议开源。
 &lt;br /&gt;
@@ -482,7 +889,7 @@
   &lt;p&gt;感谢来访！&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
-        <pubDate>Fri, 02 Dec 2016 08:54:03 +0800</pubDate>
+        <pubDate>Wed, 21 Dec 2016 15:36:53 +0800</pubDate>
         <link>http://www.acttos.org/2016/12/CUtil-A-Common-Utilities-for-iOS/</link>
         <guid isPermaLink="true">http://www.acttos.org/2016/12/CUtil-A-Common-Utilities-for-iOS/</guid>
         
@@ -2193,93 +2600,6 @@ Dispatch sources are used to automatically submit event handler blocks to dispat
         <pubDate>Fri, 19 Aug 2016 19:09:27 +0800</pubDate>
         <link>http://www.acttos.org/2016/08/NSTimer-and-GCD-Timer-in-iOS/</link>
         <guid isPermaLink="true">http://www.acttos.org/2016/08/NSTimer-and-GCD-Timer-in-iOS/</guid>
-        
-        
-        <category>iOS</category>
-        
-      </item>
-    
-      <item>
-        <title>Open a settings page in iOS</title>
-        <description>&lt;h3 id=&quot;general-opening-method&quot;&gt;1. General opening method&lt;/h3&gt;
-
-&lt;p&gt;Sometime, we need to access data may contains privacy(such as:camera,microphone,photo and so on) in user’s mobile device, for that, iOS requires us to acquire an authorization from the device user. We can show up an AlertView for the request, and what we can do more is &lt;code class=&quot;highlighter-rouge&quot;&gt;Open a certain settings page&lt;/code&gt; for user. Let’s figure it out.&lt;/p&gt;
-
-&lt;h5 id=&quot;common-opening-url-in-ios&quot;&gt;Common opening URL in iOS:&lt;/h5&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-oc&quot;&gt;if ([[UIApplication sharedApplication] canOpenURL:url]) {
-    [[UIApplication sharedApplication] openURL:url];
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Basically, we can open any legal URLs in iOS. For settings, we use a pattern &lt;code class=&quot;highlighter-rouge&quot;&gt;prefs:root=RootName&amp;amp;path=PathName&lt;/code&gt;, the RootName and PathName can be found in paragraph 2 below.&lt;/p&gt;
-
-&lt;h3 id=&quot;urls-of-settings-in-ios&quot;&gt;2. URLs of settings in iOS&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-oc&quot;&gt;Camera - prefs:root=Privacy&amp;amp;path=CAMERA;
-Microphone - prefs:root=Privacy&amp;amp;path=MICROPHONE;
-About — prefs:root=General&amp;amp;path=About;
-Accessibility — prefs:root=General&amp;amp;path=ACCESSIBILITY;
-Airplane Mode On — prefs:root=AIRPLANE_MODE;
-Auto-Lock — prefs:root=General&amp;amp;path=AUTOLOCK;
-Brightness — prefs:root=Brightness;
-Bluetooth — prefs:root=General&amp;amp;path=Bluetooth;
-Date &amp;amp; Time — prefs:root=General&amp;amp;path=DATE_AND_TIME;
-FaceTime — prefs:root=FACETIME;
-General — prefs:root=General;
-Keyboard — prefs:root=General&amp;amp;path=Keyboard;
-iCloud — prefs:root=CASTLE;
-iCloud Storage &amp;amp; Backup — prefs:root=CASTLE&amp;amp;path=STORAGE_AND_BACKUP;
-International — prefs:root=General&amp;amp;path=INTERNATIONAL;
-Location Services — prefs:root=LOCATION_SERVICES;
-Music — prefs:root=MUSIC;
-Music Equalizer — prefs:root=MUSIC&amp;amp;path=EQ;
-Music Volume Limit — prefs:root=MUSIC&amp;amp;path=VolumeLimit;
-Network — prefs:root=General&amp;amp;path=Network;
-Nike + iPod — prefs:root=NIKE_PLUS_IPOD;
-Notes — prefs:root=NOTES;
-Notification — prefs:root=NOTIFICATIONS_ID;
-Phone — prefs:root=Phone;
-Photos — prefs:root=Photos;
-Profile — prefs:root=General&amp;amp;path=ManagedConfigurationList;
-Reset — prefs:root=General&amp;amp;path=Reset;
-Safari — prefs:root=Safari;
-Siri — prefs:root=General&amp;amp;path=Assistant;
-Sounds — prefs:root=Sounds;
-Software Update — prefs:root=General&amp;amp;path=SOFTWARE_UPDATE_LINK;
-Store — prefs:root=STORE;
-Twitter — prefs:root=TWITTER;
-Usage — prefs:root=General&amp;amp;path=USAGE;
-VPN — prefs:root=General&amp;amp;path=Network/VPN;
-Wallpaper — prefs:root=Wallpaper;
-Wi-Fi — prefs:root=WIFI;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;alertview-in-ios&quot;&gt;3. AlertView in iOS&lt;/h3&gt;
-
-&lt;p&gt;According to the document of Apple, we find that the &lt;code class=&quot;highlighter-rouge&quot;&gt;UIAlertView&lt;/code&gt; is deprecated in &lt;code class=&quot;highlighter-rouge&quot;&gt;iOS 9.0 and later&lt;/code&gt;, for safety we show the AlertView with different ways due to certain systemVersions:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-oc&quot;&gt;if ([[[UIDevice currentDevice] systemVersion] floatValue] &amp;gt;= 8.0) {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@&quot;Authorization Request&quot;
-                                                                  message:requestMsg
-                                                           preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@&quot;OK&quot;
-                                                            style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {
-                                                                [self _openURL:_settingsItemURL];
-                                                          }];
-
-    [alert addAction:defaultAction];
-    [[self _getPresentedViewController] presentViewController:alert animated:YES completion:nil];
-} else {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@&quot;Authorization Request&quot; message:tips delegate:self cancelButtonTitle:nil otherButtonTitles:@&quot;OK&quot;, nil];
-    [alertView show];
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;UIAlertController&lt;/code&gt; is only available since iOS 8.0, so we set the condition of &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; statement is &lt;code class=&quot;highlighter-rouge&quot;&gt;systemVersion &amp;gt; 8.0&lt;/code&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Fri, 12 Aug 2016 20:12:23 +0800</pubDate>
-        <link>http://www.acttos.org/2016/08/Open-A-Settings-Page-in-iOS/</link>
-        <guid isPermaLink="true">http://www.acttos.org/2016/08/Open-A-Settings-Page-in-iOS/</guid>
         
         
         <category>iOS</category>
