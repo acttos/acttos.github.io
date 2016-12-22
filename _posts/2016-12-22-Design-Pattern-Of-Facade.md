@@ -84,7 +84,9 @@ public class EntryBeijingImpl implements IEntry {
 }
 ```
 
-We just print out the message with different cargos in all the EntryXxxxImpl.java files. In fact, we will do the different things in every implementation class of IEntry, that is the meaning of `Facade`:'Do different things through only one key-door'.
+We just print out the message with different cargos in all the EntryXxxxImpl.java files. In fact, we will do the different things in every implementation class of IEntry, that is the meaning of `Facade`:
+
+> "Do different things through only one key-door".
 
 Then, we need to take a look at class `EntryInfo`:
 
@@ -120,7 +122,7 @@ public class EntryInfo {
 }
 ```
 
-Here `EntryInfo.java` is just a pojo which has some properties, we also need to design the common request class in real job.
+Here `EntryInfo.java` is just a pojo(plain old java object) which has some properties, we also need to design the much more complecated request class in real job.
 
 Now, let's finish the main method in `Facade.java`:
 
@@ -164,6 +166,9 @@ Sorry, we can NOT handle Nanjing’s cargos for now.
 ========== ERROR ==========
 ```
 
-Maybe you could't understand the codes above, because these codes are just part of Java project `Design Pattern`, you can see the completed codes [[ Here ]](https://github.com/acttos/DesignPattern){:target="_blank"}
+Maybe you could't understand the codes above clearly, because these codes are just part of Java project `Design Pattern` or my poor English can not bring my real idears in heart. Fortunately, You can find the completed codes [[ Here ]](https://github.com/acttos/DesignPattern){:target="_blank"}, and figure it out by your self.
+
 
 ## 3.Thanks for visiting.
+
+Good day and see you later!
