@@ -52,7 +52,7 @@ So far as we know, We just leave the value of `File's Owner` to be `NSObject` in
 
 ![](/images/201608-files-owner/files-owner-issue-nib-setting.png)
 
-##### The value of the root view in xib file is specified to be a existed class name:
+##### The value of the root view in xib file is specified to be an existed class name:
 
 ![](/images/201608-files-owner/files-owner-issue-nib-setting-2.png)
 
